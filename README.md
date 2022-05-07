@@ -19,7 +19,7 @@ tar xf archive.tar
 # if the file is .tar.gz
 tar xvzf PACKAGENAME.tar.gz
 
-#if the file is .tar.bz2
+# if the file is .tar.bz2
 tar xvjf PACKAGENAME.tar.bz2
 
 ./configure
