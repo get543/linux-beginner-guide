@@ -1,3 +1,6 @@
+> You can use this as a guide if you are using **ubuntu or ubuntu based** distros
+> I think some of this will work to on **debian** distros
+
 # Unpack `.deb` File
 ```bash 
 sudo dpkg -i thefilename.deb
@@ -12,7 +15,7 @@ tar xf archive.tar.xz
 tar xf archive.tar.gz
 tar xf archive.tar
 ```
-**If tar gives a Cannot exec error, you may need to sudo apt install xz-utils first.**
+**If tar gives a Cannot exec error, you may need to run `sudo apt install xz-utils` first.**
 
 ### Installing from a `.tar` file
 ```bash
@@ -28,12 +31,15 @@ sudo make install
 ```
 ---
 
-# Clone Repositories
+# How To Clone Git Repositories
 `git clone <repository URL>`
+
+Example : 
+`git clone https://github.com/get543/linux-beginner-guide`
 
 ---
 
-# Some Tips Tutorials
+# Other Tips Tutorials
 - [How to Dual Boot POP OS 20.04 LTS and Windows 10 - 2021](https://youtu.be/hbzCSjlbInY)
 - [15 Best GNOME Extensions for Ubuntu (2021 Edition) - OMG! Ubuntu!](https://www.omgubuntu.co.uk/best-gnome-shell-extensions)
 - [8 Irresistible Icon Sets for Ubuntu (2020 Edition)](https://www.omgubuntu.co.uk/best-icon-themes-ubuntu)
@@ -54,8 +60,14 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubunt
 
 ---
 
-# yt-dlp Best Option
+# yt-dlp
+Download a video from youtube, [install it](https://github.com/yt-dlp/yt-dlp#installation)
+
+For the best :
 `yt-dlp -f best <link_here>`
+
+Config that I use : 
+`yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"``
 
 **for the config :**
 ```text
@@ -68,7 +80,8 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubunt
 ```
 ---
 
-# Benerin Ouput Device
+# Speakers and Headphones 
+If you are having a problem with switching between speakers and headphones 
 ```bash
 sudo gedit /usr/share/pulseaudio/alsa-mixer/paths/analog-output-speaker.conf
 ```
@@ -93,12 +106,12 @@ volume = off
 # open any apps on defaults apps
 xdg-open <file-name.mp4>
 
-# or you can do this to 
+# or you can do this to if vlc installed
 vlc <filename.mp4>
 ```
 ---
 
-# Games On Terminal
+# Games To Try On Terminal
 - bsdgames 
 - snake 
 - hangman 
@@ -118,13 +131,16 @@ vlc <filename.mp4>
 
 # Check Installed Gnome Extensions
 ```bash
+# check all installed extensions
 gnome-extensions list
+
+# check enabled extensions
 gnome-extensions list --enabled
 ```
 ---
 
 # Installing Multiple Apps on 1 Command
-- create a `.sh` file :
+- Create a `.sh` file :
 ```bash
 #! /bin/bash
 sudo apt-get install vlc
@@ -135,10 +151,10 @@ sudo apt-get install -y wine
 sudo apt-get update && sudo apt-get upgrade
 ```
 
-- make the file executable:
+- Make the file executable:
 `chmod +x yourFile.sh`
 
-- run the file:
+- Run the file:
 `./yourFile.sh`
 ---
 
@@ -194,18 +210,6 @@ sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.k
 ```
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
 # List Hardware Info
 `lshw -short`
 
@@ -214,7 +218,7 @@ sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.k
 
 ---
 
-# Guide For Beginner Arch User
+# Beginner Arch
 ### ArchTitus
 [Arch Titus](https://github.com/ChrisTitusTech/ArchTitus) --> Arch Linux with a script
 
