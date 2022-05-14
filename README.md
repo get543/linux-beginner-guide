@@ -15,6 +15,9 @@ To install a lot of apps that I use
 Config to download video from youtube
 Selected for the best 1080p60 video
 
+# `flatpak-install.sh`
+Install flatpak for all distros. If your distro's not listed, it should problably installed by default
+
 # `Ultimate Guide For Beginner Linux User.md`
 - To troubleshoot problem that I face while trying to use linux for daily driver
 - Also contain tips and tricks to try
