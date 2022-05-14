@@ -36,7 +36,7 @@ tar xvjf PACKAGENAME.tar.bz2
 make
 sudo make install
 ```
-**see this for more info : ** https://help.ubuntu.com/community/CompilingEasyHowTo
+**see this for more info :** https://help.ubuntu.com/community/CompilingEasyHowTo
 
 ---
 
