@@ -1,6 +1,6 @@
 # `arch-vm.sh`
 My command to run arch vm using qemu
-You can read more on about qemu on `Ultimate Guide For Beginner Linux User.md`
+You can read more on about qemu on [Ultimate Guide For Beginner Linux User.md](https://github.com/get543/linux-beginner-guide/blob/main/Ultimate%20Guide%20For%20Beginner%20Linux%20User.md)
 
 # `droidcam-install.sh`
 To troubleshoot droidcam including reinstalling, changing resolution
