@@ -76,7 +76,7 @@ For the best :
 `yt-dlp -f best <link_here>`
 
 Config that I use : 
-`yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"``
+```yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"```
 
 **for the config :**
 ```text
