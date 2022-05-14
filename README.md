@@ -20,3 +20,6 @@ Selected for the best 1080p60 video
 - Also contain tips and tricks to try
 - Tutorials, explanation, my config
 - Guide for installing arch with a script also the official arch wiki installation
+
+> Note: I use Zorin OS 16.1 at the time of writing.
+> Some of the apps might not work
