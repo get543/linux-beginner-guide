@@ -95,7 +95,8 @@ If you are having a problem with switching between speakers and headphones
 sudo gedit /usr/share/pulseaudio/alsa-mixer/paths/analog-output-speaker.conf
 ```
 
-**Change :**
+**Change or Paste :**
+```
 [Element Headphone]
 switch = off
 volume = merge 
@@ -106,6 +107,7 @@ override-map.2 = all-left, all-right
 required-any = any
 switch = mute
 volume = off
+```
 
 ---
 
@@ -270,9 +272,9 @@ qemu-system-x86_64.exe -cdrom .\manjaro-kde-20.0.3-200606-linux56.iso -boot menu
 qemu-system-x86_64 -enable-kvm -show-cursor ./archlinux-2022.04.05-x86_64.iso -boot menu=on -drive file=Image.img -m 2G -smp $(nproc) -cpu host -vga virtio -display gtk,gl=on
 ```
 ==> **Basic performance options {LINUX ONLY}**
- `-cpu host` (sets the CPU to the hosts' CPU)
- `-smp 2` (sets the numbers of cores)
- `-smp $(nproc)` (use all available cores)
+- `-cpu host` (sets the CPU to the hosts' CPU)
+- `-smp 2` (sets the numbers of cores)
+- `-smp $(nproc)` (use all available cores)
 
 ==> **Basic Graphics Acceleration**
 - The `-vga` option can be used to specify one of various vga card emulators: (Linux only)
@@ -358,5 +360,18 @@ wget -O <filename> <URL>
 
 ### Resume incomplete downloads
 `wget -c`
+
+---
+# Disable Alt Key Menubar On Firefox
+Go to **about:config**
+> `ui.key.menuAccessKeyFocuses` change it to  `false`
+
+This will disable menubar when you press the alt key
+But still showing when you press the `alt + t` or `alt + h`
+
+> `ui.key.menuAccessKey` change it to `0`
+
+This will completely disable the menubar shortcut
+The regular shortcut still work, like `ctrl + w`, `ctrl + t` 
 
 ---
