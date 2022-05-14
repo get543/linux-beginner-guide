@@ -70,7 +70,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubunt
 ---
 
 # yt-dlp
-Download a video from youtube, [install it](https://github.com/yt-dlp/yt-dlp#installation)
+Download a video from youtube, [how to install it](https://github.com/yt-dlp/yt-dlp#installation)
 
 For the best :
 `yt-dlp -f best <link_here>`
@@ -194,13 +194,13 @@ https://linuxhandbook.com/linux-file-permissions/
 ---
 
 # Droidcam Installation
-**Change the webcam resolution : **
+**Change the webcam resolution :**
 - navigate to droidcam config file
 - `cd /etc/modprobe.d/`
 - `sudo nano droidcam.conf`
 - change the width and height and then save it
 
-**If there is a kernel update, you have to install the whole thing again : **
+**If there is a kernel update, you have to install the whole thing again :**
 ```bash
 cd /tmp/
 wget -O droidcam_latest.zip https://files.dev47apps.net/linux/droidcam_1.8.2.zip
@@ -233,7 +233,7 @@ sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.k
 ### ArchTitus
 [Arch Titus](https://github.com/ChrisTitusTech/ArchTitus) --> Arch Linux with a script
 
-**Installing ArchTitus: **
+**Installing ArchTitus:**
 ```bash
 pacman -Sy git
 git clone https://github.com/ChrisTitusTech/ArchTitus
