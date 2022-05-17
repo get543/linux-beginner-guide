@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/bin/bash 
 
 BRed='\033[1;31m'
 Color_Off='\033[0m'
