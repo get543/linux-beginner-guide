@@ -24,5 +24,4 @@ Install flatpak for all distros. If your distro's not listed, it should problabl
 - Tutorials, explanation, my config
 - Guide for installing arch with a script also the official arch wiki installation
 
-> Note: I use Zorin OS 16.1 at the time of writing.
-> Some of the apps might not work
+> Note: I use Zorin OS 16.1 at the time of writing. Some of the apps might not work if you are using different distro
