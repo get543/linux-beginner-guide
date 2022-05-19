@@ -1,14 +1,30 @@
 > You can use this as a guide if you are using **ubuntu or ubuntu based** distros
 > I think some of this will work to on **debian** distros
 
+# Update & Upgrade Package
+```bash
+# update the repository
+sudo apt update
+
+# list all upgradable packages
+apt list --upgradable
+
+# upgrade specific packages or upgrade a single package
+sudo apt --only-upgrade install gimp code kdenlive
+
+# upgrade all packages
+sudo apt upgrade
+```
+---
+
 # Unpack `.deb` File
 ```bash 
+# this will work mostly fine
 sudo dpkg -i thefilename.deb
-```
-```bash 
+
+# using apt
 sudo apt install ./thefilename.deb
-```
-```bash 
+
 # run this if you get any dependency errors
 sudo apt install -f
 ```
