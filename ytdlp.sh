@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-# text
+# text colour
 BRed='\033[1;31m'
 
 cd ~/Downloads
@@ -13,13 +13,12 @@ fi
  
 if [ "$1" ]
 then
-echo -ne "
----------------------------------------------------------------------------------------------
-		Automated YouTube Downloader Script Using YT-DLP
----------------------------------------------------------------------------------------------
-	--> The best 1080p 'video only' and the best 'audio only' merged <--
-	\n
-"
+	echo -ne "
+	---------------------------------------------------------------------------------------------
+			Automated YouTube Downloader Script Using YT-DLP
+	---------------------------------------------------------------------------------------------
+		--> The best 1080p 'video only' and the best 'audio only' merged <--
+	\n"
 
 	yt-dlp -F $1
 	yt-dlp -S "res:1080,ext" -f "bv*+ba/b" $1 -o "%(title)s.%(ext)s"

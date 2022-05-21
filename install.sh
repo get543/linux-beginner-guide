@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 BRed='\033[1;31m'
 Color_Off='\033[0m'
@@ -50,9 +50,11 @@ function choose_from_menu() {
 
 export -f choose_from_menu # export functions
 
+# making sure that the file is executable
+chmod +x flatpak-install.sh
+chmod +x upgrade.sh
 
-
-
+# ----------------------------------------------------------------------------------------------------------------------------
 ### Start of the script
 
 # Checking Flatpak
@@ -75,22 +77,26 @@ fi
 
 ### Updating System
 echo "------------------------ We Are Updating System ------------------------"
-echo -ne "Do you want to update the system ? (Y/n) "
+echo -ne "Do you want to update the system ? [Y/n] "
 read updateOptions
 
 if [[ "$updateOptions" = "Y" || "$updateOptions" = "y" || "$updateOptions" = "" ]]
 then
    sudo apt update
-   sudo apt upgrade
+   echo -ne "\n------------------ List Of Package That Can Be Upgraded ------------------\n"
+   apt list --upgradable
+   
+   ./upgrade.sh
 else
    echo "Ok Continuing.. "
 fi
 
 
+### Installation Apps
 while :
 do
    clear
-   ### Installation Apps
+   
    selections=(
       "Ao"
       "Audacity"
@@ -120,7 +126,7 @@ do
       "yt-dlp"
       "Zoom"
 
-      "Done"
+      "Exit"
    )
 
    choose_from_menu "What app you want to install ?" selected_choice "${selections[@]}"
@@ -603,16 +609,16 @@ do
 
 
 
-   elif [ "$selected_choice" = "Done" ]
+   elif [ "$selected_choice" = "Exit" ]
    then
       echo -ne "
       --------------------------------------------------
-      |                    Done                        |
+      |           Done, Thank You For Using            |
       --------------------------------------------------\n"
       break
 
    else
-      echo "idk what you choose or maybe you choose done"
+      echo "idk what you choose or maybe just an error in the program"
 
    fi
 
@@ -623,4 +629,11 @@ done
 
 
 
-
+: ' Before Running This File
+    Do This In The Terminal:
+    - cat /etc/shells
+    - which bash
+    Make This Into Executable:
+    - chmod +x install.sh
+    Run The File:
+    - ./install.sh'
