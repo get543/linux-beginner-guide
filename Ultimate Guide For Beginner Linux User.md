@@ -418,3 +418,43 @@ echo "options rtl8188fu rtw_power_mgnt=0 rtw_enusbss=0" | sudo tee /etc/modprobe
 **Source :** https://github.com/kelebek333/rtl8188fu
 
 ---
+
+# Aliases
+```bash
+# Show Aliases
+alias
+````
+
+### Creating temporary aliases
+```bash
+# Syntax
+alias name="yourcustomcommand"
+
+# Example
+alias instalation="cd ~/Documents/shell && ./install.sh"
+```
+
+### Creating permanent aliases
+- bash --> *~/.bashrc*
+- zsh --> *~/.zshrc*
+- fish --> *~/.config/fish/config.fish*
+```bash
+# If you are using bash
+nano ~/.bashrc
+
+# Put aliases in that file
+alias instalation="cd ~/Documents/shell && ./install.sh"
+
+# Use it as current session
+source ~/.bashrc
+```
+
+### Remove Aliases
+```bash
+# Remove added aliases
+unalias instalation
+
+# Remove all aliases
+unalias -a
+```
+---

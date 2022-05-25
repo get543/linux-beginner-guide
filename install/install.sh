@@ -49,6 +49,8 @@ function choose_from_menu() {
 }
 
 export -f choose_from_menu # export functions
+export BRed
+export Color_Off
 
 # making sure that the file is executable
 chmod +x flatpak-install.sh
@@ -83,13 +85,26 @@ read updateOptions
 if [[ "$updateOptions" = "Y" || "$updateOptions" = "y" || "$updateOptions" = "" ]]
 then
    sudo apt update
-   echo -ne "\n------------------ List Of Package That Can Be Upgraded ------------------\n"
+   echo -ne "\n--------------------- List Of Package ------------------------\n"
    apt list --upgradable
    
    ./upgrade.sh
+
+
+   echo -ne "Updating flatpak applications ? [Y/n] "
+   read flatpakUpdate
+
+   if [[ "$flatpakUpdate" = "Y" || "$flatpakUpdate" = "y" || "$flatpakUpdate" = "" ]]
+   then
+      flatpak update
+
+   else
+      echo "Ok Continuing.. "
+   fi
 else
    echo "Ok Continuing.. "
 fi
+
 
 
 ### Installation Apps
@@ -103,6 +118,7 @@ do
       "balena-etcher"
       "Discord"
       "Droidcam"
+      "Geary"
       "Git"
       "GNU Image Manipulation Program (GIMP)"
       "Gnome Tweaks"
@@ -122,6 +138,7 @@ do
       "Visual Studio Code"
       "Virtual Machine Manager"
       "VLC"
+      "WhatsApp Desktop"
       "WINE"
       "yt-dlp"
       "Zoom"
@@ -606,6 +623,28 @@ do
       sudo apt install gnome-shell-extensions
       echo "Install this firefox extension : https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search"
       echo "And you're good :)"
+
+
+
+   elif [ "$selected_choice" = "Geary" ]
+   then
+      echo -ne "
+      --------------------------------------------------
+      |                Installing Geary                |
+      --------------------------------------------------
+      "
+      sudo apt install geary
+
+
+
+   elif [ "$selected_choice" = "WhatsApp Desktop" ]
+   then
+      echo -ne "
+      --------------------------------------------------
+      |          Installing WhatsApp Desktop           |
+      --------------------------------------------------
+      "
+      flatpak install flathub io.github.mimbrero.WhatsAppDesktop
 
 
 

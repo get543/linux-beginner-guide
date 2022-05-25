@@ -29,19 +29,19 @@ then
     )
 
     choose_from_menu "Choose Your Distributions" selected_choice "${selections[@]}"
-    
+
     if [ "$selected_choice" = "Ubuntu" ]
     then
         sudo add-apt-repository ppa:flatpak/stable
         sudo apt update
         sudo apt install flatpak
-    
+
     elif [ "$selected_choice" = "Fedora" ]
     then
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    
+
     elif [ "$selected_choice" = "Arch" ]
-    then 
+    then
         sudo pacman -S flatpak
 
     elif [ "$selected_choice" = "Debian" ]
@@ -76,12 +76,12 @@ then
         sudo apt update
         sudo apt install flatpak
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    
+
     elif [ "$selected_choice" = "Solus" ]
     then
         sudo eopkg install flatpak xdg-desktop-portal-gtk
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    
+
     elif [ "$selected_choice" = "Alpine" ]
     then
         sudo apk add flatpak
@@ -91,7 +91,7 @@ then
     then
         dnf install flatpak
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    
+
     elif [ "$selected_choice" = "Pop!_OS" ]
     then
         sudo apt install flatpak
@@ -122,12 +122,12 @@ then
     then
         sudo neko em flatpak
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    
+
     elif [ "$selected_choice" = "Deepin" ]
     then
         sudo apt install flatpak
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    
+
     elif [ "$selected_choice" = "Pardus" ]
     then
         apt install flatpak
@@ -139,9 +139,9 @@ then
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
     elif [ "$selected_choice" = "Zorin OS" ]
-    then 
+    then
         echo "No need, it is already installed by default :)"
-    
+
     fi
 
 
