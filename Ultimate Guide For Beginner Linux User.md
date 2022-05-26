@@ -458,3 +458,35 @@ unalias instalation
 unalias -a
 ```
 ---
+
+# Solve Discord Laggy Performance
+***This works by turning on gpu acceleration, by running this on terminal :***
+```bash
+discord --enable-gpu-rasterization
+```
+
+***You must create or edit the `discord.desktop` file, so you don't have to launch discord through terminal, Like this :***
+
+- Edit or create the `discord.desktop` usually located here
+```bash
+nano /home/{your-user}/.local/share/applicatios/discord.desktop
+```
+
+- Paste This :
+```bash
+[Desktop Entry]
+Name=Discord
+StartupWMClass=discord
+Comment=All-in-one voice and text chat for gamers that is free, secure, and works on both your desktop and phone.
+GenericName=Internet Messenger
+Exec=/usr/bin/discord --enable-gpu-rasterization
+Icon=discord
+Type=Application
+Categories=Network;InstantMessaging;
+Path=/usr/bin
+Path=/usr/bin
+```
+
+- `CTRL + X` --> to save and exit
+- `Y` --> to confirm
+---
