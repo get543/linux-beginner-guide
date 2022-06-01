@@ -11,7 +11,7 @@ then
     do
         clear
 
-        echo "------------------ List Of Package That Can Be Upgraded ------------------"
+        echo "------------------ List Upgradable Package(s) ------------------"
         apt list --upgradable
 
         echo -ne "\nType the exact package name you want to upgrade according to the list."
@@ -32,6 +32,6 @@ then
     
 elif [ "$selected_choice" = "Skip" ]
 then
-    echo "OK Exiting The Process..."
+    echo "OK Skip Upgrading Process..."
 
 fi

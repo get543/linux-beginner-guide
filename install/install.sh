@@ -85,12 +85,12 @@ read updateOptions
 if [[ "$updateOptions" = "Y" || "$updateOptions" = "y" || "$updateOptions" = "" ]]
 then
    sudo apt update
-   echo -ne "\n--------------------- List Of Package ------------------------\n"
+   echo -ne "\n--------------- List Upgradable Package(s) ---------------\n"
    apt list --upgradable
-   
+
    ./upgrade.sh
 
-
+   # Update flatpak apps
    echo -ne "Updating flatpak applications ? [Y/n] "
    read flatpakUpdate
 
@@ -101,6 +101,20 @@ then
    else
       echo "Ok Continuing.. "
    fi
+
+   # Remove unused package
+   echo -ne "Remove unused package(s) ? [Y/n] "
+   read removePackage
+
+   if [[ "$removePackage" = "Y" || "$removePackage" = "y" || "$removePackage" = "" ]]
+   then
+      sudo apt autoremove
+      sudo apt autoclean
+
+   else
+      echo "Ok Continuing.. "
+   fi
+
 else
    echo "Ok Continuing.. "
 fi
@@ -111,7 +125,7 @@ fi
 while :
 do
    clear
-   
+
    selections=(
       "Ao"
       "Audacity"
@@ -147,7 +161,7 @@ do
    )
 
    choose_from_menu "What app you want to install ?" selected_choice "${selections[@]}"
-   
+
    clear
    # echo -ne "\nYou Selected ${BRed}$selected_choice \n${Color_Off}"
 
@@ -299,7 +313,7 @@ do
          flatpak install flathub us.zoom.Zoom
       elif [ "$selected_choice" = "No" ]
       then
-         wget https://zoomgov.com/client/latest/zoom_amd64.deb -O ~/Downloads/zoom_amd64.deb
+         wget https://zoom.us/client/latest/zoom_amd64.deb -O ~/Downloads/zoom_amd64.deb
          cd ~/Downloads
          sudo dpkg -i zoom_amd64.deb
       fi
@@ -503,7 +517,7 @@ do
          # ubuntu 22.04
          wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
          sudo mv winehq-jammy.sources /etc/apt/sources.list.d/
-      fi 
+      fi
 
       sudo apt update
       sudo apt install --install-recommends winehq-stable
@@ -586,17 +600,17 @@ do
          echo "You have enabled virtualization on your machine"
          echo "Proceed installing..."
          sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
-         
+
          echo "Verify that libvirt is running..."
          sudo systemctl status libvirtd.service | grep running
-         
+
          echo "Setting up network by default and autostart..."
          sudo virsh net-start default
          sudo virsh net-autostart default
-         
+
          echo "Checking network status..."
          sudo virsh net-list --all
-         
+
          echo "Adding libvirt user..."
          sudo adduser $(whoami) libvirt
          sudo adduser $(whoami) libvirt-qemu
@@ -606,7 +620,7 @@ do
          echo "If the number shows 0, then enable virtualization on bios settings"
          echo "Enable VT-x (Virtualization Technology Extension) for Intel processor"
          echo "Enable AMD-V for AMD processor"
-         
+
          break
       fi
 
