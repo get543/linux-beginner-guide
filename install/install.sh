@@ -91,7 +91,7 @@ then
    ./upgrade.sh
 
    # Update flatpak apps
-   echo -ne "Updating flatpak applications ? [Y/n] "
+   echo -ne "\nUpdating flatpak application(s) ? [Y/n] "
    read flatpakUpdate
 
    if [[ "$flatpakUpdate" = "Y" || "$flatpakUpdate" = "y" || "$flatpakUpdate" = "" ]]
@@ -103,7 +103,7 @@ then
    fi
 
    # Remove unused package
-   echo -ne "Remove unused package(s) ? [Y/n] "
+   echo -ne "\nRemove unused package(s) ? [Y/n] "
    read removePackage
 
    if [[ "$removePackage" = "Y" || "$removePackage" = "y" || "$removePackage" = "" ]]
