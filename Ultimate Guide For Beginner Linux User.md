@@ -469,7 +469,7 @@ discord --enable-gpu-rasterization
 
 - Edit or create the `discord.desktop` usually located here
 ```bash
-nano /home/{your-user}/.local/share/applicatios/discord.desktop
+nano /home/{your-user}/.local/share/applications/discord.desktop
 ```
 
 - Paste This :

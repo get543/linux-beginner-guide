@@ -130,6 +130,7 @@ do
       "Ao"
       "Audacity"
       "balena-etcher"
+      "Deckboard"
       "Discord"
       "Droidcam"
       "Geary"
@@ -139,6 +140,7 @@ do
       "Indicator-Sound-Switcher"
       "Inkscape"
       "Kdenlive"
+      "KolourPaint"
       "Obsidian"
       "OBS Studio"
       "OpenRGB"
@@ -659,6 +661,32 @@ do
       --------------------------------------------------
       "
       flatpak install flathub io.github.mimbrero.WhatsAppDesktop
+
+
+
+   elif [ "$selected_choice" = "KolourPaint" ]
+   then
+      echo -ne "
+      --------------------------------------------------
+      |             Installing KolourPaint             |
+      --------------------------------------------------
+      "
+      flatpak install flathub org.kde.kolourpaint
+
+
+
+   elif [ "$selected_choice" = "Deckboard" ]
+   then
+      echo -ne "
+      --------------------------------------------------
+      |             Installing Deckboard               |
+      --------------------------------------------------
+      "
+      wget https://github.com/rivafarabi/deckboard/releases/download/v2.0.2/deckboard_2.0.2_amd64.deb -O ~/Downloads/deckboard_2.0.2.deb
+      cd ~/Downloads
+      sudo apt install ./deckboard_2.0.2.deb
+      sudo apt --fix-broken install
+      sudo apt install ./deckboard_2.0.2.deb
 
 
 

@@ -9,7 +9,7 @@ To troubleshoot droidcam including reinstalling, changing resolution
 Free swap memory
 
 # `install.sh`
-To install a lot of apps that I use
+To install a lot of apps that I use on a daily basis
 
 # `ytdlp.sh`
 Config to download video from youtube
