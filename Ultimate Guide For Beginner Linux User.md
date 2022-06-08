@@ -431,7 +431,7 @@ alias
 alias name="yourcustomcommand"
 
 # Example
-alias instalation="cd ~/Documents/shell && ./install.sh"
+alias installation="cd ~/Documents/shell && ./install.sh"
 ```
 
 ### Creating permanent aliases
@@ -443,7 +443,7 @@ alias instalation="cd ~/Documents/shell && ./install.sh"
 nano ~/.bashrc
 
 # Put aliases in that file
-alias instalation="cd ~/Documents/shell && ./install.sh"
+alias installation="cd ~/Documents/shell && ./install.sh"
 
 # Use it as current session
 source ~/.bashrc
@@ -452,7 +452,7 @@ source ~/.bashrc
 ### Remove Aliases
 ```bash
 # Remove added aliases
-unalias instalation
+unalias installation
 
 # Remove all aliases
 unalias -a
