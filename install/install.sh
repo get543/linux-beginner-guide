@@ -55,6 +55,7 @@ export Color_Off
 # making sure that the file is executable
 chmod +x flatpak-install.sh
 chmod +x upgrade.sh
+chmod +x droidcam-install.sh
 
 # ----------------------------------------------------------------------------------------------------------------------------
 ### Start of the script
@@ -97,19 +98,6 @@ then
    if [[ "$flatpakUpdate" = "Y" || "$flatpakUpdate" = "y" || "$flatpakUpdate" = "" ]]
    then
       flatpak update
-
-   else
-      echo "Ok Continuing.. "
-   fi
-
-   # Remove unused package
-   echo -ne "\nRemove unused package(s) ? [Y/n] "
-   read removePackage
-
-   if [[ "$removePackage" = "Y" || "$removePackage" = "y" || "$removePackage" = "" ]]
-   then
-      sudo apt autoremove
-      sudo apt autoclean
 
    else
       echo "Ok Continuing.. "
@@ -315,6 +303,7 @@ do
          flatpak install flathub us.zoom.Zoom
       elif [ "$selected_choice" = "No" ]
       then
+         clear
          wget https://zoom.us/client/latest/zoom_amd64.deb -O ~/Downloads/zoom_amd64.deb
          cd ~/Downloads
          sudo dpkg -i zoom_amd64.deb
@@ -368,6 +357,7 @@ do
          flatpak install flathub com.discordapp.Discord
       elif [ "$selected_choice" = "No" ]
       then
+         clear
          wget https://discord.com/api/download?platform=linux&format=deb -O ~/Downloads/discord.deb
          cd ~/Downloads
          sudo dpkg -i discord.deb
@@ -559,12 +549,14 @@ do
 
          if [ "$selected_choice" = "20.10 and older" ]
          then
+            clear
             wget https://openrgb.org/releases/release_0.7/openrgb_0.7_amd64_buster_6128731.deb -O ~/Downloads/openrgb-buster.deb
             cd ~/Downloads
             sudo dpkg -i openrgb-buster.deb
 
          elif [ "$selected_choice" = "21.04 and newer" ]
          then
+            clear
             wget https://openrgb.org/releases/release_0.7/openrgb_0.7_amd64_bullseye_6128731.deb -O ~/Downloads/openrgb-bullseye.deb
             cd ~/Downloads
             sudo dpkg -i openrgb-bullseye.deb
@@ -692,10 +684,6 @@ do
 
    elif [ "$selected_choice" = "Exit" ]
    then
-      echo -ne "
-      --------------------------------------------------
-      |           Done, Thank You For Using            |
-      --------------------------------------------------\n"
       break
 
    else
@@ -707,7 +695,23 @@ do
 done
 
 
+# Remove unused package
+echo -ne "\nRemove unused package(s) ? [Y/n] "
+read removePackage
 
+if [[ "$removePackage" = "Y" || "$removePackage" = "y" || "$removePackage" = "" ]]
+then
+   sudo apt autoremove
+   sudo apt autoclean
+
+else
+   echo "Ok Continuing.. "
+fi
+
+echo -ne "
+      --------------------------------------------------
+      |           Done, Thank You For Using            |
+      --------------------------------------------------\n"
 
 
 : ' Before Running This File

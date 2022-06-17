@@ -26,6 +26,7 @@ elif [ "$st1" = "2" ]
 then
     echo -ne "=========== YOU CHOOSE TO EDIT THE RESOLUTION =========== \n"
     echo -ne "change the height and width of your choosing \n"
+    read
 
     cd /etc/modprobe.d/
     sudo nano droidcam.conf

@@ -22,12 +22,12 @@ then
         echo -ne "\nUpgrade Package : "
         read packageName
 
-        sudo apt --only-upgrade install $packageName
-
         if [ "$packageName" = "exit" ]
         then
             break
         fi
+
+        sudo apt --only-upgrade install $packageName
     done
     
 elif [ "$selected_choice" = "Skip" ]
