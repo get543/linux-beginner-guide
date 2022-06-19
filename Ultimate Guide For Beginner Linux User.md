@@ -431,7 +431,7 @@ alias
 alias name="yourcustomcommand"
 
 # Example
-alias installation="cd ~/Documents/shell && ./install.sh"
+alias instalation="cd ~/Documents/shell && ./install.sh"
 ```
 
 ### Creating permanent aliases
@@ -443,7 +443,7 @@ alias installation="cd ~/Documents/shell && ./install.sh"
 nano ~/.bashrc
 
 # Put aliases in that file
-alias installation="cd ~/Documents/shell && ./install.sh"
+alias instalation="cd ~/Documents/shell && ./install.sh"
 
 # Use it as current session
 source ~/.bashrc
@@ -452,7 +452,7 @@ source ~/.bashrc
 ### Remove Aliases
 ```bash
 # Remove added aliases
-unalias installation
+unalias instalation
 
 # Remove all aliases
 unalias -a
@@ -489,4 +489,42 @@ Path=/usr/bin
 
 - `CTRL + X` --> to save and exit
 - `Y` --> to confirm
+---
+
+# Git Basic Command
+```bash
+# global config
+git config --global user.name "get343"
+
+# config email
+git config --global user.email "blablabla@gmail.com"
+
+# initialization
+git init
+
+# add all files in the directory
+git add .
+
+# commit
+git commit -m "first commit"
+
+# change branch to main
+git branch -M main
+
+# add a remote repository
+git remote add origin "https://get543.github.io/mywebsite.github.io/"
+
+# push changes to github
+git push -u origin main
+
+
+# there's a change in the code and want to upload to github
+git add .
+git commit -m 'mengubah apa ?'
+git push
+```
+
+### Github Cheat Sheet
+https://dev.to/doabledanny/git-cheat-sheet-50-commands-free-pdf-and-poster-4gcn
+
 ---

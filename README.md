@@ -20,12 +20,14 @@ Install flatpak for all distros. If your distro's not listed, it should problabl
 
 # `upgrade.sh`
 For upgrading packages installed on your system. Also you can upgrade single or multiple packages just by typing the package's name ***Run this file together with `install.sh`***
+
 # `Ultimate Guide For Beginner Linux User.md`
 - To troubleshoot problem that I face while trying to use linux for daily driver
 - Also contain tips and tricks to try
 - Tutorials, explanation, my config
 - Guide for installing arch with a script also the official arch wiki installation
 
-> Note: I use Zorin OS 16.1 at the time of writing. Some of the apps might not work if you are using different distro.
+> Note: I use Zorin OS 16.1 at the time of writing. Some of the installation **will** not work if you are using distro other than **ubuntu based** distros.
 
-> Before running the `.sh` file, make sure to make it as an executable file by running `chmod +x FileName.sh`
+> Before running the `.sh` file, make sure to make it as an executable file by running
+`chmod +x FileName.sh`
