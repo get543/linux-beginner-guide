@@ -520,7 +520,7 @@ git push -u origin main
 
 # there's a change in the code and want to upload to github
 git add .
-git commit -m 'mengubah apa ?'
+git commit -m "commit message"
 git push
 ```
 
