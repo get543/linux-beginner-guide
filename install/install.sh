@@ -213,8 +213,8 @@ do
       --------------------------------------------------
       |               Installing Rambox                |
       --------------------------------------------------"
-      wget https://rambox.app/api/download?os=linux&package=deb -O ~/Downloads/rambox-2.0.deb
       cd ~/Downloads
+      wget -O rambox-2.0.deb 'https://rambox.app/api/download?os=linux&package=deb'
       sudo dpkg -i rambox-2.0.deb
 
 
@@ -358,8 +358,8 @@ do
       elif [ "$selected_choice" = "No" ]
       then
          clear
-         wget https://discord.com/api/download?platform=linux&format=deb -O ~/Downloads/discord.deb
          cd ~/Downloads
+         wget -O discord.deb 'https://discord.com/api/download?platform=linux&format=deb'
          sudo dpkg -i discord.deb
       fi
 
