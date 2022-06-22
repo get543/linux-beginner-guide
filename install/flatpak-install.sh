@@ -138,10 +138,6 @@ then
         sudo pisi it flatpak
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    elif [ "$selected_choice" = "Zorin OS" ]
-    then
-        echo "No need, it is already installed by default :)"
-
     fi
 
 
