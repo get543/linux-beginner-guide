@@ -93,20 +93,67 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubunt
 # yt-dlp
 Download a video from youtube, [how to install it](https://github.com/yt-dlp/yt-dlp#installation)
 
-For the best :
-`yt-dlp -f best <link_here>`
-
-Config that I use : 
-```yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"```
-
-**for the config :**
+##### Download the best :
+```bash
+yt-dlp -f best <link_here>
+```
+##### Config that I use : 
+Download the highest 1080p .mp4 video-only and merge it with the best audio-only format. If no 1080p, use the highest before that
+```bash
+yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"
+```
+##### Config explains :
 ```text
--f mp4 => for format 
--f best => for best option
+-f mp4 => for video format 
+-f best => for the best option
 -f 140 => choose the number from the list 
 -F => display all available format
--o => C:\Users\fghaz\Downloads\%(title)s.%(ext)s => for the download path
+-o => C:\Users\dood\Downloads\%(title)s.%(ext)s => for the download path
 --no-mtime => the time when you download it not the uploader time
+```
+##### More config examples :
+See the full list  [here](https://github.com/yt-dlp/yt-dlp#format-selection-examples)
+```bash
+# Download and merge the best video-only format and the best audio-only format,
+# or download the best combined format if video-only format is not available
+$ yt-dlp -f "bv+ba/b"
+
+# Download best format that contains video,
+# and if it doesn't already have an audio stream, merge it with best audio-only format
+$ yt-dlp -f "bv*+ba/b"
+
+-----------------------------------------------------------------------------
+
+# Download the best video-only format and the best audio-only format without merging them
+# For this case, an output template should be used since
+# by default, bestvideo and bestaudio will have the same file name.
+$ yt-dlp -f "bv,ba" -o "%(title)s.f%(format_id)s.%(ext)s"
+
+# Download the best video available but with the smallest resolution
+$ yt-dlp -S "+res"
+
+# Download the smallest video available
+$ yt-dlp -S "+size,+br"
+
+# Download the best mp4 video available, or the best video if no mp4 available
+$ yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
+
+# Download the best video with the best extension
+# (For video, mp4 > webm > flv. For audio, m4a > aac > mp3 ...)
+$ yt-dlp -S "ext"
+
+# Download the best video available with the largest resolution but no better than 480p,
+# or the best video with the smallest resolution if there is no video under 480p
+# Resolution is determined by using the smallest dimension.
+# So this works correctly for vertical videos as well
+$ yt-dlp -S "res:480"
+
+# Download best video (that also has audio) that is closest in size to 50 MB
+$ yt-dlp -f "b" -S "filesize~50M"
+
+# Download the best video with worst codec no worse than h264,
+# or the best video with best codec if there is no such video
+$ yt-dlp -S "+codec:h264"
 ```
 ---
 
@@ -197,8 +244,39 @@ sudo apt install vlc obs-studio simplenote steam wine
 ```
 ---
 
-# Show Thumbnails for Video
+# Show Thumbnails In File Manager (Nautilus)
+#### For Video Files
 https://askubuntu.com/questions/1034595/thumbnails-not-showing-in-video-in-ubuntu-18-04
+```bash
+sudo apt install ffmpegthumbnailer
+
+# remove thumbnails folder in the .cache folder
+rm -r ~/.cache/thumbnails/fail
+
+# if that doesn't work, clear the entire thumbnails folder
+rm -rf ~/.cache/thumbnails/*
+
+# quit file manager and then you can re-open it 
+nautilus -q 
+```
+#### For Webp Files
+https://fostips.com/enable-thumbnails-webp-ubuntu-fedora/
+```bash
+# add repository
+sudo add-apt-repository ppa:krifa75/eog-ordissimo
+
+# update repository
+sudo apt update
+
+# install the package
+sudo apt install webp-pixbuf-loader
+
+# remove the repository because it might break other packages
+sudo add-apt-repository --remove ppa:krifa75/eog-ordissimo
+
+# quit file manager
+nautilus -q 
+```
 
 ---
 
