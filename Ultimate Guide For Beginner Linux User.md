@@ -1,5 +1,10 @@
-> You can use this as a guide if you are using **ubuntu or ubuntu based** distros
+##### Note
+> You can use this as a guide if you are using *ubuntu or ubuntu based** distros.
 > I think some of this will work to on **debian** distros
+
+> If you see something like this `<name>` in the command, remove the brackets and replace it with what it says
+
+> Read! Before copy and pasting
 
 # Update & Upgrade Package
 ```bash
@@ -167,22 +172,29 @@ gnome-extensions list --enabled
 ---
 
 # Installing Multiple Apps on 1 Command
+### By Creating A Script File
 - Create a `.sh` file :
 ```bash
 #! /bin/bash
-sudo apt-get install vlc
-sudo apt-get install obs-studio
-sudo apt-get install simplenote
-sudo apt-get install steam
-sudo apt-get install -y wine
-sudo apt-get update && sudo apt-get upgrade
+sudo apt install vlc
+sudo apt install obs-studio
+sudo apt install simplenote
+sudo apt install steam
+sudo apt install -y wine
+sudo apt update && sudo apt upgrade
 ```
 
 - Make the file executable:
-`chmod +x yourFile.sh`
+`chmod +x fileName.sh`
 
 - Run the file:
-`./yourFile.sh`
+`./fileName.sh`
+
+### By Terminal Command
+Install the app using `sudo apt install` just put a space between each app
+```bash
+sudo apt install vlc obs-studio simplenote steam wine
+```
 ---
 
 # Show Thumbnails for Video
@@ -276,9 +288,9 @@ or
 ### Using QEMU on Terminal
 ```bash 
 # navigate to the .iso file
-cd d:/
+cd /path/to/iso/file
 
-# create disk image
+# create disk image 10GB
 qemu-img create -f qcow2 Image.img 10G
 
 # Works with Windows :
@@ -358,24 +370,37 @@ GTK_DEBUG=interactive thunar
 ---
 
 # Using wget
-### Download a file or webpage using wget
+##### Download a file or webpage using wget
 ```bash
 wget <URL>
 wget -i <download_files.txt>
 wget -O <filename> <URL>
 ```
 
-### Download a folder using wget
-`wget -r <link>`
+##### Download a folder using wget
+```bash
+wget -r <link>
+```
 
-### Download an entire website using wget
-`wget -m --convert-links --page-requisites website_address`
+##### Download an entire website using wget
+```bash
+wget -m --convert-links --page-requisites website_address
+```
 
-### Customize download location (recommended)
-`wget <link> -O ~/Downloads/<custom file name>.deb`
+##### Customize download location (recommended)
+```bash
+wget <link> -O ~/Downloads/<custom-file-name>.deb
+```
 
-### Resume incomplete downloads
-`wget -c`
+##### Download with a redirect link
+```bash
+wget -O <custom-file-name>.deb '<link>'
+```
+
+##### Resume incomplete downloads
+```bash
+wget -c
+```
 
 ---
 # Disable Alt Key Menubar On Firefox
@@ -393,7 +418,7 @@ The regular shortcut still work, like `ctrl + w`, `ctrl + t`
 ---
 
 # Wifi Drivers
->This work on Realtek Semiconductor Corp. 802.11n
+>This works on Realtek Semiconductor Corp. 802.11n
 
 **How to check :**
 `lsusb`
@@ -465,11 +490,11 @@ unalias -a
 discord --enable-gpu-rasterization
 ```
 
-***You must create or edit the `discord.desktop` file, so you don't have to launch discord through terminal, Like this :***
+***You must create or edit the `discord.desktop` file, so you don't have to launch discord through terminal, like this :***
 
 - Edit or create the `discord.desktop` usually located here
 ```bash
-nano /home/{your-user}/.local/share/applications/discord.desktop
+nano /home/<your-user>/.local/share/applications/discord.desktop
 ```
 
 - Paste This :
@@ -528,3 +553,30 @@ git push
 https://dev.to/doabledanny/git-cheat-sheet-50-commands-free-pdf-and-poster-4gcn
 
 ---
+# Installing Node JS (Node Version Manager)
+```bash
+# check what the script contains
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+
+# if all good you can download and run it
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+# will refresh the bashrc
+source ~/.bashrc
+
+# list available node version
+nvm list-remote
+
+# install node js using version number
+nvm install v16.15.1
+
+# install node js using version name
+nvm install lts/gallium
+
+# check what version of node installed
+node -v
+```
+
+###### Source :
+- https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
+- [The Github Projects](https://github.com/nvm-sh/nvm)
