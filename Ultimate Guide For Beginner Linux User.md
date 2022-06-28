@@ -658,3 +658,39 @@ node -v
 ###### Source :
 - https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
 - [The Github Projects](https://github.com/nvm-sh/nvm)
+
+---
+# Customize Terminal Command Prompt
+On most system usually will look something like this
+```bash
+user@host:~$ 
+```
+
+I'm going to change it to more like this 
+```bash
+user@host ~
+$ 
+```
+
+##### Step To Do
+Edit the `.bashrc` file
+```bash
+nano ~/.bashrc
+```
+
+Find something like this. Now this is the special characters before adding the color into the prompt
+```bash
+PS1="\u@\h:\W\$ "
+```
+
+And this is after adding a color into the prompt. The coloring added before and after the special characters.
+```bash
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+```
+
+Just need to add a newline `\n` before the `$` and delete `:` add a space after that, like this :
+```bash
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\n\$ '
+```
+
+**Source :** https://www.computerhope.com/issues/ch001645.htm
