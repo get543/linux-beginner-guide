@@ -452,9 +452,19 @@ do
       |             Installing OBS Studio              |
       --------------------------------------------------
       "
-      sudo add-apt-repository ppa:obsproject/obs-studio
-      sudo apt update
-      sudo apt install ffmpeg obs-studio
+
+      selections=("Yes" "No")
+      choose_from_menu "Do you want to install it with flatpak ?" selected_choice "${selections[@]}"
+      
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub com.obsproject.Studio
+      elif [ "$selected_choice" = "No" ]
+      then
+         sudo add-apt-repository ppa:obsproject/obs-studio
+         sudo apt update
+         sudo apt install ffmpeg obs-studio
+      fi
 
 
 
