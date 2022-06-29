@@ -1,4 +1,4 @@
-##### Note
+#### Note
 > You can use this as a guide if you are using *ubuntu or ubuntu based** distros.
 > I think some of this will work to on **debian** distros
 
@@ -655,7 +655,7 @@ nvm install lts/gallium
 node -v
 ```
 
-###### Source :
+**Source :**
 - https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
 - [The Github Projects](https://github.com/nvm-sh/nvm)
 
@@ -694,3 +694,54 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[0
 ```
 
 **Source :** https://www.computerhope.com/issues/ch001645.htm
+
+---
+# Fixing OBS Error when Installing
+Usually I do this when installing OBS 
+```bash
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install ffmpeg obs-studio
+```
+
+But it outputs this error message
+```bash
+The following packages have unmet dependencies:
+ obs-studio : Depends: libfdk-aac1 (>= 0.1.4) but it is not installable
+E: Unable to correct problems, you have held broken packages.
+```
+
+You need to download the package from the debian website
+https://packages.debian.org/stretch/amd64/libfdk-aac1/download
+
+And install it using this command
+```bash
+# navigate to the downloads folder
+cd Downloads
+
+# install it using dpkg command
+sudo dpkg -i libfdk-aac1_0.1.4-2+b1_amd64.deb
+```
+
+And finally rerun the obs install command
+```bash
+sudo apt install obs-studio
+```
+
+**Note :** I experience broken theme if I use this method. Use flatpak instead
+
+---
+# Fixing Printer & Scanner Error
+Uninstall `ippusbxd`
+```bash
+sudo apt purge ippusbxd
+```
+
+Download Both `ipp-usb` and `sane-airscan`
+https://download.opensuse.org/repositories/home:/pzz/xUbuntu_20.04/amd64/
+
+Just Install it like usual
+```bash
+sudo dpkg -i ipp-usb_0.9.22-1+52.1_amd64.deb
+sudo dpkg -i sane-airscan_0.99.27-1+89.1_amd64.deb
+```
