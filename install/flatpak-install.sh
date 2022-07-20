@@ -1,5 +1,8 @@
+echo -e "${Bred}Go To This Website To Install It : https://flatpak.org/setup/"
+echo -e "Or you can continue and the script will install it for you ..${Color_off}"
+
 selections=("Yes" "No")
-choose_from_menu "Do you want to install flatpak ?" selected_choice "${selections[@]}"
+choose_from_menu "Do you want to install flatpak ? " selected_choice "${selections[@]}"
 
 if [ "$selected_choice" = "Yes" ]
 then
@@ -25,7 +28,6 @@ then
         "Deepin"
         "Pardus"
         "Pisi GNU Linux"
-        "Zorin OS"
     )
 
     choose_from_menu "Choose Your Distributions" selected_choice "${selections[@]}"

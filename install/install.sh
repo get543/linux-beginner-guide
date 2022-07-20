@@ -71,8 +71,7 @@ then
    echo "Package flatpak is installed!"
 
 else
-   echo "It looks like flatpak is NOT installed!"
-   # echo "Go To This Website To Install It : https://flatpak.org/setup/"
+   echo -e "It looks like flatpak is ${BRed}NOT${Color_Off} installed!"
    ./flatpak-install.sh
 
 fi
