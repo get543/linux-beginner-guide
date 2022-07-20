@@ -100,11 +100,11 @@ then
       flatpak update
 
    else
-      echo "Ok Continuing.. "
+      continue
    fi
 
 else
-   echo "Ok Continuing.. "
+   continue
 fi
 
 
@@ -123,6 +123,7 @@ do
       "Droidcam"
       "Geary"
       "Git"
+      "Github Desktop"
       "GNU Image Manipulation Program (GIMP)"
       "Gnome Tweaks"
       "Indicator-Sound-Switcher"
@@ -153,7 +154,6 @@ do
    choose_from_menu "What app you want to install ?" selected_choice "${selections[@]}"
 
    clear
-   # echo -ne "\nYou Selected ${BRed}$selected_choice \n${Color_Off}"
 
    if [ "$selected_choice" = "Ao" ]
    then
@@ -395,7 +395,17 @@ do
       |               Installing Audacity              |
       --------------------------------------------------
       "
-      flatpak install flathub org.audacityteam.Audacity
+
+      selections=("Yes" "No")
+      choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
+      
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub org.audacityteam.Audacity
+      elif [ "$selected_choice" = "No" ]
+      then
+         continue
+      fi
 
 
 
@@ -475,7 +485,17 @@ do
       |                Installing Pinta                |
       --------------------------------------------------
       "
-      flatpak install flathub com.github.PintaProject.Pinta
+      
+      selections=("Yes" "No")
+      choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
+      
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub com.github.PintaProject.Pinta
+      elif [ "$selected_choice" = "No" ]
+      then
+         continue
+      fi
 
 
 
@@ -486,7 +506,17 @@ do
       |              Installing Obsidian               |
       --------------------------------------------------
       "
-      flatpak install flathub md.obsidian.Obsidian
+      
+      selections=("Yes" "No")
+      choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
+      
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub md.obsidian.Obsidian
+      elif [ "$selected_choice" = "No" ]
+      then
+         continue
+      fi
 
 
 
@@ -533,7 +563,17 @@ do
       |         Installing Telegram Desktop            |
       --------------------------------------------------
       "
-      flatpak install flathub org.telegram.desktop
+
+      selections=("Yes" "No")
+      choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
+      
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub org.telegram.desktop
+      elif [ "$selected_choice" = "No" ]
+      then
+         continue
+      fi
 
 
 
@@ -601,21 +641,21 @@ do
 
       if [ $virtualization > 0 ]
       then
-         echo "You have enabled virtualization on your machine"
-         echo "Proceed installing..."
+         echo -e "${BRed}You have enabled virtualization on your machine"
+         echo -e "Proceed installing...${Color_Off}"
          sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
 
-         echo "Verify that libvirt is running..."
+         echo -e "${BRed}Verify that libvirt is running...${Color_Off}"
          sudo systemctl status libvirtd.service | grep running
 
-         echo "Setting up network by default and autostart..."
+         echo -e "${BRed}Setting up network by default and autostart...${Color_Off}"
          sudo virsh net-start default
          sudo virsh net-autostart default
 
-         echo "Checking network status..."
+         echo -e "${BRed}Checking network status...${Color_Off}"
          sudo virsh net-list --all
 
-         echo "Adding libvirt user..."
+         echo -e "${BRed}Adding libvirt user...${Color_Off}"
          sudo adduser $(whoami) libvirt
          sudo adduser $(whoami) libvirt-qemu
 
@@ -624,6 +664,7 @@ do
          echo "If the number shows 0, then enable virtualization on bios settings"
          echo "Enable VT-x (Virtualization Technology Extension) for Intel processor"
          echo "Enable AMD-V for AMD processor"
+         read
 
          break
       fi
@@ -639,8 +680,9 @@ do
       "
       sudo apt install gnome-tweaks
       sudo apt install gnome-shell-extensions
-      echo "Install this firefox extension : https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search"
+      echo -e "\n${BRed}Install this firefox extension :${Color_Off} https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search"
       echo "And you're good :)"
+      read
 
 
 
@@ -662,7 +704,17 @@ do
       |          Installing WhatsApp Desktop           |
       --------------------------------------------------
       "
-      flatpak install flathub io.github.mimbrero.WhatsAppDesktop
+
+      selections=("Yes" "No")
+      choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
+      
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub io.github.mimbrero.WhatsAppDesktop
+      elif [ "$selected_choice" = "No" ]
+      then
+         continue
+      fi
 
 
 
@@ -673,7 +725,17 @@ do
       |             Installing KolourPaint             |
       --------------------------------------------------
       "
-      flatpak install flathub org.kde.kolourpaint
+
+      selections=("Yes" "No")
+      choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
+      
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub org.kde.kolourpaint
+      elif [ "$selected_choice" = "No" ]
+      then
+         continue
+      fi
 
 
 
@@ -689,6 +751,27 @@ do
       sudo apt install ./deckboard_2.0.2.deb
       sudo apt --fix-broken install
       sudo apt install ./deckboard_2.0.2.deb
+   
+   
+   
+   elif [ "$selected_choice" = "Github Desktop" ]
+   then
+      echo -ne "
+      --------------------------------------------------
+      |          Installing Github Desktop             |
+      --------------------------------------------------
+      "
+
+      selections=("Yes" "No")
+      choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
+      
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub io.github.shiftey.Desktop
+      elif [ "$selected_choice" = "No" ]
+      then
+         continue
+      fi
 
 
 
@@ -697,7 +780,8 @@ do
       break
 
    else
-      echo "idk what you choose or maybe just an error in the program"
+      echo "idk what happened :("
+      echo "maybe just an error in the program"
 
    fi
 
@@ -706,7 +790,7 @@ done
 
 
 # Remove unused package
-echo -ne "\nRemove unused package(s) ? [Y/n] "
+echo -ne "Remove unused package(s) ? [Y/n] "
 read removePackage
 
 if [[ "$removePackage" = "Y" || "$removePackage" = "y" || "$removePackage" = "" ]]
@@ -715,20 +799,25 @@ then
    sudo apt autoclean
 
 else
-   echo "Ok Continuing.. "
+   echo "Abort."
 fi
 
 echo -ne "
-      --------------------------------------------------
-      |           Done, Thank You For Using            |
-      --------------------------------------------------\n"
+   --------------------------------------------------
+   |           Done, Thank You For Using            |
+   --------------------------------------------------
+"
 
 
-: ' Before Running This File
-    Do This In The Terminal:
-    - cat /etc/shells
-    - which bash
-    Make This Into Executable:
-    - chmod +x install.sh
-    Run The File:
-    - ./install.sh'
+: ' 
+Before Running This File,
+Do This In The Terminal:
+   - cat /etc/shells
+   - which bash
+   - put the result on line 1 of the file
+   - the default is also good
+Make This Into Executable:
+   - chmod +x install.sh
+Run The File:
+   - ./install.sh
+'
