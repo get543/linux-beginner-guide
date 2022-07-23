@@ -12,8 +12,10 @@ Free swap memory
 To install a lot of apps that I use on a daily basis
 
 # `ytdlp.sh`
-Config to download video from youtube
-Selected for the best 1080p60 video
+- Commands to download video from youtube using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- Selected for the best 1080p60 video
+- Can also download a youtube playlist
+- For audio, the best 'audio only' (.m4a)
 
 # `flatpak-install.sh`
 Install flatpak for all distros. If your distro's not listed, it should problably installed by default. ***Run this file together with `install.sh`***
