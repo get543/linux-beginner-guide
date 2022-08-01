@@ -745,3 +745,61 @@ Just Install it like usual
 sudo dpkg -i ipp-usb_0.9.22-1+52.1_amd64.deb
 sudo dpkg -i sane-airscan_0.99.27-1+89.1_amd64.deb
 ```
+
+---
+# Replace 'apt' With 'nala'
+Their github page [here](https://gitlab.com/volian/nala) 
+Copy paste guide [here](https://christitus.com/stop-using-apt/)
+
+#### Installation
+- Install the volian scar repo.
+```bash
+echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
+```
+
+- Add the source.
+```bash
+echo "deb-src https://deb.volian.org/volian/ scar main" | sudo tee -a /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+```
+
+- For Ubuntu 22.04 and newer.
+```bash
+sudo apt update
+sudo apt install nala
+```
+
+- Ubuntu 21.04 and lower
+```bash
+sudo apt update
+sudo apt install nala-legacy
+```
+
+#### Change 'apt' to 'nala'
+- Edit the `~/.bashrc` file
+```bash
+nano ~/.bashrc
+```
+
+- Add this to the end of the file.
+```shell
+# replacing apt with nala
+apt() { 
+  command nala "$@"
+}
+sudo() {
+  if [ "$1" = "apt" ]; then
+    shift
+    command sudo nala "$@"
+  else
+    command sudo "$@"
+  fi
+}
+```
+
+- `CTRL + X` then `Y` to save it
+
+- Refresh the file with
+```bash
+source ~/.bashrc
+```
