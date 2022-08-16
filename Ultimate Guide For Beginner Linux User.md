@@ -1,10 +1,10 @@
 #### Note
 > You can use this as a guide if you are using *ubuntu or ubuntu based** distros.
-> I think some of this will work to on **debian** distros
+> I think some of this will work to on **debian** distros.
 
-> If you see something like this `<name>` in the command, remove the brackets and replace it with what it says
+> If you see something like this `<name>` in the command, remove the brackets and replace it with what the bracket says.
 
-> Read! Before copy and pasting
+> Read before copy and pasting!
 
 # Update & Upgrade Package
 ```bash
@@ -20,7 +20,7 @@ sudo apt --only-upgrade install gimp code kdenlive
 # upgrade all packages
 sudo apt upgrade
 ```
----
+ 
 
 # Unpack `.deb` File
 ```bash 
@@ -33,7 +33,7 @@ sudo apt install ./thefilename.deb
 # run this if you get any dependency errors
 sudo apt install -f
 ```
----
+ 
 
 # Extract `.tar.xz` File
 https://linuxize.com/post/how-to-extract-unzip-tar-xz-file/
@@ -58,8 +58,7 @@ make
 sudo make install
 ```
 **see this for more info :** https://help.ubuntu.com/community/CompilingEasyHowTo
-
----
+ 
 
 # How To Clone Git Repositories
 `git clone <repository URL>`
@@ -67,8 +66,7 @@ sudo make install
 Example : 
 `git clone https://github.com/get543/linux-beginner-guide`
 
----
-
+ 
 # Other Tips Tutorials
 - [How to Dual Boot POP OS 20.04 LTS and Windows 10 - 2021](https://youtu.be/hbzCSjlbInY)
 - [15 Best GNOME Extensions for Ubuntu (2021 Edition) - OMG! Ubuntu!](https://www.omgubuntu.co.uk/best-gnome-shell-extensions)
@@ -78,8 +76,7 @@ Example :
 - [10 Fun Linux Command-Line Programs You Should Try When Bored](https://www.makeuseof.com/fun-linux-command-line-programs/)
 - [Run Windows Software On Linux With Bottles - OSTechNix](https://ostechnix.com/run-windows-software-on-linux-with-bottles/)
 - [Correct Errors In Previous Console Commands In Linux](https://ostechnix.com/correct-errors-in-linux-commands/ )
-
----
+ 
 
 # Node JS 
 ### nodejs repository :
@@ -88,17 +85,16 @@ https://github.com/nodesource/distributions/blob/master/README.md#debinstall
 ### installing nodejs :
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
 
----
-
+ 
 # yt-dlp
-Download a video from youtube, [how to install it](https://github.com/yt-dlp/yt-dlp#installation)
+Download a video from youtube, [how to install it.](https://github.com/yt-dlp/yt-dlp#installation)
 
 ##### Download the best :
 ```bash
 yt-dlp -f best <link_here>
 ```
-##### Config that I use : 
-Download the highest 1080p .mp4 video-only and merge it with the best audio-only format. If no 1080p, use the highest before that
+##### Config that I use :
+Download the highest 1080p .mp4 video-only and merge it with the best audio-only format. If no 1080p, use the highest before that.
 ```bash
 yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"
 ```
@@ -112,7 +108,7 @@ yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"
 --no-mtime => the time when you download it not the uploader time
 ```
 ##### More config examples :
-See the full list  [here](https://github.com/yt-dlp/yt-dlp#format-selection-examples)
+See the full list  [here.](https://github.com/yt-dlp/yt-dlp#format-selection-examples)
 ```bash
 # Download and merge the best video-only format and the best audio-only format,
 # or download the best combined format if video-only format is not available
@@ -122,7 +118,6 @@ $ yt-dlp -f "bv+ba/b"
 # and if it doesn't already have an audio stream, merge it with best audio-only format
 $ yt-dlp -f "bv*+ba/b"
 
------------------------------------------------------------------------------
 
 # Download the best video-only format and the best audio-only format without merging them
 # For this case, an output template should be used since
@@ -155,10 +150,11 @@ $ yt-dlp -f "b" -S "filesize~50M"
 # or the best video with best codec if there is no such video
 $ yt-dlp -S "+codec:h264"
 ```
----
 
-# Speakers and Headphones 
-If you are having a problem with switching between speakers and headphones 
+
+# Switch Between Speakers and Headphones Without Unpluging
+## Adding Config
+If you are having a problem with switching between speakers and headphones.
 ```bash
 sudo gedit /usr/share/pulseaudio/alsa-mixer/paths/analog-output-speaker.conf
 ```
@@ -177,10 +173,74 @@ switch = mute
 volume = off
 ```
 
----
+## Use Indicator-Sound-Switcher or Pavucontrol
+```bash
+sudo apt-get install indicator-sound-switcher
+sudo apt install pavucontrol
+```
+
+## Enable Auto Mute on Alsamixer
+- Type this on terminal :
+```bash
+alsamixer
+```
+
+- `F6` to select sound card.
+
+- Find sound card that you can enable or disable automute.
+
+- Use `right/left` arrow key and use `up/down` arrow key to change the value.
+
+## Script Toggle Auto Mute on Alsamixer
+- Download autokey (control the OS with Python script).
+```bash
+sudo apt install autokey-gtk
+```
+
+- Add a new script.
+
+- Name: Toggle Auto Mute.
+
+- Add this script :
+```Python
+# Toggle - Disable or Enable Auto-Mute Mode
+
+import os
+
+# user input
+# To get sound card number, open Terminal -> Type -> alsamixer -> press Enter -> press F6
+sound_card_number = 2
+# end of user input
+###############################################################
+time.sleep(0.5)
+get_info_command = "amixer -c %s get 'Auto-Mute Mode'" % sound_card_number
+get_info = system.exec_command(get_info_command)
+time.sleep(1)    
+if get_info.find("Item0: 'Disabled'") is not -1: # disabled
+    time.sleep(0.8)
+    enable = "amixer -c %s set 'Auto-Mute Mode' Enabled" % sound_card_number
+    system.exec_command(enable)
+    os.system("notify-send 'Auto-Mute Mode of Sound Card Number %s' 'Enabled'" % sound_card_number)
+    quit()
+else:   # enabled   
+    time.sleep(0.8) 
+    disable = "amixer -c %s set 'Auto-Mute Mode' Disabled" % sound_card_number
+    system.exec_command(disable)
+    os.system("notify-send 'Auto-Mute Mode of Sound Card Number %s' 'Disabled'" % sound_card_number)
+```
+
+- Change `sound_card_number` that has auto mute that you can disable or enable.
+
+- To do that, type this on terminal :
+```bash
+alsamixer
+```
+
+- Press `F6` to select sound card. And the number next to the sound card name is the `sound_card_number`.
+
 
 # Open Anything On Default Apps
-**On this example, open a video file**
+**On this example, open a video file :**
 ```bash
 # open any apps on defaults apps
 xdg-open <file-name.mp4>
@@ -188,7 +248,7 @@ xdg-open <file-name.mp4>
 # or you can do this to if vlc installed
 vlc <filename.mp4>
 ```
----
+
 
 # Games To Try On Terminal
 - bsdgames 
@@ -201,12 +261,12 @@ vlc <filename.mp4>
 - figlet 
 - aafire 
 - espeak
----
+
 
 # Restarting gnome-shell
 - `Alt + F2`
 - `r`
----
+
 
 # Check Installed Gnome Extensions
 ```bash
@@ -216,7 +276,7 @@ gnome-extensions list
 # check enabled extensions
 gnome-extensions list --enabled
 ```
----
+
 
 # Installing Multiple Apps on 1 Command
 ### By Creating A Script File
@@ -231,10 +291,10 @@ sudo apt install -y wine
 sudo apt update && sudo apt upgrade
 ```
 
-- Make the file executable:
+- Make the file executable :
 `chmod +x fileName.sh`
 
-- Run the file:
+- Run the file :
 `./fileName.sh`
 
 ### By Terminal Command
@@ -242,7 +302,7 @@ Install the app using `sudo apt install` just put a space between each app
 ```bash
 sudo apt install vlc obs-studio simplenote steam wine
 ```
----
+
 
 # Show Thumbnails In File Manager (Nautilus)
 #### For Video Files
@@ -259,6 +319,7 @@ rm -rf ~/.cache/thumbnails/*
 # quit file manager and then you can re-open it 
 nautilus -q 
 ```
+
 #### For Webp Files
 https://fostips.com/enable-thumbnails-webp-ubuntu-fedora/
 ```bash
@@ -278,7 +339,6 @@ sudo add-apt-repository --remove ppa:krifa75/eog-ordissimo
 nautilus -q 
 ```
 
----
 
 # Change App Icon on Ubuntu
 ```bash
@@ -287,24 +347,22 @@ sudo gedit <app.name>.desktop
 ```
 **Replace** --> `Icon=/home/<your-user>/Pictures/Icons/something.png`
 
----
 
 # Fonts
 - office fonts for libreoffice : `sudo apt-get install ttf-mscorefonts-installer`
 - source-code-pro : https://github.com/adobe-fonts/source-code-pro
----
+
 
 # Linux File Permission Explanation
 https://linuxhandbook.com/linux-file-permissions/
 
----
 
 # Droidcam Installation
 **Change the webcam resolution :**
-- navigate to droidcam config file
+- navigate to droidcam config file.
 - `cd /etc/modprobe.d/`
 - `sudo nano droidcam.conf`
-- change the width and height and then save it
+- change the width and height and then save it.
 
 **If there is a kernel update, you have to install the whole thing again :**
 ```bash
@@ -325,7 +383,7 @@ sudo rmmod v4l2loopback_dc
 # reload the driver with a new resolution
 sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.ko width=1920 height=1080
 ```
----
+ 
 
 # List Hardware Info
 `lshw -short`
@@ -333,11 +391,10 @@ sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.k
 ### GUI version (install it first)
 `lshw-gui` or `lshw-gtk`
 
----
 
 # Beginner Arch
 ### ArchTitus
-[Arch Titus](https://github.com/ChrisTitusTech/ArchTitus) --> Arch Linux with a script
+[Arch Titus](https://github.com/ChrisTitusTech/ArchTitus) --> Arch Linux with a script.
 
 **Installing ArchTitus:**
 ```bash
@@ -350,7 +407,6 @@ cd ArchTitus
 ### Regular Arch Linux Installation
 https://github.com/rickellis/Arch-Linux-Install-Guide
 
----
 
 # Guide For Gaming on Linux
 - Ultimate Guide --> https://www.christitus.com/ultimate-linux-gaming-guide/
@@ -360,7 +416,6 @@ https://github.com/rickellis/Arch-Linux-Install-Guide
 or
 `gamemoded ./game`
 
----
 
 # QEMU 
 ### Using QEMU on Terminal
@@ -375,33 +430,32 @@ qemu-img create -f qcow2 Image.img 10G
 qemu-system-x86_64.exe -cdrom .\manjaro-kde-20.0.3-200606-linux56.iso -boot menu=on -drive file=Image.img -m 2G -smp 2 --accel whpx
 
 # Works with Linux :
-qemu-system-x86_64 -enable-kvm -show-cursor ./archlinux-2022.04.05-x86_64.iso -boot menu=on -drive file=Image.img -m 2G -smp $(nproc) -cpu host -vga virtio -display gtk,gl=on
+qemu-system-x86_64 -enable-kvm -show-cursor -cdrom ./archlinux-2022.04.05-x86_64.iso -boot menu=on -drive file=Image.img -m 2G -smp $(nproc) -cpu host -vga virtio -display gtk,gl=on
 ```
-==> **Basic performance options {LINUX ONLY}**
-- `-cpu host` (sets the CPU to the hosts' CPU)
-- `-smp 2` (sets the numbers of cores)
-- `-smp $(nproc)` (use all available cores)
+==> **Basic performance options { LINUX ONLY }**
+- `-cpu host` (sets the CPU to the hosts' CPU).
+- `-smp 2` (sets the numbers of cores).
+- `-smp $(nproc)` (use all available CPU cores).
 
 ==> **Basic Graphics Acceleration**
-- The `-vga` option can be used to specify one of various vga card emulators: (Linux only)
+- The `-vga` option can be used to specify one of various vga card emulators: (Linux only).
 
-- "qxl" offers 2D acceleration but requires kernel modules "qxl" and "bochs_drm" to be enabled: 
+- "qxl" offers 2D acceleration but requires kernel modules "qxl" and "bochs_drm" to be enabled :
 	`-vga qxl`
 
-- "virtio" works much better and supports some 3D emulation:
+- "virtio" works much better and supports some 3D emulation :
 	`-vga virtio -display sdl,gl=on`
 
-> **Source:**
+> **Source :**
 https://youtu.be/AAfFewePE7c
 
-> **More Options & Explanations:**
+> **More Options & Explanations :**
 https://wiki.gentoo.org/wiki/QEMU/Options
 
 ### Using QEMU with GUI
-Guide Virtualization on Linux (virt-manager and qemu)
+Guide Virtualization on Linux (virt-manager and qemu).
 [virt manager](https://www.christitus.com/vm-setup-in-linux)
 
----
 
 # Clear Swap Memory
 ```bash
@@ -419,33 +473,35 @@ swapon -a
 # See the amount of swap used/available decrease over time
 free -m
 ```
----
+
 
 # Restart Audio Driver
 ```bash
-# reload alsa driver
+# Reload alsa driver
 sudo alsa force-reload
+
+# If it doesn't work, try using this
+systemctl --user restart pulseaudio
 
 # Start it again with pulseaudio
 pulseaudio --start
 ```
----
+
 
 # Remove a Directory on Terminal
-> remove a directory with nested folders and files
+> Remove a directory with nested folders and files.
 `rm -r` or `rm -rf`
 
-**example :**
+**Example :**
 `sudo rm -r -v <folders>`
 
----
 
 # Editing Thunar Visuals
 ```
 thunar -q
 GTK_DEBUG=interactive thunar
 ```
----
+
 
 # Using wget
 ##### Download a file or webpage using wget
@@ -480,23 +536,22 @@ wget -O <custom-file-name>.deb '<link>'
 wget -c
 ```
 
----
+
 # Disable Alt Key Menubar On Firefox
 Go to **about:config**
 > `ui.key.menuAccessKeyFocuses` change it to  `false`
 
-This will disable menubar when you press the alt key
-But still showing when you press the `alt + t` or `alt + h`
+This will disable menubar when you press the alt key.
+But still showing when you press the `alt + t` or `alt + h`.
 
 > `ui.key.menuAccessKey` change it to `0`
 
-This will completely disable the menubar shortcut
-The regular shortcut still work, like `ctrl + w`, `ctrl + t` 
+This will completely disable the menubar shortcut.
+The regular shortcut still work, like `ctrl + w`, `ctrl + t`.
 
----
 
 # Wifi Drivers
->This works on Realtek Semiconductor Corp. 802.11n
+>This works on Realtek Semiconductor Corp. 802.11n.
 
 **How to check :**
 `lsusb`
@@ -520,7 +575,6 @@ echo "options rtl8188fu rtw_power_mgnt=0 rtw_enusbss=0" | sudo tee /etc/modprobe
 
 **Source :** https://github.com/kelebek333/rtl8188fu
 
----
 
 # Aliases
 ```bash
@@ -560,7 +614,7 @@ unalias instalation
 # Remove all aliases
 unalias -a
 ```
----
+
 
 # Solve Discord Laggy Performance
 ***This works by turning on gpu acceleration, by running this on terminal :***
@@ -570,7 +624,7 @@ discord --enable-gpu-rasterization
 
 ***You must create or edit the `discord.desktop` file, so you don't have to launch discord through terminal, like this :***
 
-- Edit or create the `discord.desktop` usually located here
+- Edit or create the `discord.desktop` usually located here :
 ```bash
 nano /home/<your-user>/.local/share/applications/discord.desktop
 ```
@@ -590,9 +644,9 @@ Path=/usr/bin
 Path=/usr/bin
 ```
 
-- `CTRL + X` --> to save and exit
-- `Y` --> to confirm
----
+- `CTRL + X` --> to save and exit.
+- `Y` --> to confirm.
+ 
 
 # Git Basic Command
 ```bash
@@ -630,7 +684,7 @@ git push
 ### Github Cheat Sheet
 https://dev.to/doabledanny/git-cheat-sheet-50-commands-free-pdf-and-poster-4gcn
 
----
+ 
 # Installing Node JS (Node Version Manager)
 ```bash
 # check what the script contains
@@ -659,26 +713,26 @@ node -v
 - https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
 - [The Github Projects](https://github.com/nvm-sh/nvm)
 
----
+ 
 # Customize Terminal Command Prompt
-On most system usually will look something like this
+On most system usually will look something like this :
 ```bash
 user@host:~$ 
 ```
 
-I'm going to change it to more like this 
+I'm going to change it to more like this :
 ```bash
 user@host ~
 $ 
 ```
 
 ##### Step To Do
-Edit the `.bashrc` file
+Edit the `.bashrc` file.
 ```bash
 nano ~/.bashrc
 ```
 
-Find something like this. Now this is the special characters before adding the color into the prompt
+Find something like this. Now this is the special characters before adding the color into the prompt.
 ```bash
 PS1="\u@\h:\W\$ "
 ```
@@ -695,16 +749,16 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[0
 
 **Source :** https://www.computerhope.com/issues/ch001645.htm
 
----
+ 
 # Fixing OBS Error when Installing
-Usually I do this when installing OBS 
+Usually I do this when installing OBS.
 ```bash
 sudo add-apt-repository ppa:obsproject/obs-studio
 sudo apt update
 sudo apt install ffmpeg obs-studio
 ```
 
-But it outputs this error message
+But it outputs this error message.
 ```bash
 The following packages have unmet dependencies:
  obs-studio : Depends: libfdk-aac1 (>= 0.1.4) but it is not installable
@@ -714,7 +768,7 @@ E: Unable to correct problems, you have held broken packages.
 You need to download the package from the debian website
 https://packages.debian.org/stretch/amd64/libfdk-aac1/download
 
-And install it using this command
+And install it using this command :
 ```bash
 # navigate to the downloads folder
 cd Downloads
@@ -723,30 +777,30 @@ cd Downloads
 sudo dpkg -i libfdk-aac1_0.1.4-2+b1_amd64.deb
 ```
 
-And finally rerun the obs install command
+And finally rerun the obs install command.
 ```bash
 sudo apt install obs-studio
 ```
 
-**Note :** I experience broken theme if I use this method. Use flatpak instead
+**Note :** I experience broken theme if I use this method. Use flatpak instead.
 
----
+ 
 # Fixing Printer & Scanner Error
-Uninstall `ippusbxd`
+Uninstall `ippusbxd`.
 ```bash
 sudo apt purge ippusbxd
 ```
 
-Download Both `ipp-usb` and `sane-airscan`
+Download Both `ipp-usb` and `sane-airscan`.
 https://download.opensuse.org/repositories/home:/pzz/xUbuntu_20.04/amd64/
 
-Just Install it like usual
+Just Install it like usual.
 ```bash
 sudo dpkg -i ipp-usb_0.9.22-1+52.1_amd64.deb
 sudo dpkg -i sane-airscan_0.99.27-1+89.1_amd64.deb
 ```
 
----
+ 
 # Replace 'apt' With 'nala'
 Their github page [here](https://gitlab.com/volian/nala) 
 Copy paste guide [here](https://christitus.com/stop-using-apt/)
@@ -769,14 +823,14 @@ sudo apt update
 sudo apt install nala
 ```
 
-- Ubuntu 21.04 and lower
+- Ubuntu 21.04 and lower.
 ```bash
 sudo apt update
 sudo apt install nala-legacy
 ```
 
 #### Change 'apt' to 'nala'
-- Edit the `~/.bashrc` file
+- Edit the `~/.bashrc` file.
 ```bash
 nano ~/.bashrc
 ```
@@ -797,9 +851,17 @@ sudo() {
 }
 ```
 
-- `CTRL + X` then `Y` to save it
+- `CTRL + X` then `Y` to save it.
 
-- Refresh the file with
+- Refresh the file.
 ```bash
 source ~/.bashrc
+```
+
+ 
+# Flush DNS Cache on Linux
+```bash
+sudo systemd-resolve --flush-caches
+sudo resolvectl flush-caches
+sudo systemd-resolve --statistics
 ```
