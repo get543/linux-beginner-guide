@@ -8,6 +8,9 @@ To troubleshoot droidcam including reinstalling, changing resolution
 # `freeramcache.sh`
 Free swap memory
 
+# `change.sh`
+Script to change output device (headhones and speakers), it is using zenity and it should work if you enter the soundcard number and sink port correctly.
+
 # `install.sh`
 To install a lot of apps that I use on a daily basis
 
