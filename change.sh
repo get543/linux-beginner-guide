@@ -1,7 +1,7 @@
 #! /bin/bash
 
-sound_card_number=1
-sink_port=2
+sound_card_number=2
+sink_port=3
 
 title="Change Output Device"
 prompt="Pick your mode :"
@@ -20,7 +20,7 @@ do
 
         pactl set-sink-port $sink_port analog-output-lineout
 
-        echo -e "\033[1;31m\n\t\tSpeaker Mode \033[0m"
+        echo -e "\nStatus :\033[1;31m\t\tSpeaker Mode \033[0m"
         zenity --notification --window-icon="info" --text="You are now on '$opt'"
         ;;
     "${options[1]}")
@@ -33,7 +33,7 @@ do
 
         pactl set-sink-port $sink_port analog-output-headphones
 
-        echo -e "\033[1;31m\n\t\tHeadphone Mode \033[0m"
+        echo -e "\nStatus :\033[1;31m\t\tHeadphone Mode \033[0m"
         zenity --notification --window-icon="info" --text="You are now on '$opt'"
         ;;
     *)

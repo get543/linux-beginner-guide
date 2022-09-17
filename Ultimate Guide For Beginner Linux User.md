@@ -238,6 +238,9 @@ alsamixer
 
 - Press `F6` to select sound card. And the number next to the sound card name is the `sound_card_number`.
 
+## Using Shell Script
+You can use [this](https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change.sh) shell script to change output device between headphones and speakers. It uses zenity, it comes pre-installed on Ubuntu based distros. This is the same script as the Python script the only differrence is you don't have to download autokey.
+
 
 # Open Anything On Default Apps
 **On this example, open a video file :**
@@ -865,3 +868,32 @@ sudo systemd-resolve --flush-caches
 sudo resolvectl flush-caches
 sudo systemd-resolve --statistics
 ```
+
+
+# Basic Vim Commands
+- `:e <filename>` → open filename to edit
+- `:w` → save file
+- `:q` → exit vim
+- `:q!` → quit without saving
+- `:wq` → save file and close vim
+- `:x` → write file and exit
+- `:sav <filename>` → saves file as filename
+- `:!pwd` → execute the PWD Unix command, and returns to vi
+- `yy` → copies the current line
+- `p` → pastes the copied text
+- `u` → undo the previously executed command
+- `dd` → deletes the current line
+- `: f <filename>` → rename the file
+
+
+# **Keyboard shortcuts for the Linux terminal on Ubuntu** 
+- `TAB` - autocomplete the command
+- `TAB TAB` - for displaying all file names and commands that start with those letters
+- `ctrl + alt + t` - for opening the terminal
+- `ctrl + u` - to remove the current line
+- `ctrl + a` - move the cursor to start of the line
+- `ctrl + e` - move the cursor to the end of the line
+- `ctrl + c` - to stop the current command
+- `ctrl + z` - to put a running command to sleep
+- `fg` - to continue the process that's put to sleep
+- `bg` - to continue the process in the background
