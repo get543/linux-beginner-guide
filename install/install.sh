@@ -116,14 +116,17 @@ do
    selections=(
       "Ao"
       "Audacity"
+      "AutoKey"
       "balena-etcher"
+      "dconf Editor"
       "Deckboard"
       "Discord"
       "Droidcam"
+      "Fragments"
       "Geary"
       "Git"
       "Github Desktop"
-      "GNU Image Manipulation Program (GIMP)"
+      "GIMP"
       "Gnome Tweaks"
       "Indicator-Sound-Switcher"
       "Inkscape"
@@ -156,22 +159,24 @@ do
 
    if [ "$selected_choice" = "Ao" ]
    then
-      echo "
+      echo -ne "
       --------------------------------------------------
       |                Installing Ao                   |
-      --------------------------------------------------"
+      --------------------------------------------------
+      "
       wget https://github.com/klaussinani/ao/releases/download/v6.9.0/ao_6.9.0_amd64.deb -O ~/Downloads/ao-6.9-amd64.deb
       cd ~/Downloads
       sudo dpkg -i ao-6.9-amd64.deb
 
 
 
-   elif [ "$selected_choice" = "GNU Image Manipulation Program (GIMP)" ]
+   elif [ "$selected_choice" = "GIMP" ]
    then
-      echo "
+      echo -ne "
       --------------------------------------------------
       |               Installing GIMP                  |
-      --------------------------------------------------"
+      --------------------------------------------------
+      "
 
       selections=("Yes" "No")
       choose_from_menu "Do you want to install it with flatpak ?" selected_choice "${selections[@]}"
@@ -188,30 +193,33 @@ do
 
    elif [ "$selected_choice" = "Git" ]
    then
-      echo "
+      echo -ne "
       --------------------------------------------------
       |                 Installing Git                 |
-      --------------------------------------------------"
+      --------------------------------------------------
+      "
       sudo apt install git
 
 
 
    elif [ "$selected_choice" = "pulseaudio and pavucontrol" ]
    then
-      echo "
+      echo -ne "
       --------------------------------------------------
       |      Installing pulseaudio and pavucontrol     |
-      --------------------------------------------------"
+      --------------------------------------------------
+      "
       sudo apt install pulseaudio pavucontrol
 
 
 
    elif [ "$selected_choice" = "Rambox" ]
    then
-      echo "
+      echo -ne "
       --------------------------------------------------
       |               Installing Rambox                |
-      --------------------------------------------------"
+      --------------------------------------------------
+      "
       cd ~/Downloads
       wget -O rambox-2.0.deb 'https://rambox.app/api/download?os=linux&package=deb'
       sudo dpkg -i rambox-2.0.deb
@@ -220,10 +228,11 @@ do
 
    elif [ "$selected_choice" = "ScrCpy" ]
    then
-      echo "
+      echo -ne "
       --------------------------------------------------
       |               Installing ScrCpy                |
-      --------------------------------------------------"
+      --------------------------------------------------
+      "
       apt install scrcpy
 
 
@@ -397,7 +406,7 @@ do
 
       selections=("Yes" "No")
       choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
-      
+
       if [ "$selected_choice" = "Yes" ]
       then
          flatpak install flathub org.audacityteam.Audacity
@@ -413,7 +422,8 @@ do
       echo -ne "
       --------------------------------------------------
       |             Installing Droidcam                |
-      --------------------------------------------------\n"
+      --------------------------------------------------
+      "
       ./droidcam-install.sh
 
 
@@ -464,7 +474,7 @@ do
 
       selections=("Yes" "No")
       choose_from_menu "Do you want to install it with flatpak ?" selected_choice "${selections[@]}"
-      
+
       if [ "$selected_choice" = "Yes" ]
       then
          flatpak install flathub com.obsproject.Studio
@@ -484,10 +494,10 @@ do
       |                Installing Pinta                |
       --------------------------------------------------
       "
-      
+
       selections=("Yes" "No")
       choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
-      
+
       if [ "$selected_choice" = "Yes" ]
       then
          flatpak install flathub com.github.PintaProject.Pinta
@@ -505,10 +515,10 @@ do
       |              Installing Obsidian               |
       --------------------------------------------------
       "
-      
+
       selections=("Yes" "No")
       choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
-      
+
       if [ "$selected_choice" = "Yes" ]
       then
          flatpak install flathub md.obsidian.Obsidian
@@ -565,7 +575,7 @@ do
 
       selections=("Yes" "No")
       choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
-      
+
       if [ "$selected_choice" = "Yes" ]
       then
          flatpak install flathub org.telegram.desktop
@@ -706,7 +716,7 @@ do
 
       selections=("Yes" "No")
       choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
-      
+
       if [ "$selected_choice" = "Yes" ]
       then
          flatpak install flathub io.github.mimbrero.WhatsAppDesktop
@@ -727,7 +737,7 @@ do
 
       selections=("Yes" "No")
       choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
-      
+
       if [ "$selected_choice" = "Yes" ]
       then
          flatpak install flathub org.kde.kolourpaint
@@ -750,9 +760,9 @@ do
       sudo apt install ./deckboard_2.0.2.deb
       sudo apt --fix-broken install
       sudo apt install ./deckboard_2.0.2.deb
-   
-   
-   
+
+
+
    elif [ "$selected_choice" = "Github Desktop" ]
    then
       echo -ne "
@@ -763,7 +773,7 @@ do
 
       selections=("Yes" "No")
       choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
-      
+
       if [ "$selected_choice" = "Yes" ]
       then
          flatpak install flathub io.github.shiftey.Desktop
@@ -774,6 +784,59 @@ do
 
 
 
+   elif [ "$selected_choice" = "AutoKey" ]
+   then
+      echo -ne "
+      --------------------------------------------------
+      |             Installing AutoKey                 |
+      --------------------------------------------------
+      "
+
+      selections=("GTK+" "Qt")
+      choose_from_menu "Select GTK+ For GNOME or Select Qt for KDE" selected_choice "${selections[@]}"
+
+      if [ "$selected_choice" = "GTK+" ]
+      then
+         sudo apt install autokey-gtk
+      elif [ "$selected_choice" = "Qt" ]
+      then
+         sudo apt install autokey-qt
+      fi
+
+
+
+   elif [ "$selected_choice" = "Fragments" ]
+   then
+      echo -ne "
+      --------------------------------------------------
+      |             Installing Fragments               |
+      --------------------------------------------------
+      "
+
+      selections=("Yes" "No")
+      choose_from_menu "Only provided in flatpak. Do you want to continue ?" selected_choice "${selections[@]}"
+
+      if [ "$selected_choice" = "Yes" ]
+      then
+         flatpak install flathub de.haeckerfelix.Fragments
+      elif [ "$selected_choice" = "No" ]
+      then
+         continue
+      fi
+
+
+   elif [ "$selected_choice" = "dconf Editor" ]
+   then
+      echo -ne "
+      --------------------------------------------------
+      |            Installing dconf Editor             |
+      --------------------------------------------------
+      "
+      sudo apt install dconf-editor
+
+
+
+
    elif [ "$selected_choice" = "Exit" ]
    then
       break
@@ -781,6 +844,7 @@ do
    else
       echo "idk what happened :("
       echo "maybe just an error in the program"
+      exit 0
 
    fi
 
@@ -808,7 +872,7 @@ echo -ne "
 "
 
 
-: ' 
+: '
 Before Running This File,
 Do This In The Terminal:
    - cat /etc/shells

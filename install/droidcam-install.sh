@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 echo "===================================================================="
 echo "||               Script For Troubleshooting Droidcam              ||"
@@ -39,13 +39,13 @@ then
     sudo rmmod v4l2loopback_dc
     echo "========================= DONE ========================= \n"
 
-    echo "Reloading driver with the new resolution"    
+    echo "Reloading driver with the new resolution"
     echo -ne "Enter new resolution for width : "
     read width
-    
+
     echo -ne "Enter new resolution for height : "
     read height
-    
+
     sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.ko width=$width height=$height
 
 elif [ "$st1" = "4" ]

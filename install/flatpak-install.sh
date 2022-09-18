@@ -146,5 +146,5 @@ then
 
 elif [ "$selected_choice" = "No" ]
 then
-    echo "OK DONE"
+    echo "Abort."
 fi
