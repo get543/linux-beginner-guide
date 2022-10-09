@@ -60,8 +60,8 @@ For upgrading packages installed on your system. Also you can upgrade single or 
 [`arch-vm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/arch-vm.sh
 [`droidcam-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam-install.sh
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
-[`change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-ouput/change.sh
-[`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-ouput/toggle.sh
+[`change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/change.sh
+[`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/toggle.sh
 [`install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/install.sh
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
 [`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/flatpak-install.sh
