@@ -2,6 +2,16 @@
 
 ##### All `.sh` `.md` is clickable in this page
 
+> Note: I use Zorin OS 16.1 at the time of writing. Some of the installation **will not** work if you are using distro other than **ubuntu based** distros.
+
+> Before running the `.sh` file, make sure to make it as an executable file by running
+> `chmod +x FileName.sh` on the terminal
+
+> To run a `.sh` file. Add `./` in the beginning of the file name
+> `./FileName.sh`
+
+> To get a `.sh` file. Click the file in [`README.md`] and do `CTRL + S` to save it
+
 # [`arch-vm.sh`]
 
 My command to run arch vm using qemu
@@ -49,16 +59,6 @@ For upgrading packages installed on your system. Also you can upgrade single or 
 - Tutorials, explanation, my config
 - Guide for installing arch with a script also the official arch wiki installation
 
-> Note: I use Zorin OS 16.1 at the time of writing. Some of the installation **will not** work if you are using distro other than **ubuntu based** distros.
-
-> Before running the `.sh` file, make sure to make it as an executable file by running
-> `chmod +x FileName.sh` on the terminal
-
-> To run a `.sh` file. Add `./` in the beginning of the file name
-> `./FileName.sh`
-
-> To get a `.sh` file. Click the file in [`README.md`] and do `CTRL + S` to save it
-
 [`arch-vm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/arch-vm.sh
 [`droidcam-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam-install.sh
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
@@ -69,4 +69,4 @@ For upgrading packages installed on your system. Also you can upgrade single or 
 [`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/flatpak-install.sh
 [`upgrade.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/upgrade.sh
 [`ultimate guide for beginner linux user.md`]: https://github.com/get543/linux-beginner-guide/blob/main/Ultimate%20Guide%20For%20Beginner%20Linux%20User.md
-[`README.md`]: https://github.com/get543/linux-beginner-guide/blob/main/README.md
+[`readme.md`]: https://github.com/get543/linux-beginner-guide/blob/main/README.md
