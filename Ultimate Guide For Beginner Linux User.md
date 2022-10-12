@@ -1,5 +1,5 @@
 #### Note
-> You can use this as a guide if you are using *ubuntu or ubuntu based** distros.
+> You can use this as a guide if you are using **ubuntu or ubuntu based** distros.
 > I think some of this will work to on **debian** distros.
 
 > If you see something like this `<name>` in the command, remove the brackets and replace it with what the bracket says.
@@ -217,16 +217,16 @@ get_info_command = "amixer -c %s get 'Auto-Mute Mode'" % sound_card_number
 get_info = system.exec_command(get_info_command)
 time.sleep(1)    
 if get_info.find("Item0: 'Disabled'") is not -1: # disabled
-    time.sleep(0.8)
-    enable = "amixer -c %s set 'Auto-Mute Mode' Enabled" % sound_card_number
-    system.exec_command(enable)
-    os.system("notify-send 'Auto-Mute Mode of Sound Card Number %s' 'Enabled'" % sound_card_number)
-    quit()
+  time.sleep(0.8)
+  enable = "amixer -c %s set 'Auto-Mute Mode' Enabled" % sound_card_number
+  system.exec_command(enable)
+  os.system("notify-send 'Auto-Mute Mode of Sound Card Number %s' 'Enabled'" % sound_card_number)
+  quit()
 else:   # enabled   
-    time.sleep(0.8) 
-    disable = "amixer -c %s set 'Auto-Mute Mode' Disabled" % sound_card_number
-    system.exec_command(disable)
-    os.system("notify-send 'Auto-Mute Mode of Sound Card Number %s' 'Disabled'" % sound_card_number)
+  time.sleep(0.8) 
+  disable = "amixer -c %s set 'Auto-Mute Mode' Disabled" % sound_card_number
+  system.exec_command(disable)
+  os.system("notify-send 'Auto-Mute Mode of Sound Card Number %s' 'Disabled'" % sound_card_number)
 ```
 
 - Change `sound_card_number` that has auto mute that you can disable or enable.
@@ -803,7 +803,7 @@ sudo dpkg -i ipp-usb_0.9.22-1+52.1_amd64.deb
 sudo dpkg -i sane-airscan_0.99.27-1+89.1_amd64.deb
 ```
 
- 
+
 # Replace 'apt' With 'nala'
 Their github page [here](https://gitlab.com/volian/nala) 
 Copy paste guide [here](https://christitus.com/stop-using-apt/)
@@ -844,6 +844,7 @@ nano ~/.bashrc
 apt() { 
   command nala "$@"
 }
+
 sudo() {
   if [ "$1" = "apt" ]; then
     shift
@@ -886,7 +887,7 @@ sudo systemd-resolve --statistics
 - `: f <filename>` → rename the file
 
 
-# **Keyboard shortcuts for the Linux terminal on Ubuntu** 
+# Keyboard shortcuts for the Linux terminal on Ubuntu
 - `TAB` - autocomplete the command
 - `TAB TAB` - for displaying all file names and commands that start with those letters
 - `ctrl + alt + t` - for opening the terminal
@@ -897,3 +898,15 @@ sudo systemd-resolve --statistics
 - `ctrl + z` - to put a running command to sleep
 - `fg` - to continue the process that's put to sleep
 - `bg` - to continue the process in the background
+
+
+# Listen to your own microphone
+```bash
+# to turn it on
+pactl load-module module-loopback latency_msec=1
+
+# to turn it off
+pactl unload-module module-loopback
+```
+
+It loads a loopback module. The number 1 means the latency you receive. The latency is in miliseconds (ms). To turn it off, you just unload the module.
