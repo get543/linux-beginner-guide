@@ -17,7 +17,7 @@
 My command to run arch vm using qemu
 You can read more on about qemu on [`Ultimate Guide For Beginner Linux User.md`]
 
-# [`droidcam-install.sh`]
+# [`droidcam.sh`]
 
 To troubleshoot droidcam including reinstalling, changing resolution
 
@@ -33,7 +33,7 @@ Script to change output device (headhones and speakers), it is using zenity and 
 
 Same functionality as [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup_**
 
-# [`install folder`]
+# [`install/`]
 
 It contains the autoinstall scripts. Don't move the file inside of it.
 
@@ -44,7 +44,6 @@ It contains the autoinstall scripts. Don't move the file inside of it.
 - Can also download a youtube playlist
 - For audio, the best 'audio only' (.m4a)
 
-
 # [`Ultimate Guide For Beginner Linux User.md`]
 
 - To troubleshoot problem that I face while trying to use linux for daily driver
@@ -53,11 +52,11 @@ It contains the autoinstall scripts. Don't move the file inside of it.
 - Guide for installing arch with a script also the official arch wiki installation
 
 [`arch-vm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/arch-vm.sh
-[`droidcam-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam-install.sh
+[`droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam.sh
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
 [`change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/change.sh
 [`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/toggle.sh
-[`install folder`]: https://github.com/get543/linux-beginner-guide/tree/main/install
+[`install/`]: https://github.com/get543/linux-beginner-guide/tree/main/install
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
 [`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/flatpak-install.sh
 [`upgrade.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/upgrade.sh
