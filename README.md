@@ -33,9 +33,9 @@ Script to change output device (headhones and speakers), it is using zenity and 
 
 Same functionality as [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup_**
 
-# [`install.sh`]
+# [`install folder`]
 
-To install a lot of apps that I use on a daily basis
+It contains the autoinstall scripts. Don't move the file inside of it.
 
 # [`ytdlp.sh`]
 
@@ -44,13 +44,6 @@ To install a lot of apps that I use on a daily basis
 - Can also download a youtube playlist
 - For audio, the best 'audio only' (.m4a)
 
-# [`flatpak-install.sh`]
-
-Install flatpak for all distros. If your distro's not listed, it should problably installed by default. **_This file meant to run with [`install.sh`]_**
-
-# [`upgrade.sh`]
-
-For upgrading packages installed on your system. Also you can upgrade single or multiple packages just by typing the package's name **_This file meant to run with [`install.sh`]_**
 
 # [`Ultimate Guide For Beginner Linux User.md`]
 
@@ -64,7 +57,7 @@ For upgrading packages installed on your system. Also you can upgrade single or 
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
 [`change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/change.sh
 [`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/toggle.sh
-[`install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/install.sh
+[`install folder`]: https://github.com/get543/linux-beginner-guide/tree/main/install
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
 [`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/flatpak-install.sh
 [`upgrade.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/upgrade.sh
