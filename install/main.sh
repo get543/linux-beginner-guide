@@ -270,32 +270,39 @@ openrgb() {
     flatpak install flathub org.openrgb.OpenRGB
 
   else
-    echo " ----------------------------- "
-    echo "| Choose Your Ubuntu Version  |"
-    echo "|-----------------------------|"
-    echo "| 1. | 20.10 and older        |"
-    echo "| 2. | 21.04 and newer        |"
-    echo " ----------------------------- "
-    echo "Choose your option : "
-    read ubuntuVersion
+    HEIGHT=400
+    WIDTH=800
+    TITLE="Choose Your Ubuntu Version"
+    PROMPT="Ubuntu Version"
+    COLUMN1="Version"
+    COLUMN2="Description"
+    OPTIONS=(
+      20.10\ and\ older "choose this if you're running ubuntu 20.10 and lower"
+      21.04\ and\ newer "choose this if you're running ubuntu 21.04 and later"
+    )
 
-    if [ "$ubuntuVersion" = "1" ]
-    then
-      clear
-      wget https://openrgb.org/releases/release_0.7/openrgb_0.7_amd64_buster_6128731.deb -O ~/Downloads/openrgb-buster.deb
-      cd ~/Downloads
-      sudo apt install ./openrgb-buster.deb
+    opt=$(createMenu)
 
-    elif [ "$ubuntuVersion" = "2" ]
-    then
-      clear
-      wget https://openrgb.org/releases/release_0.7/openrgb_0.7_amd64_bullseye_6128731.deb -O ~/Downloads/openrgb-bullseye.deb
-      cd ~/Downloads
-      sudo apt install ./openrgb-bullseye.deb
+    case "$opt" in
+      20.10\ and\ older)
+        clear
+        wget https://openrgb.org/releases/release_0.7/openrgb_0.7_amd64_buster_6128731.deb -O ~/Downloads/openrgb-buster.deb
+        cd ~/Downloads
+        sudo apt install ./openrgb-buster.deb
+      ;;
 
-    else
-      echo "Wrong. choose number 1 or 2"
-    fi
+      21.04\ and\ newer)
+        clear
+        wget https://openrgb.org/releases/release_0.7/openrgb_0.7_amd64_bullseye_6128731.deb -O ~/Downloads/openrgb-bullseye.deb
+        cd ~/Downloads
+        sudo apt install ./openrgb-bullseye.deb
+      ;;
+
+      *) 
+        chooseOther
+        createMenu  
+      ;;
+    esac
   fi
 }
 
@@ -484,37 +491,41 @@ wine() {
   wget -nc https://dl.winehq.org/wine-builds/winehq.key
   sudo mv winehq.key /usr/share/keyrings/winehq-archive.key
 
-  echo " ----------------------------- "
-  echo "| Choose Your Ubuntu Version  |"
-  echo "|-----------------------------|"
-  echo "| 1. |    18.04               |"
-  echo "| 2. |    20.04               |"
-  echo "| 3. |    22.04               |"
-  echo " ----------------------------- "
-  echo "Choose your option : "
-  read ubuntuVersion
+  HEIGHT=400
+  WIDTH=800
+  TITLE="Choose Your Ubuntu Version"
+  PROMPT="Ubuntu Version"
+  COLUMN1="Version"
+  COLUMN2="Description"
+  OPTIONS=(
+    18.04 "choose this if you're running ubuntu 18.04"
+    20.04 "choose this if you're running ubuntu 20.10"
+    22.04 "choose this if you're running ubuntu 21.04"
+  )
 
-  if [ "$ubuntuVersion" = "1" ]
-  then
-    # ubuntu 18.04
-    wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/bionic/winehq-bionic.sources
-    sudo mv winehq-bionic.sources /etc/apt/sources.list.d/
+  opt=$(createMenu)
 
-  elif [ "$ubuntuVersion" = "2" ]
-  then
-    # ubuntu 20.04
-    wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources
-    sudo mv winehq-focal.sources /etc/apt/sources.list.d/
+  case "$opt" in
+    18.04)
+      wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/bionic/winehq-bionic.sources
+      sudo mv winehq-bionic.sources /etc/apt/sources.list.d/
+    ;;
 
-  elif [ "$ubuntuVersion" = "3" ]
-  then
-    # ubuntu 22.04
-    wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
-    sudo mv winehq-jammy.sources /etc/apt/sources.list.d/
+    20.04)
+      wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources
+      sudo mv winehq-focal.sources /etc/apt/sources.list.d/
+    ;;
 
-  else
-    echo "Wrong. Choose number 1 or 2 or 3"
-  fi
+    22.04)
+      wget -nc https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+      sudo mv winehq-jammy.sources /etc/apt/sources.list.d/
+    ;;
+
+    *)
+      chooseOther
+      createMenu
+    ;;
+  esac
 
   sudo apt update
   sudo apt install --install-recommends winehq-stable
@@ -599,7 +610,7 @@ do
   HEIGHT=950
   WIDTH=900
   TITLE="AutoInstall"
-  PROMPT="Choose What App You Want To Install $prompt"
+  PROMPT="Choose What App You Want To Install"
   COLUMN1="Apps"
   COLUMN2="Description"
   OPTIONS=(

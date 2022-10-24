@@ -61,7 +61,7 @@ do
 
 	clear
 
-	# Case
+	# case
 	case "$opt" in
 		Install) install ;;
 
