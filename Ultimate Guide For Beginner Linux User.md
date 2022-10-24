@@ -910,3 +910,41 @@ pactl unload-module module-loopback
 ```
 
 It loads a loopback module. The number 1 means the latency you receive. The latency is in miliseconds (ms). To turn it off, you just unload the module.
+
+
+# Add Git Branch on Bash Prompt
+Before:
+```bash
+user@host ~/Downloads/linux-beginner-guide
+$
+```
+After:
+```bash
+user@host ~/Downloads/linux-beginner-guide (main)
+$
+```
+
+To do that you need to edit the `.bashrc` file in the `home` folder
+
+- Open the file on text editor
+```bash
+nano ~/.bashrc
+```
+
+- Add this function to the file
+```bash
+# git branch on terminal
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+```
+
+- Add `$(parse_git_bashrc)` to run the function in bash prompt
+```bash
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]$(parse_git_branch)\[\033[00m\]\n\$ '
+```
+
+- Finally refresh the `.bashrc` file
+```bash
+source ~/.bashrc
+```
