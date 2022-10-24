@@ -30,13 +30,12 @@ chooseUpgrade() {
 }
 
 # ----------------------------------------------------------------------------------
-
-HEIGHT=25
-WIDTH=100
-CHOICE_HEIGHT=20
-BACKTITLE="Install Upgrade"
+HEIGHT=400
+WIDTH=800
+PROMPT="Install Upgrade"
 TITLE="Upgrade Packages Installation"
-MENU="Choose One :"
+COLUMN1="Choose One"
+COLUMN2="Description"
 
 OPTIONS=(
   Upgrade\ All "upgrade all the packages"
@@ -45,15 +44,17 @@ OPTIONS=(
 )
 
 # menu
-createMenu
+opt=$(createMenu)
 
 clear
 
 # case
-case $CHOICE in
+case "$opt" in
   Upgrade\ All) upgradeALL;;
 
   Choose\ Upgrade) chooseUpgrade ;;
 
   Skip) echo "Done." ;;
+
+  *) chooseOther ;;
 esac

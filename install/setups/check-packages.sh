@@ -1,9 +1,11 @@
+./setups/zenity-install.sh
+
 # Checking wget
-echo -e "\nChecking ${BRed}Wget${Color_Off} package is installed or not"
+echo -e "\nChecking $BRed Wget $Color_Off package is installed or not"
 
 dpkg -s wget &> /dev/null
 
-if [ $? -eq 0 ];
+if [ $? -eq 0 ]
 then
   echo "Wget is installed!"
   echo -ne "Press Enter to continue.. "
@@ -13,11 +15,11 @@ else
 fi
 
 # Checking curl
-echo -e "\nChecking ${BRed}cURL${Color_Off} package is installed or not"
+echo -e "\nChecking $BRed cURL $Color_Off package is installed or not"
 
 dpkg -s curl &> /dev/null
 
-if [ $? -eq 0 ];
+if [ $? -eq 0 ]
 then
   echo "cURL is installed!"
   echo -ne "Press Enter to continue.. "
@@ -27,11 +29,11 @@ else
 fi
 
 # Checking flatpak
-echo -e "\nChecking ${BRed}Flatpak${Color_Off} package is installed or not"
+echo -e "\nChecking $BRed Flatpak $Color_Off package is installed or not"
 
 dpkg -s flatpak &> /dev/null
 
-if [ $? -eq 0 ];
+if [ $? -eq 0 ]
 then
   echo "Flatpak is installed!"
   echo -ne "Press Enter to continue.. "

@@ -251,12 +251,12 @@ read flatpakOption
 
 if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
 then
-  HEIGHT=25
-  WIDTH=100
-  CHOICE_HEIGHT=20
-  BACKTITLE="Package Install"
+  HEIGHT=800
+  WIDTH=800
+  PROMPT="Package Install"
   TITLE="Flatpak Installation"
-  MENU="Choose Your Distribution :"
+  COLUMN1="Choose Your Distribution"
+  COLUMN2="Description"
 
   OPTIONS=(
     Ubuntu "A Distro"
@@ -285,12 +285,12 @@ then
   )
 
   # menu
-  createMenu
+  opt=$(createMenu)
 
   clear
 
   # case
-  case $CHOICE in
+  case "$opt" in
     Ubuntu) ubuntu ;;
 
     Fedora) fedora ;;
@@ -334,6 +334,8 @@ then
     Pisi\ GNU\ Linux) pisilinux ;;
 
     Cancel) echo "Done." ;;
+
+    *) chooseOther ;;
   esac
 else
   echo "Abort."

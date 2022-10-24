@@ -26,15 +26,14 @@ changeResolution() {
 unloadDriver() {
   echo "================== UNLOADING DRIVER =================="
   sudo rmmod v4l2loopback_dc
-  echo "========================= DONE ========================= \n"
 
-  echo "Reloading driver with the new resolution"    
+  echo "Reloading driver with the new resolution"
   echo -ne "Enter new resolution for width : "
   read width
-  
+
   echo -ne "Enter new resolution for height : "
   read height
-  
+
   sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.ko width=$width height=$height
 }
 
@@ -42,12 +41,12 @@ unloadDriver() {
 
 while :
 do
-	HEIGHT=25
-	WIDTH=100
-	CHOICE_HEIGHT=20
-	BACKTITLE="Droidcam Install"
-	TITLE="Droidcam Client Install"
-	MENU="Choose What You Want To Do :"
+  HEIGHT=400
+  WIDTH=800
+  PROMPT="Droidcam Install"
+  TITLE="Droidcam Client Install"
+  COLUMN1="Choose One"
+  COLUMN2="Description"
 
 	OPTIONS=(
 		Install "install or reinstall droidcam"
@@ -56,20 +55,22 @@ do
 		
 		Cancel "exit this process"
 	)
-	
+
   # menu
-  createMenu
-	
+  opt=$(createMenu)
+
 	clear
-	
+
 	# Case
-	case $CHOICE in
-		Install) install;;
-	
+	case "$opt" in
+		Install) install ;;
+
 		Change\ Resolution) changeResolution ;;
-	
+
 		Unload\ Driver) unloadDriver ;;
-	
-		Cancel) echo "Done." ;;
+
+		Cancel) break; echo "Done." ;;
+
+    *) chooseOther ;;
 	esac
 done

@@ -3,20 +3,25 @@
 BRed='\033[1;31m'
 Color_Off='\033[0m'
 
-chmod u+x apps/*.sh
 chmod u+x setups/*.sh
 chmod u+x updates/*.sh
+chmod u+x *.sh
 
 # menu function
 createMenu() {
-  CHOICE=$(dialog --clear \
-    --backtitle "$BACKTITLE" \
-    --title "$TITLE" \
-    --menu "$MENU" \
-    $HEIGHT $WIDTH $CHOICE_HEIGHT \
-    "${OPTIONS[@]}" \
-    2>&1>/dev/tty
-  )
+  zenity --title="$TITLE" \
+        --text="$PROMPT" \
+        --list \
+        --column="$COLUMN1" \
+        --column="$COLUMN2" \
+        --width="$WIDTH" \
+        --height="$HEIGHT" \
+        "${OPTIONS[@]}"
+}
+
+# choose no option
+chooseOther() {
+  zenity --notification --window-icon="error" --text="Invalid option. You didn't choose any of the options."    
 }
 
 # app functions
@@ -43,7 +48,7 @@ audacity() {
     |               Installing Audacity              |
     --------------------------------------------------"
     flatpak install flathub org.audacityteam.Audacity
-      
+
   else
     echo "Abort."
   fi
@@ -85,7 +90,7 @@ discord() {
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
   then
     flatpak install flathub com.discordapp.Discord
-      
+
   else
     cd ~/Downloads
     wget -O discord.deb 'https://discord.com/api/download?platform=linux&format=deb'
@@ -200,7 +205,25 @@ kolourpaint() {
     |             Installing KolourPaint             |
     --------------------------------------------------"
     flatpak install flathub org.kde.kolourpaint
-      
+
+  else
+    echo "Abort."
+  fi
+}
+
+krita() {
+  echo "This package is only available in flatpak."
+  echo -ne "Do you want to continue ? [Y/n] "
+  read yesInstall
+
+  if [[ "$yesInstall" = "Y" || "$yesInstall" = "y" || "$yesInstall" = "" ]]
+  then
+    echo "
+    --------------------------------------------------
+    |             Installing KolourPaint             |
+    --------------------------------------------------"
+    flatpak install flathub org.kde.krita
+
   else
     echo "Abort."
   fi
@@ -228,7 +251,7 @@ obsidian() {
     |              Installing Obsidian               |
     --------------------------------------------------"
     flatpak install flathub md.obsidian.Obsidian
-      
+
   else
     echo "Abort."
   fi
@@ -288,7 +311,7 @@ pinta() {
     |                Installing Pinta                |
     --------------------------------------------------"
     flatpak install flathub com.github.PintaProject.Pinta
-      
+
   else
     echo "Abort."
   fi
@@ -362,7 +385,7 @@ telegram() {
     |         Installing Telegram Desktop            |
     --------------------------------------------------"
     flatpak install flathub org.telegram.desktop
-      
+
   else
     echo "Abort."
   fi
@@ -446,7 +469,7 @@ whatsapp() {
     |          Installing WhatsApp Desktop           |
     --------------------------------------------------"
     flatpak install flathub io.github.mimbrero.WhatsAppDesktop
-      
+
   else
     echo "Abort."
   fi
@@ -460,7 +483,7 @@ wine() {
   sudo dpkg --add-architecture i386
   wget -nc https://dl.winehq.org/wine-builds/winehq.key
   sudo mv winehq.key /usr/share/keyrings/winehq-archive.key
-  
+
   echo " ----------------------------- "
   echo "| Choose Your Ubuntu Version  |"
   echo "|-----------------------------|"
@@ -555,7 +578,8 @@ removeUnused() {
 }
 
 # export stuff
-export -f createMenu # export functions
+export -f createMenu
+export -f chooseOther
 export BRed
 export Color_Off
 
@@ -572,13 +596,12 @@ export Color_Off
 
 while :
 do
-  HEIGHT=25
-  WIDTH=100
-  CHOICE_HEIGHT=20
-  BACKTITLE="Automation Install"
-  TITLE="Automation Application Install"
-  MENU="Choose What Application You Want To Install :"
-
+  HEIGHT=950
+  WIDTH=900
+  TITLE="AutoInstall"
+  PROMPT="Choose What App You Want To Install $prompt"
+  COLUMN1="Apps"
+  COLUMN2="Description"
   OPTIONS=(
     Ao "an unofficial, third-party, Microsoft To-Do desktop app"
     Audacity "audio recording and editing program"
@@ -594,6 +617,7 @@ do
     Inkscape "create and edits Scalable Vector Graphics (SVG) images"
     Kdenlive "video editing program by KDE"
     KolourPaint "an easy-to-use paint program"
+    Krita "digital painting, creative freedom"
     Obsidian "application for taking notes based on markdown file"
     OBS\ Studio "streaming/recording software"
     OpenRGB "control rgb lighting of your peripherals"
@@ -615,13 +639,13 @@ do
     Exit "exit this installing process if you are done"
   )
 
-  # menu
-  createMenu
-
   clear
 
+  # menu
+  opt=$(createMenu)
+
   # case
-  case $CHOICE in
+  case "$opt" in
     Ao) ao ;;
 
     Audacity) audacity ;;
@@ -641,21 +665,23 @@ do
     Git) git ;;
 
     Gnome\ Tweaks) gnome-tweaks ;;
-    
+
     Indicator-Sound-Switcher) indicator-sound-switcher ;;
 
     Inkscape) inkscape ;;
 
     Kdenlive) kdenlive ;;
-    
+
     KolourPaint) kolourpaint ;;
+
+    Krita) krita ;;
 
     OBS\ Studio) obs-studio ;;
 
     Obsidian) obsidian ;;
 
     OpenRGB) openrgb ;;
-    
+
     Pinta) pinta ;;
 
     pulseaudio\ and\ pavucontrol) pulseaudio ;;
@@ -688,6 +714,8 @@ do
       echo "Done."
       break
     ;;
+
+    *) chooseOther ;;
   esac
 done
 

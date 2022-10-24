@@ -28,12 +28,12 @@ read wgetOption
 
 if [[ "$wgetOption" = "Y" || "$wgetOption" = "y" || "$wgetOption" = "" ]]
 then
-  HEIGHT=25
-  WIDTH=100
-  CHOICE_HEIGHT=20
-  BACKTITLE="Package Install"
+  HEIGHT=400
+  WIDTH=800
+  PROMPT="Package Install"
   TITLE="Wget Installation"
-  MENU="Choose Your Distribution :"
+  COLUMN1="Choose Your Distribution"
+  COLUMN2="Description"
 
   OPTIONS=(
     Ubuntu/Debian "A Distro"
@@ -44,22 +44,24 @@ then
     Cancel "exit this process"
   )
 
-  # Menu
-  createMenu
-
   clear
 
+  # menu
+  opt=$(createMenu)
+
   # Case
-  case $CHOICE in
+  case "$opt" in
     Ubuntu/Debian) ubuntu/debian ;;
 
     Red\ Hat\ Enterprise\ Linux/CentOS/Fedora) redhat ;;
-    
+
     OpenSUSE) opensuse ;;
-    
+
     Arch) arch ;;
 
     Cancel) echo "Done." ;;
+
+    *) chooseOther ;;
   esac
 else
   echo "Abort."

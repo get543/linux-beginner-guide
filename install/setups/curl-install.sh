@@ -39,12 +39,12 @@ read curlOption
 
 if [[ "$curlOption" = "Y" || "$curlOption" = "y" || "$curlOption" = "" ]]
 then
-  HEIGHT=25
-  WIDTH=100
-  CHOICE_HEIGHT=20
-  BACKTITLE="Package Install"
+  HEIGHT=400
+  WIDTH=800
+  PROMPT="Package Install"
   TITLE="cURL Installation"
-  MENU="Choose Your Distribution :"
+  COLUMN1="Choose Your Distribution"
+  COLUMN2="Description"
 
   OPTIONS=(
     Ubuntu/Debian "A Distro"
@@ -56,14 +56,14 @@ then
   )
 
   # menu
-  createMenu
+  opt=$(createMenu)
 
   clear
 
   # Case
-  case $CHOICE in
+  case "$opt" in
     Ubuntu/Debian) ubuntu/debian ;;
-    
+
     Fedora/Red\ Hat) fedora/redhat ;;
 
     OpenSUSE) opensuse ;;
@@ -71,7 +71,9 @@ then
     Arch) arch ;;
 
     Cancel) echo "Done." ;;
-  esac
+
+    *) chooseOther ;;
+    esac
 else
   echo "Abort."
 fi
