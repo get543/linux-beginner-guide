@@ -1,5 +1,26 @@
 upgradeALL() {
-  sudo apt upgrade
+  # Check OS
+  checkFedoraRedhat
+  checkArch
+  checkDebian
+  checkSUSE
+
+  if [ "$debian" ]
+  then
+    sudo apt upgrade
+  elif [ "$arch" ]
+  then
+    sudo pacman -Syu
+  elif [ "$fedoraRedhat" ]
+  then
+    sudo dnf upgrade
+  elif [ "$opensuse" ]
+  then
+    sudo zypper upgrade
+  else
+    echo "I'm sorry you're probably running distro other than.."
+    echo "fedora/redhat, arch, debian/ubuntu, opensuse"
+  fi
 }
 
 chooseUpgrade() {
@@ -36,11 +57,12 @@ PROMPT="Install Upgrade"
 TITLE="Upgrade Packages Installation"
 COLUMN1="Choose One"
 COLUMN2="Description"
+COLUMN3="Note"
 
 OPTIONS=(
-  Upgrade\ All "upgrade all the packages"
-  Choose\ Upgrade "choose what package or packages that you want to upgrade"
-  Skip "skip upgrading package"
+  Upgrade\ All "upgrade all the packages" "works on fedora/debian/arch/opensuse"
+  Choose\ Upgrade "choose what package or packages that you want to upgrade" "only debian/ubuntu"
+  Skip "skip upgrading package" "works on all"
 )
 
 # menu

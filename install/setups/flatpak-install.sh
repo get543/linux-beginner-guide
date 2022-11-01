@@ -21,7 +21,7 @@ fedora() {
 
 arch() {
   echo "Installing Flatpak. "
-  sudo pacman -S flatpak
+  sudo pacman -Sy flatpak
 }
 
 debian() {
@@ -46,7 +46,7 @@ redhat() {
 endavouros() {
   echo "Installing Flatpak. "
   sudo pacman -Syu
-  sudo pacman -S flatpak
+  sudo pacman -Sy flatpak
 
   echo "Adding flathub repository. "
   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -257,31 +257,32 @@ then
   TITLE="Flatpak Installation"
   COLUMN1="Choose Your Distribution"
   COLUMN2="Description"
+  COLUMN3="Installed by Default"
 
   OPTIONS=(
-    Ubuntu "A Distro"
-    Fedora "A Distro"
-    Arch "A Distro"
-    Debian "A Distro"
-    Red\ Hat\ Enterprise\ Linux "A Distro"
-    EndavourOS "A Distro"
-    openSUSE "A Distro"
-    Gentoo "A Distro"
-    Kubuntu "A Distro"
-    Solus "A Distro"
-    Alpine "A Distro"
-    Mageia "A Distro"
-    Pop\!_OS "A Distro"
-    Raspberry\ Pi\ OS "A Distro"
-    Clear\ Linux "A Distro"
-    Void\ Linux "A Distro"
-    SulinOS "A Distro"
-    Ataraxia\ Linux "A Distro"
-    Deepin "A Distro"
-    Pardus "A Distro"
-    Pisi\ GNU\ Linux "A Distro"
-
-    Cancel "exit this process"
+    Ubuntu "A Distro" "NO"
+    Fedora "A Distro" "YES"
+    Arch "A Distro" "NO"
+    Debian "A Distro" "NO"
+    Red\ Hat\ Enterprise\ Linux "A Distro" "NO"
+    EndavourOS "A Distro" "NO"
+    openSUSE "A Distro" "NO"
+    Gentoo "A Distro" "NO"
+    Kubuntu "A Distro" "NO"
+    Solus "A Distro" "NO"
+    Alpine "A Distro" "NO"
+    Mageia "A Distro" "NO"
+    Pop\!_OS "A Distro" "YES"
+    Raspberry\ Pi\ OS "A Distro" "NO"
+    Clear\ Linux "A Distro" "YES"
+    Void\ Linux "A Distro" "NO"
+    SulinOS "A Distro" "NO"
+    Ataraxia\ Linux "A Distro" "NO"
+    Deepin "A Distro" "NO"
+    Pardus "A Distro" "NO"
+    Pisi\ GNU\ Linux "A Distro" "NO"
+    "" "" ""
+    Cancel "exit this process" ""
   )
 
   # menu

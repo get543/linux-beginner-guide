@@ -5,7 +5,7 @@ install() {
   # sha1sum: d1038e6d62cac6f60b0dd8caa8d5849c79065a7b
   unzip droidcam_latest.zip -d droidcam
 
-  cd droidcam 
+  cd droidcam
   sudo ./install-client
   sudo ./install-video
   echo "======================== DONE ========================"
@@ -47,13 +47,13 @@ do
   TITLE="Droidcam Client Install"
   COLUMN1="Choose One"
   COLUMN2="Description"
+  COLUMN3=""
 
 	OPTIONS=(
-		Install "install or reinstall droidcam"
-		Change\ Resolution "changing camera resolution"
-		Unload\ Driver "ususally do this if there's an error"
-		
-		Cancel "exit this process"
+		Install "install or reinstall droidcam" ""
+		Change\ Resolution "changing camera resolution" ""
+		Unload\ Driver "ususally do this if there's an error" ""
+		Cancel "exit this process" ""
 	)
 
   # menu

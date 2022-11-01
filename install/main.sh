@@ -7,6 +7,23 @@ chmod u+x setups/*.sh
 chmod u+x updates/*.sh
 chmod u+x *.sh
 
+# check OS
+checkFedoraRedhat() {
+  fedoraRedhat=$(grep -Ei 'fedora|redhat' /etc/*release)
+}
+
+checkArch() {
+  arch=$(grep -Ei 'arch' /etc/*release)
+}
+
+checkDebian() {
+  debian=$(grep -Ei 'debian|buntu|mint' /etc/*release)
+}
+
+checkSUSE() {
+  opensuse=$(grep -Ei 'SuSE' /etc/*release)
+}
+
 # menu function
 createMenu() {
   zenity --title="$TITLE" \
@@ -14,6 +31,7 @@ createMenu() {
         --list \
         --column="$COLUMN1" \
         --column="$COLUMN2" \
+        --column="$COLUMN3" \
         --width="$WIDTH" \
         --height="$HEIGHT" \
         "${OPTIONS[@]}"
@@ -21,7 +39,7 @@ createMenu() {
 
 # choose no option
 chooseOther() {
-  zenity --notification --window-icon="error" --text="Invalid option. You didn't choose any of the options."    
+  zenity --notification --window-icon="error" --text="Invalid option. You didn't choose any of the options."
 }
 
 # app functions
@@ -54,6 +72,41 @@ audacity() {
   fi
 }
 
+autokey() {
+  HEIGHT=400
+  WIDTH=800
+  TITLE="Which Version ?"
+  PROMPT="Which version of autokey you want to install"
+  COLUMN1="Version"
+  COLUMN2="Description"
+  OPTIONS=(
+    autokey-gtk "GTK+ version"
+    autokey-qt "Qt version"
+  )
+
+  opt=$(createMenu)
+
+  case "$opt" in
+    autokey-gtk)
+      echo "
+      --------------------------------------------------
+      |           Installing autokey-gtk               |
+      --------------------------------------------------"
+      sudo apt install autokey-gtk
+    ;;
+
+    autokey-qt)
+      echo "
+      --------------------------------------------------
+      |           Installing autokey-qt                |
+      --------------------------------------------------"
+      sudo apt install autokey-qt
+    ;;
+
+    *) chooseOther ;;
+  esac
+}
+
 balena-etcher() {
   echo "
   --------------------------------------------------
@@ -65,6 +118,14 @@ balena-etcher() {
 
   sudo apt-get update
   sudo apt-get install balena-etcher-electron
+}
+
+dconf-editor() {
+  echo "
+  --------------------------------------------------
+  |           Installing dconf-editor              |
+  --------------------------------------------------"
+  sudo apt install dconf-editor
 }
 
 deckboard() {
@@ -84,7 +145,7 @@ discord() {
   --------------------------------------------------
   |              Installing Discord                |
   --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] " 
+  echo -ne "Do you want to install it with flatpak ? [Y/n] "
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -112,7 +173,7 @@ gimp() {
   |               Installing GIMP                  |
   --------------------------------------------------"
 
-  echo -ne "Do you want to install it with flatpak ? [Y/n] " 
+  echo -ne "Do you want to install it with flatpak ? [Y/n] "
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -160,7 +221,7 @@ inkscape() {
   --------------------------------------------------
   |               Installing Inkscape              |
   --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] " 
+  echo -ne "Do you want to install it with flatpak ? [Y/n] "
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -179,7 +240,7 @@ kdenlive() {
   --------------------------------------------------
   |                Installing Kdenlive             |
   --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] " 
+  echo -ne "Do you want to install it with flatpak ? [Y/n] "
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -262,7 +323,7 @@ openrgb() {
   --------------------------------------------------
   |              Installing OpenRGB                |
   --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] " 
+  echo -ne "Do you want to install it with flatpak ? [Y/n] "
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -298,9 +359,9 @@ openrgb() {
         sudo apt install ./openrgb-bullseye.deb
       ;;
 
-      *) 
+      *)
         chooseOther
-        createMenu  
+        createMenu
       ;;
     esac
   fi
@@ -365,7 +426,7 @@ spotify() {
   --------------------------------------------------
   |               Installing Spotify               |
   --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] " 
+  echo -ne "Do you want to install it with flatpak ? [Y/n] "
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -545,7 +606,7 @@ zoom() {
   --------------------------------------------------
   |                  Installing Zoom               |
   --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] " 
+  echo -ne "Do you want to install it with flatpak ? [Y/n] "
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -591,6 +652,10 @@ removeUnused() {
 # export stuff
 export -f createMenu
 export -f chooseOther
+export -f checkFedoraRedhat
+export -f checkArch
+export -f checkDebian
+export -f checkSUSE
 export BRed
 export Color_Off
 
@@ -608,46 +673,49 @@ export Color_Off
 while :
 do
   HEIGHT=950
-  WIDTH=900
+  WIDTH=950
   TITLE="AutoInstall"
   PROMPT="Choose What App You Want To Install"
   COLUMN1="Apps"
   COLUMN2="Description"
+  COLUMN3="Flatpak Support"
   OPTIONS=(
-    Ao "an unofficial, third-party, Microsoft To-Do desktop app"
-    Audacity "audio recording and editing program"
-    balena-etcher "a utility that allows you to create bootable USB drives"
-    Deckboard "turn your phone into a streamdeck"
-    Discord "all-in-one voice and text chat for gamers"
-    Droidcam "use your phone as a webcam"
-    Geary "send and receive email (email client)"
-    Git "to access git repo"
-    GNU\ Image\ Manipulation\ Program\ \(GIMP\) "image editing software, like Photoshop"
-    Gnome\ Tweaks "tweak advanced gnome 3 settings"
-    Indicator-Sound-Switcher "sound input and output selector indicator"
-    Inkscape "create and edits Scalable Vector Graphics (SVG) images"
-    Kdenlive "video editing program by KDE"
-    KolourPaint "an easy-to-use paint program"
-    Krita "digital painting, creative freedom"
-    Obsidian "application for taking notes based on markdown file"
-    OBS\ Studio "streaming/recording software"
-    OpenRGB "control rgb lighting of your peripherals"
-    Pinta "program for drawing and image editing"
-    pulseaudio\ and\ pavucontrol "sound server system"
-    Rambox "an all-in-one messenger that lets you combine multiple services in one place"
-    ScrCpy "display and control Android devices connected via USB"
-    simplescreenrecorder "a feature rich screen recorder that supports X11 and OpenGL"
-    Spotify "music streaming software"
-    Telegram\ Desktop "messaging app"
-    Visual\ Studio\ Code "code editor"
-    Virtual\ Machine\ Manager "virtual machine (VM) based on QEMU"
-    VLC "video/multimedia player"
-    WhatsApp\ Desktop "messaging app"
-    WINE "a compatibility layer to run windows applications on linux"
-    yt-dlp "download youtube videos"
-    Zoom "video conferencing app"
-
-    Exit "exit this installing process if you are done"
+    Ao "an unofficial, third-party, Microsoft To-Do desktop app" "NO"
+    Audacity "audio recording and editing program" "YES"
+    Autokey "control entire os with python script and keyboard shortcut" "NO"
+    balena-etcher "a utility that allows you to create bootable USB drives" "NO"
+    dconf\ Editor "customise gnome deeply, like registry editor on windows" "NO"
+    Deckboard "turn your phone into a streamdeck" "NO"
+    Discord "all-in-one voice and text chat for gamers" "YES"
+    Droidcam "use your phone as a webcam" "NO"
+    Geary "send and receive email (email client)" "NO"
+    Git "to access git repo" "NO"
+    GNU\ Image\ Manipulation\ Program\ \(GIMP\) "image editing software, like Photoshop" "YES"
+    Gnome\ Tweaks "tweak advanced gnome 3 settings" "NO"
+    Indicator-Sound-Switcher "sound input and output selector indicator" "NO"
+    Inkscape "create and edits Scalable Vector Graphics (SVG) images" "YES"
+    Kdenlive "video editing program by KDE" "YES"
+    KolourPaint "an easy-to-use paint program" "YES"
+    Krita "digital painting, creative freedom" "YES"
+    Obsidian "application for taking notes based on markdown file" "YES"
+    OBS\ Studio "streaming/recording software" "YES"
+    OpenRGB "control rgb lighting of your peripherals" "NO"
+    Pinta "program for drawing and image editing" "YES"
+    pulseaudio\ and\ pavucontrol "sound server system" "NO"
+    Rambox "an all-in-one messenger that lets you combine multiple services in one place" "NO"
+    ScrCpy "display and control Android devices connected via USB" "NO"
+    simplescreenrecorder "a feature rich screen recorder that supports X11 and OpenGL" "NO"
+    Spotify "music streaming software" "YES"
+    Telegram\ Desktop "messaging app" "YES"
+    Visual\ Studio\ Code "code editor" "NO"
+    Virtual\ Machine\ Manager "virtual machine (VM) based on QEMU" "NO"
+    VLC "video/multimedia player" "YES"
+    WhatsApp\ Desktop "messaging app" "YES"
+    WINE "a compatibility layer to run windows applications on linux" "NO"
+    yt-dlp "download youtube videos" "NO"
+    Zoom "video conferencing app" "YES"
+    "" "" ""
+    Exit "exit this installing process if you are done" ""
   )
 
   clear
@@ -661,7 +729,11 @@ do
 
     Audacity) audacity ;;
 
+    Autokey) autokey ;;
+
     balena-etcher) balena-etcher ;;
+
+    dconf\ Editor) dconf-editor ;;
 
     Deckboard) deckboard ;;
 
