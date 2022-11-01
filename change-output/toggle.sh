@@ -1,7 +1,7 @@
 #! /bin/bash
 
-sound_card_number=1 || sound_card_number
-sink_port=3 || sink_port
+sound_card_number=1 || $sound_card_number
+sink_port=3 || $sink_port
 
 if [[ $1 == port ]]
 then
