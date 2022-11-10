@@ -24,12 +24,14 @@ lookingsinkport() {
 if [[ $1 == port ]]
 then
   lookingsoundcard
+  cat soundcardnumber.log
   echo -ne "$red\nPlease put the sound card number : $colourOff"
   read sound_card_number
 
   clear
 
   lookingsinkport
+  cat sinkport.log
   echo -ne "$red\nPlease put the sink port number : $colourOff"
   read sink_port
 fi
@@ -72,28 +74,15 @@ do
     "${options[2]}")
       # list active soundcard
       lookingsoundcard
-      zenity --text-info --width=700 --height=500 --title="List of Available Sink Port" --filename="soundcardnumber.log"
+      zenity --text-info --width=700 --height=500 --title="List of Active Sound Card" --filename="soundcardnumber.log"
 
       # soundcard number input
       soundcardINPUT=$(zenity --entry --width=500 --title="Sound Card Number" --text="Please put the sound card number :")
       
       # change sound_card_number
-      if [[ $soundcardINPUT = 1 ]]
-      then
-        sound_card_number=1
-      elif [[ $soundcardINPUT = 2 ]]
-      then
-        sound_card_number=2
-      elif [[ $soundcardINPUT = 3 ]]
-      then
-        sound_card_number=3
-      elif [[ $soundcardINPUT = 4 ]]
-      then
-        sound_card_number=4
-      elif [[ $soundcardINPUT = 0 ]]
-      then
-        sound_card_number=0
-      fi
+      sound_card_number=$soundcardINPUT
+
+      # ------------------------------------------------------------------------------------------------------------------
 
       # active sinkport
       lookingsinkport
@@ -103,22 +92,7 @@ do
       sinkportINPUT=$(zenity --entry --width=500 --title="Sink Port Number" --text="Please put the sink port number :")
 
       # change sink_port
-      if [[ $sinkportINPUT = 1 ]]
-      then
-        sink_port=1
-      elif [[ $sinkportINPUT = 2 ]]
-      then
-        sink_port=2
-      elif [[ $sinkportINPUT = 3 ]]
-      then
-        sink_port=3
-      elif [[ $sinkportINPUT = 4 ]]
-      then
-        sink_port=4
-      elif [[ $sinkportINPUT = 0 ]]
-      then
-        sink_port=0
-      fi
+      sink_port=$sinkportINPUT
     ;;
 
     *)
