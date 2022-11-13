@@ -1,7 +1,11 @@
 #!/bin/bash
 
-BRed='\033[1;31m'
-Color_Off='\033[0m'
+BRed="\033[1;31m"
+Color_Off="\033[0m"
+
+DMagenta="\033[35m"
+DYellow="\033[33m"
+Green="\033[92m"
 
 chmod u+x setups/*.sh
 chmod u+x updates/*.sh
@@ -43,28 +47,28 @@ chooseOther() {
 }
 
 # app functions
-ao() {
-  echo "
+ao () {
+  echo -e "${DMagenta}
   --------------------------------------------------
   |                Installing Ao                   |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   wget https://github.com/klaussinani/ao/releases/download/v6.9.0/ao_6.9.0_amd64.deb -O ~/Downloads/ao-6.9-amd64.deb
   cd ~/Downloads
   sudo apt install ./ao-6.9-amd64.deb
 }
 
 audacity() {
-  echo "This package is only available in flatpak."
-  echo -ne "Do you want to continue ? [Y/n] "
+  echo -e "${Green}This package is only available in flatpak."
+  echo -ne "${DYellow}Do you want to continue ? [Y/n] ${Color_Off}"
   read yesInstall
 
   if [[ "$yesInstall" = "Y" || "$yesInstall" = "y" || "$yesInstall" = "" ]]
   then
 
-    echo "
+    echo -e "${DMagenta}
     --------------------------------------------------
     |               Installing Audacity              |
-    --------------------------------------------------"
+    -------------------------------------------------- ${Color_Off}"
     flatpak install flathub org.audacityteam.Audacity
 
   else
@@ -79,27 +83,28 @@ autokey() {
   PROMPT="Which version of autokey you want to install"
   COLUMN1="Version"
   COLUMN2="Description"
+  COLUMN3=""
   OPTIONS=(
-    autokey-gtk "GTK+ version"
-    autokey-qt "Qt version"
+    autokey-gtk "GTK+ version" ""
+    autokey-qt "Qt version" ""
   )
 
   opt=$(createMenu)
 
   case "$opt" in
     autokey-gtk)
-      echo "
+      echo -e "${DMagenta}
       --------------------------------------------------
       |           Installing autokey-gtk               |
-      --------------------------------------------------"
+      -------------------------------------------------- ${Color_Off}"
       sudo apt install autokey-gtk
     ;;
 
     autokey-qt)
-      echo "
+      echo -e "${DMagenta}
       --------------------------------------------------
       |           Installing autokey-qt                |
-      --------------------------------------------------"
+      -------------------------------------------------- ${Color_Off}"
       sudo apt install autokey-qt
     ;;
 
@@ -108,10 +113,10 @@ autokey() {
 }
 
 balena-etcher() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |           Installing balena-etcher             |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   curl -1sLf \
     'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' \
     | sudo -E bash
@@ -121,18 +126,18 @@ balena-etcher() {
 }
 
 dconf-editor() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |           Installing dconf-editor              |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt install dconf-editor
 }
 
 deckboard() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |             Installing Deckboard               |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   wget https://github.com/rivafarabi/deckboard/releases/download/v2.0.2/deckboard_2.0.2_amd64.deb -O ~/Downloads/deckboard_2.0.2.deb
   cd ~/Downloads
   sudo apt install ./deckboard_2.0.2.deb
@@ -141,11 +146,11 @@ deckboard() {
 }
 
 discord() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |              Installing Discord                |
-  --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] "
+  -------------------------------------------------- ${Color_Off}"
+  echo -ne "${DYellow}Do you want to install it with flatpak ? [Y/n] ${Color_Off}"
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -160,20 +165,20 @@ discord() {
 }
 
 geary() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |                Installing Geary                |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt install geary
 }
 
 gimp() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |               Installing GIMP                  |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
 
-  echo -ne "Do you want to install it with flatpak ? [Y/n] "
+  echo -ne "${DYellow}Do you want to install it with flatpak ? [Y/n] ${Color_Off}"
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -186,18 +191,18 @@ gimp() {
 }
 
 git() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |                 Installing Git                 |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt install git
 }
 
 gnome-tweaks() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |            Installing Gnome Tweaks             |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt install gnome-tweaks
   sudo apt install gnome-shell-extensions
   echo -ne "\nInstall this firefox extension : \nhttps://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search"
@@ -207,21 +212,21 @@ gnome-tweaks() {
 }
 
 indicator-sound-switcher() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |      Installing Indicator-Sound-Switcher       |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt-add-repository ppa:yktooo/ppa
   sudo apt-get update
   sudo apt-get install indicator-sound-switcher
 }
 
 inkscape() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |               Installing Inkscape              |
-  --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] "
+  -------------------------------------------------- ${Color_Off}"
+  echo -ne "${DYellow}Do you want to install it with flatpak ? [Y/n] ${Color_Off}"
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -236,11 +241,11 @@ inkscape() {
 }
 
 kdenlive() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |                Installing Kdenlive             |
-  --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] "
+  -------------------------------------------------- ${Color_Off}"
+  echo -ne "${DYellow}Do you want to install it with flatpak ? [Y/n] ${Color_Off}"
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -255,16 +260,16 @@ kdenlive() {
 }
 
 kolourpaint() {
-  echo "This package is only available in flatpak."
-  echo -ne "Do you want to continue ? [Y/n] "
+  echo -e "${Green}This package is only available in flatpak."
+  echo -ne "${DYellow}Do you want to continue ? [Y/n] ${Color_Off}"
   read yesInstall
 
   if [[ "$yesInstall" = "Y" || "$yesInstall" = "y" || "$yesInstall" = "" ]]
   then
-    echo "
+    echo -e "${DMagenta}
     --------------------------------------------------
     |             Installing KolourPaint             |
-    --------------------------------------------------"
+    -------------------------------------------------- ${Color_Off}"
     flatpak install flathub org.kde.kolourpaint
 
   else
@@ -273,16 +278,16 @@ kolourpaint() {
 }
 
 krita() {
-  echo "This package is only available in flatpak."
-  echo -ne "Do you want to continue ? [Y/n] "
+  echo -e "${Green}This package is only available in flatpak."
+  echo -ne "${DYellow}Do you want to continue ? [Y/n] ${Color_Off}"
   read yesInstall
 
   if [[ "$yesInstall" = "Y" || "$yesInstall" = "y" || "$yesInstall" = "" ]]
   then
-    echo "
+    echo -e "${DMagenta}
     --------------------------------------------------
     |             Installing KolourPaint             |
-    --------------------------------------------------"
+    -------------------------------------------------- ${Color_Off}"
     flatpak install flathub org.kde.krita
 
   else
@@ -291,26 +296,26 @@ krita() {
 }
 
 obs-studio() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |             Installing OBS Studio              |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo add-apt-repository ppa:obsproject/obs-studio
   sudo apt update
   sudo apt install ffmpeg obs-studio
 }
 
 obsidian() {
-  echo "This package is only available in flatpak."
-  echo -ne "Do you want to continue ? [Y/n] "
+  echo -e "${Green}This package is only available in flatpak."
+  echo -ne "${DYellow}Do you want to continue ? [Y/n] ${Color_Off}"
   read yesInstall
 
   if [[ "$yesInstall" = "Y" || "$yesInstall" = "y" || "$yesInstall" = "" ]]
   then
-    echo -ne "
+    echo -e "${DMagenta}
     --------------------------------------------------
     |              Installing Obsidian               |
-    --------------------------------------------------"
+    -------------------------------------------------- ${Color_Off}"
     flatpak install flathub md.obsidian.Obsidian
 
   else
@@ -319,11 +324,11 @@ obsidian() {
 }
 
 openrgb() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |              Installing OpenRGB                |
-  --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] "
+  -------------------------------------------------- ${Color_Off}"
+  echo -ne "${DYellow}Do you want to install it with flatpak ? [Y/n] ${Color_Off}"
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -337,9 +342,10 @@ openrgb() {
     PROMPT="Ubuntu Version"
     COLUMN1="Version"
     COLUMN2="Description"
+    COLUMN3=""
     OPTIONS=(
-      20.10\ and\ older "choose this if you're running ubuntu 20.10 and lower"
-      21.04\ and\ newer "choose this if you're running ubuntu 21.04 and later"
+      20.10\ and\ older "choose this if you're running ubuntu 20.10 and lower" ""
+      21.04\ and\ newer "choose this if you're running ubuntu 21.04 and later" ""
     )
 
     opt=$(createMenu)
@@ -361,23 +367,22 @@ openrgb() {
 
       *)
         chooseOther
-        createMenu
       ;;
     esac
   fi
 }
 
 pinta() {
-  echo "This package is only available in flatpak."
-  echo -ne "Do you want to continue ? [Y/n] "
+  echo -e "${Green}This package is only available in flatpak."
+  echo -ne "${DYellow}Do you want to continue ? [Y/n] ${Color_Off}"
   read yesInstall
 
   if [[ "$yesInstall" = "Y" || "$yesInstall" = "y" || "$yesInstall" = "" ]]
   then
-    echo "
+    echo -e "${DMagenta}
     --------------------------------------------------
     |                Installing Pinta                |
-    --------------------------------------------------"
+    -------------------------------------------------- ${Color_Off}"
     flatpak install flathub com.github.PintaProject.Pinta
 
   else
@@ -386,47 +391,47 @@ pinta() {
 }
 
 pulseaudio() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |      Installing pulseaudio and pavucontrol     |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt install pulseaudio pavucontrol
 }
 
 rambox() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |               Installing Rambox                |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   cd ~/Downloads
   wget -O rambox-2.0.deb 'https://rambox.app/api/download?os=linux&package=deb'
   sudo apt install ./rambox-2.0.deb
 }
 
 scrcpy() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |               Installing ScrCpy                |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt install scrcpy
 }
 
 simplescreenrecorder() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |         Installing simplescreenrecorder        |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt-add-repository ppa:maarten-baert/simplescreenrecorder
   sudo apt-get update
   sudo apt-get install simplescreenrecorder
 }
 
 spotify() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |               Installing Spotify               |
-  --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] "
+  -------------------------------------------------- ${Color_Off}"
+  echo -ne "${DYellow}Do you want to install it with flatpak ? [Y/n] ${Color_Off}"
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -442,16 +447,16 @@ spotify() {
 }
 
 telegram() {
-  echo "This package is only available in flatpak."
-  echo -ne "Do you want to continue ? [Y/n] "
+  echo -e "${Green}This package is only available in flatpak."
+  echo -ne "${DYellow}Do you want to continue ? [Y/n] ${Color_Off}"
   read yesInstall
 
   if [[ "$yesInstall" = "Y" || "$yesInstall" = "y" || "$yesInstall" = "" ]]
   then
-    echo "
+    echo -e "${DMagenta}
     --------------------------------------------------
     |         Installing Telegram Desktop            |
-    --------------------------------------------------"
+    -------------------------------------------------- ${Color_Off}"
     flatpak install flathub org.telegram.desktop
 
   else
@@ -460,49 +465,48 @@ telegram() {
 }
 
 virt-manager() {
-  echo "
-  --------------------------------------------------
-  |       Installing Virtual Machine Manager       |
-  --------------------------------------------------"
   virtualization=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
   echo "cpuinfo vm|svmx = $virtualization"
 
   if [ $virtualization > 0 ]
   then
-    echo "You have enabled virtualization on your machine"
-    echo "Proceed installing..."
+    echo -e "${Green}You have enabled virtualization on your machine${Color_Off}"
+    echo -e "${DMagenta}
+    --------------------------------------------------
+    |       Installing Virtual Machine Manager       |
+    -------------------------------------------------- ${Color_Off}"
     sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
 
-    echo "Verify that libvirt is running..."
+    echo -e "${Green}Verify that libvirt is running.${Color_Off}"
     sudo systemctl status libvirtd.service | grep running
 
-    echo "Setting up network by default and autostart..."
+    echo -e "${Green}Setting up network by default and autostart.${Color_Off}"
     sudo virsh net-start default
     sudo virsh net-autostart default
 
-    echo "Checking network status..."
+    echo -e "${Green}Checking network status.${Color_Off}"
     sudo virsh net-list --all
 
-    echo "Adding libvirt user..."
+    echo -e "${Green}Adding libvirt user.${Color_Off}"
     sudo adduser $(whoami) libvirt
     sudo adduser $(whoami) libvirt-qemu
 
   elif [ $virtualization = 0 ]
   then
-    echo "If the number shows 0, then enable virtualization on bios settings"
-    echo "Enable VT-x (Virtualization Technology Extension) for Intel processor"
-    echo "Enable AMD-V for AMD processor"
+    echo -e "\n${Green}If the number shows 0, then enable virtualization on bios settings"
+    echo -e "Enable VT-x (Virtualization Technology Extension) for Intel processor"
+    echo -e "Enable AMD-V for AMD processor${Color_Off}"
 
     break
   fi
 }
 
 vlc() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |                  Installing VLC                |
-  --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? (if no, using snap instead) [Y/n] "
+  -------------------------------------------------- ${Color_Off}"
+  echo -ne "${DYellow}Do you want to install it with flatpak ? ${BRed}(if no, using snap instead)${Color_Off} ${DYellow}[Y/n] ${Color_Off}"
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -515,10 +519,10 @@ vlc() {
 }
 
 vscode() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |         Installing Visual Studio Code          |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo apt install software-properties-common apt-transport-https wget
   wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
   sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
@@ -526,16 +530,16 @@ vscode() {
 }
 
 whatsapp() {
-  echO "This package is only available in flatpak."
-  echo -ne "Do you want to continue ? [Y/n] "
+  echO -e "${Green}This package is only available in flatpak."
+  echo -ne "${DYellow}Do you want to continue ? [Y/n] ${Color_Off}"
   read yesInstall
 
   if [[ "$yesInstall" = "Y" || "$yesInstall" = "y" || "$yesInstall" = "" ]]
   then
-    echo "
+    echo -e "${DMagenta}
     --------------------------------------------------
     |          Installing WhatsApp Desktop           |
-    --------------------------------------------------"
+    -------------------------------------------------- ${Color_Off}"
     flatpak install flathub io.github.mimbrero.WhatsAppDesktop
 
   else
@@ -544,10 +548,10 @@ whatsapp() {
 }
 
 wine() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |                 Installing WINE                |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo dpkg --add-architecture i386
   wget -nc https://dl.winehq.org/wine-builds/winehq.key
   sudo mv winehq.key /usr/share/keyrings/winehq-archive.key
@@ -558,10 +562,11 @@ wine() {
   PROMPT="Ubuntu Version"
   COLUMN1="Version"
   COLUMN2="Description"
+  COLUMN3=""
   OPTIONS=(
-    18.04 "choose this if you're running ubuntu 18.04"
-    20.04 "choose this if you're running ubuntu 20.10"
-    22.04 "choose this if you're running ubuntu 21.04"
+    18.04 "choose this if you're running ubuntu 18.04" ""
+    20.04 "choose this if you're running ubuntu 20.10" ""
+    22.04 "choose this if you're running ubuntu 21.04" ""
   )
 
   opt=$(createMenu)
@@ -593,20 +598,20 @@ wine() {
 }
 
 ytdlp() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |              Installing yt-dlp                 |
-  --------------------------------------------------"
+  -------------------------------------------------- ${Color_Off}"
   sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
   sudo chmod a+rx /usr/local/bin/yt-dlp
 }
 
 zoom() {
-  echo "
+  echo -e "${DMagenta}
   --------------------------------------------------
   |                  Installing Zoom               |
-  --------------------------------------------------"
-  echo -ne "Do you want to install it with flatpak ? [Y/n] "
+  -------------------------------------------------- ${Color_Off}"
+  echo -ne "${DYellow}Do you want to install it with flatpak ? [Y/n] ${Color_Off}"
   read flatpakOption
 
   if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -622,13 +627,34 @@ zoom() {
 }
 
 installMissingDependecies() {
-  echo -ne "\nInstall missing dependencies ? [Y/n] "
+  # check OS
+  checkArch
+  checkDebian
+  checkFedoraRedhat
+  checkSUSE
+
+  echo -ne "${DYellow}\nInstall missing dependencies ? [Y/n] ${Color_Off}"
   read installMissing
 
   if [[ "$installMissing" = "Y" || "$installMissing" = "y" || "$installMissing" = "" ]]
   then
-    sudo apt --fix-broken install
-    sudo apt install -f
+    if [ "$debian" ]
+    then
+      sudo apt --fix-broken install
+      sudo apt install -f
+
+    elif [ "$fedoraRedhat" ]
+    then
+      echo -e "${Green}Sorry I don't know how to do that on Fedora${Color_Off}"
+
+    elif [ "$arch" ]
+    then
+      echo -e "${Green}Sorry I don't know how to do that on Arch${Color_Off}"
+
+    elif [ "$opensuse" ]
+    then
+      echo -e "${Green}Sorry I don't know how to do that on OpenSUSE${Color_Off}"
+    fi
 
   else
     echo "Abort."
@@ -636,13 +662,36 @@ installMissingDependecies() {
 }
 
 removeUnused() {
-  echo -ne "\nRemove unnecessary packages ? [Y/n] "
+  # check OS
+  checkArch
+  checkDebian
+  checkFedoraRedhat
+  checkSUSE
+
+  echo -ne "${DYellow}\nRemove unnecessary packages ? [Y/n] ${Color_Off}"
   read removePackage
 
   if [[ "$removePackage" = "Y" || "$removePackage" = "y" || "$removePackage" = "" ]]
   then
-    sudo apt autoremove
-    sudo apt autoclean
+    if [ "$debian" ]
+    then
+      sudo apt autoremove
+      sudo apt autoclean
+
+    elif [ "$fedoraRedhat" ]
+    then
+      sudo dnf autoremove
+      sudo dnf clean all
+
+    elif [ "$arch" ]
+    then
+      echo -e "${Green}Sorry I don't know how to do that on Arch${Color_Off}"
+
+    elif [ "$opensuse" ]
+    then
+      echo -e "${Green}Sorry I don't know how to do that on OpenSUSE${Color_Off}"
+
+    fi
 
   else
     echo "Abort."
@@ -658,6 +707,9 @@ export -f checkDebian
 export -f checkSUSE
 export BRed
 export Color_Off
+export DMagenta
+export DYellow
+export Green
 
 # -------------------------------------------------------------------------------------
 # sCrIpT sTaRtS
