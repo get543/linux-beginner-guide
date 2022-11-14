@@ -530,7 +530,7 @@ vscode() {
 }
 
 whatsapp() {
-  echO -e "${Green}This package is only available in flatpak."
+  echo -e "${Green}This package is only available in flatpak."
   echo -ne "${DYellow}Do you want to continue ? [Y/n] ${Color_Off}"
   read yesInstall
 
