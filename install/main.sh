@@ -654,6 +654,13 @@ installMissingDependecies() {
     elif [ "$opensuse" ]
     then
       echo -e "${Green}Sorry I don't know how to do that on OpenSUSE${Color_Off}"
+    
+    else
+      echo -e "${Green}I'm sorry you're probably running distro other than.."
+      echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
+      echo -e "I'm working for other distro as well."
+      echo -ne "\nEnter to continue... "
+      read
     fi
 
   else
@@ -677,6 +684,7 @@ removeUnused() {
     then
       sudo apt autoremove
       sudo apt autoclean
+      sudo apt clean
 
     elif [ "$fedoraRedhat" ]
     then
@@ -691,6 +699,12 @@ removeUnused() {
     then
       echo -e "${Green}Sorry I don't know how to do that on OpenSUSE${Color_Off}"
 
+    else
+      echo -e "${Green}I'm sorry you're probably running distro other than.."
+      echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
+      echo -e "I'm working for other distro as well."
+      echo -ne "\nEnter to continue... "
+      read
     fi
 
   else
