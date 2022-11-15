@@ -1,137 +1,168 @@
 # distro functions
 ubuntu() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Adding the flatpak ppa. ${Color_Off}"
   sudo add-apt-repository ppa:flatpak/stable
+
+  echo -e "${Green}Updating the repository. ${Color_Off}"
   sudo apt update
+
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo apt install flatpak
 
-  echo "Installing the gnome software plugin for flatpak. "
+  echo -e "${Green}Installing the gnome software plugin for flatpak. ${Color_Off}"
   sudo apt install gnome-software-plugin-flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 fedora() {
-  echo "Flatpak is installed by default on Fedora Workstation, Fedora Silverblue, and Fedora Kinoite. "
-  echo "Adding flathub repository. "
+  echo -e "${Green}Flatpak is installed by default on Fedora Workstation, Fedora Silverblue, and Fedora Kinoite. "
+  echo -e "Adding flathub repository. ${Color_Off}"
 
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 arch() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo pacman -Sy flatpak
 }
 
 debian() {
-  echo "Installig Flatpak. "
+  echo -e "${Green}Installig Flatpak. ${Color_Off}"
   apt install flatpak
 
-  echo "Installing the gnome software plugin for flatpak. "
+  echo -e "${Green}Installing the gnome software plugin for flatpak. ${Color_Off}"
   apt install gnome-software-plugin-flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 redhat() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo yum install flatpak
 
-  echo "Download and install this flathub repository. "
-  echo "https://flathub.org/repo/flathub.flatpakrepo "
+  echo -e "${Green}Download and install this flathub repository. ${Color_Off}"
+  echo -e "${DYellow}https://flathub.org/repo/flathub.flatpakrepo ${Color_Off}"
 }
 
 endavouros() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Updating the system. ${Color_Off}"
   sudo pacman -Syu
+
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo pacman -Sy flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
 opensuse() {
+  echo -e "${Green}Installing flatpak. ${Color_Off}"
   sudo zypper install flatpak
+
+  echo -e "${Green}Adding flatpak repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 gentoo() {
-  echo "Enabling the ~amd64 keyword for sys-apps/flatpak, acct-user/flatpak and acct-group/flatpak. "
+  echo -e "${Green}Enabling the ~amd64 keyword for sys-apps/flatpak, acct-user/flatpak and acct-group/flatpak. ${Color_Off}"
   echo -e 'sys-apps/flatpak ~amd64\nacct-user/flatpak ~amd64\nacct-group/flatpak ~amd64\ndev-util/ostree ~amd64' >> /etc/portage/package.accept_keywords/flatpak
   
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   emerge sys-apps/flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Gren}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 kubuntu() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Adding the flatpak repository. ${Color_Off}"
   sudo add-apt-repository ppa:alexlarsson/flatpak
+
+  echo -e "${Green}Updating system. ${Color_Off}"
   sudo apt update
+
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo apt install flatpak
 
-  echo "Install the Discover Flatpak backend for Kubuntu 20.04 or later. "
+  echo -e "${Green}Install the Discover Flatpak backend for Kubuntu 20.04 or later. ${Color_Off}"
   sudo apt install plasma-discover-backend-flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 solus() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo eopkg install flatpak xdg-desktop-portal-gtk
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 alpine() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo apk add flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 mageia() {
-  echo "Flatpak is available for Mageia 6 and newer. "
+  HEIGHT=400
+  WIDTH=800
+  PROMPT="Flatpak is available for Mageia 6 and newer. "
+  TITLE="Method to install flatpak."
+  COLUMN1="Choose One"
+  COLUMN2="Description"
+  COLUMN3=""
 
-  echo "\nIf want to install Flatpak using DNF, you can choose 'Y'. "
-  echo "But If you want to install Flatpak usin urpmi, you can choose 'N'"
-  echo -ne "You want to install it now ? [Y/n] "
-  read mageiaInstallOption
+	OPTIONS=(
+		dnf "install flatpak using dnf" ""
+		urpmi "install flatpak using urpmi" ""
+		Cancel "exit this process" ""
+	)
 
-  if [[ "$mageiaInstallOption" = "Y" || "$mageiaInstallOption" = "y" || "$mageiaInstallOption" = "" ]]
-  then
-    echo "Installing Flatpak using DNF. "
-    dnf install flatpak
-  else
-    echo "Installing Flatpak using urpmi. "
-    urpmi flatpak
-  fi
+  opt=$(createMenu)
 
-  echo "Adding flathub repository. "
+	clear
+
+  case "$opt" in
+    dnf)
+      echo -e "${Green}Installing Flatpak using DNF. ${Color_Off}"
+      dnf install flatpak
+    ;;
+
+    urpmi)
+      echo -e "${Green}Installing Flatpak using urpmi. ${Color_Off}"
+      urpmi flatpak
+    ;;
+
+    Cancel) echo "Done." ;;
+
+    *) chooseOther ;;
+  esac
+
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 popos() {
-  echo "Pop!_OS 20.04 has Flatpak installed and Flathub configured by default. "
-  echo "The Pop!_Shop can be used to install flatpaks. "
+  echo -e "${Green}Pop!_OS 20.04 has Flatpak installed and Flathub configured by default. ${Color_Off}"
+  echo -e "${Green}The Pop!_Shop can be used to install flatpaks. ${Color_Off}"
 
-  echo "\nBut if you're running on Pop!_OS 19.10 and earlier, you can continue the installation. "
-  echo -ne "You want to install it now ? [Y/n] "
+  echo -e "${BRed}\nBut if you're running on Pop!_OS 19.10 and earlier, you can continue the installation. ${Color_Off}"
+  echo -ne "${DYellow}You want to install it now ? [Y/n] ${Color_Off}"
   read poposInstallFlatpak
 
   if [[ "$poposInstallFlatpak" = "Y" || "$poposInstallFlatpak" = "y" || "$poposInstallFlatpak" = "" ]]
   then
-    echo "Installing Flatpak. "
+    echo -e "${Green}Installing Flatpak. ${Color_Off}"
     sudo apt install flatpak
 
-    echo "Adding flathub repository. "
+    echo -e "${Green}Adding flathub repository. ${Color_Off}"
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   else
     echo "Abort."
@@ -139,84 +170,84 @@ popos() {
 }
 
 raspberrypios() {
-  echo "Flatpak only supported for 64-bit version"
-  echo "Installing Flatpak. " 
+  echo -e "${BRed}Flatpak only supported for 64-bit version. ${Color_Off}"
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   apt install flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 clearlinux() {
-  echo "Flatpak is installed and Flathub repository is pre-configured by default on Clear Linux. "
+  echo -e "${Green}Flatpak is installed and Flathub repository is pre-configured by default on Clear Linux. ${Color_Off}"
   sudo swupd bundle-add desktop
 }
 
 voidlinux() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo xbps-install -S flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 sulinos() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   su
   inary it flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   su
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 ataraxialinux() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo neko em flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 deepin() {
-  echo "Installing Flatpak. "
+  echo -e "${Green}Installing Flatpak. ${Color_Off}"
   sudo apt install flatpak
 
-  echo "Adding flathub repository. "
+  echo -e "${Green}Adding flathub repository. ${Color_Off}"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-  echo "Installing Deeping themes. "
+  echo -e "${Green}Installing Deepin themes. ${Color_Off}"
   flatpak install flathub org.gtk.Gtk3theme.deepin
   flatpak install flathub org.gtk.Gtk3theme.deepin-dark
 }
 
 pardus() {
-  echo "Flatpak is available in Pardus 2019 and newer. \n"
+  echo -e "${Green}Flatpak is available in Pardus 2019 and newer. \n${Color_Off}"
 
-  echo "If you're running on Pardus 2017 and older versions, flatpak is available in the official backports repository. "
-  echo "https://backports.debian.org/Instructions/"
+  echo -e "${Green}If you're running on Pardus 2017 and older versions, flatpak is available in the official backports repository. ${Color_Off}"
+  echo -e "${Green}Instruction: https://backports.debian.org/Instructions/ ${Color_Off}"
 
-  echo "\nIf you're running on Pardus 2019 and newer, you can continue the installation. "
-  echo -ne "You want to install it now ? [Y/n] "
+  echo -e "${Green}\nIf you're running on Pardus 2019 and newer, you can continue the installation. ${Color_Off}"
+  echo -ne "${DYellow}You want to install it now ? [Y/n] ${Color_Off}"
   read pardusInstallFlatpak
 
   if [[ "$pardusInstallFlatpak" = "Y" || "$pardusInstallFlatpak" = "y" || "$pardusInstallFlatpak" = "" ]]
   then
-    echo "Installing Flatpak. "
+    echo -e "${Green}Installing Flatpak. ${Color_Off}"
     apt install flatpak
 
-    echo "Installing flathub repository. "
+    echo -e "${Green}Installing flathub repository. ${Color_Off}"
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-    echo "\nIf you're running GNOME, it is also a good idea to install the Flatpak plugin for GNOME Software. "
-    echo -ne "You want to install it now ? [Y/n] "
+    echo -e "${Green}\nIf you're running GNOME, it is also a good idea to install the Flatpak plugin for GNOME Software. ${Color_Off}"
+    echo -ne "${DYellow}You want to install it now ? [Y/n] ${Color_Off}"
     read pardusGnomePlugin
 
     if [[ "$pardusGnomePlugin" = "Y" || "$pardusGnomePlugin" = "y" || "$pardusGnomePlugin" = "" ]]
     then
       apt install gnome-software-plugin-flatpak
     else
-      echo "Abort. "
+      echo "Abort."
     fi
   else
     echo "Abort."
@@ -224,29 +255,29 @@ pardus() {
 }
 
 pisilinux() {
-  echo "Flatpak is available in Pisi 2.1 and newer. "
+  echo -e "${Green}Flatpak is available in Pisi 2.1 and newer. ${Color_Off}"
 
-  echo "\nIf you're running on Pisi 2.1 and newer, you can continue the installation. "
-  echo -ne "You want to install it now ? [Y/n] "
+  echo -e "${Green}\nIf you're running on Pisi 2.1 and newer, you can continue the installation. ${Color_Off}"
+  echo -ne "${DYellow}You want to install it now ? [Y/n] ${Color_Off}"
   read pisilinuxFlatpak
 
   if [[ "$pisilinuxFlatpak" = "Y" || "$pisilinuxFlatpak" = "y" || "$pisilinuxFlatpak" = "" ]]
   then
-    echo "Installing Flatpak. "
+    echo -e "${Green}Installing Flatpak. ${Color_Off}"
     sudo pisi it flatpak
 
-    echo "Adding flathub repository. "
+    echo -e "${Green}Adding flathub repository. ${Color_Off}"
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   else
-    echo "Abort. "
+    echo "Abort."
   fi  
 }
 
 # ----------------------------------------------------------------------------------
 
 # Installing flatpak
-echo "It looks like flatpak is NOT installed!"
-echo -ne "You want to install it now ? [Y/n] "
+echo -e "${Green}It looks like flatpak is NOT installed!"
+echo -ne "${DYellow}You want to install it now ? [Y/n] ${Color_Off}"
 read flatpakOption
 
 if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
@@ -260,27 +291,27 @@ then
   COLUMN3="Installed by Default"
 
   OPTIONS=(
-    Ubuntu "A Distro" "NO"
-    Fedora "A Distro" "YES"
-    Arch "A Distro" "NO"
-    Debian "A Distro" "NO"
-    Red\ Hat\ Enterprise\ Linux "A Distro" "NO"
-    EndavourOS "A Distro" "NO"
-    openSUSE "A Distro" "NO"
-    Gentoo "A Distro" "NO"
-    Kubuntu "A Distro" "NO"
-    Solus "A Distro" "NO"
-    Alpine "A Distro" "NO"
-    Mageia "A Distro" "NO"
-    Pop\!_OS "A Distro" "YES"
-    Raspberry\ Pi\ OS "A Distro" "NO"
-    Clear\ Linux "A Distro" "YES"
-    Void\ Linux "A Distro" "NO"
-    SulinOS "A Distro" "NO"
-    Ataraxia\ Linux "A Distro" "NO"
-    Deepin "A Distro" "NO"
-    Pardus "A Distro" "NO"
-    Pisi\ GNU\ Linux "A Distro" "NO"
+    Ubuntu "A Linux Distro" "NO"
+    Fedora "A Linux Distro" "YES"
+    Arch "A Linux Distro" "NO"
+    Debian "A Linux Distro" "NO"
+    Red\ Hat\ Enterprise\ Linux "A Linux Distro" "NO"
+    EndavourOS "A Linux Distro" "NO"
+    openSUSE "A Linux Distro" "NO"
+    Gentoo "A Linux Distro" "NO"
+    Kubuntu "A Linux Distro" "NO"
+    Solus "A Linux Distro" "NO"
+    Alpine "A Linux Distro" "NO"
+    Mageia "A Linux Distro" "NO"
+    Pop\!_OS "A Linux Distro" "YES"
+    Raspberry\ Pi\ OS "A Linux Distro" "NO"
+    Clear\ Linux "A Linux Distro" "YES"
+    Void\ Linux "A Linux Distro" "NO"
+    SulinOS "A Linux Distro" "NO"
+    Ataraxia\ Linux "A Linux Distro" "NO"
+    Deepin "A Linux Distro" "NO"
+    Pardus "A Linux Distro" "NO"
+    Pisi\ GNU\ Linux "A Linux Distro" "NO"
     "" "" ""
     Cancel "exit this process" ""
   )
