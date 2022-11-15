@@ -1,4 +1,4 @@
-#### Note
+> **Note:**
 > You can use this as a guide if you are using **ubuntu or ubuntu based** distros.
 > I think some of this will work to on **debian** distros.
 
@@ -672,7 +672,7 @@ git commit -m "first commit"
 git branch -M main
 
 # add a remote repository
-git remote add origin "https://get543.github.io/mywebsite.github.io/"
+git remote add origin "https://get543.github.io/mywebsite"
 
 # push changes to github
 git push -u origin main

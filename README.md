@@ -2,7 +2,7 @@
 
 ##### All `.sh` `.md` is clickable in this page
 
-> Note: I use Zorin OS 16.1 at the time of writing. Some of the installation **will not** work if you are using distro other than **ubuntu based** distros.
+> **Note:** I use Zorin OS 16.1 at the time of writing. Some of the installation **will not** work if you are using distro other than **ubuntu based** distros.
 
 > Before running the `.sh` file, make sure to make it as an executable file by running
 > `chmod +x FileName.sh` on the terminal
@@ -25,13 +25,12 @@ To troubleshoot droidcam including reinstalling, changing resolution
 
 Free swap memory
 
-# [`change.sh`]
+# [`change-output/`]
 
-Script to change output device (headhones and speakers), it is using zenity and it should work if you enter the soundcard number and sink port correctly.
+##### Contains :
 
-# [`toggle.sh`]
-
-Same functionality as [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup_**
+- [`change.sh`] => to change output device (headhones and speakers), using [zenity] and it should work **_if you enter the soundcard number and sink port correctly._**
+- [`toggle.sh`] => just like [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup_**
 
 # [`install/`]
 
@@ -39,7 +38,7 @@ It contains the autoinstall scripts. Don't move the file inside of it.
 
 # [`ytdlp.sh`]
 
-- Commands to download video from youtube using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- Commands to download video from youtube using [yt-dlp]
 - Selected for the best 1080p60 video
 - Can also download a youtube playlist
 - For audio, the best 'audio only' (.m4a)
@@ -51,12 +50,15 @@ It contains the autoinstall scripts. Don't move the file inside of it.
 - Tutorials, explanation, my config
 - Guide for installing arch with a script also the official arch wiki installation
 
+[zenity]: https://help.gnome.org/users/zenity/stable/
+[yt-dlp]: https://github.com/yt-dlp/yt-dlp
 [`arch-vm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/arch-vm.sh
 [`droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam.sh
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
 [`change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/change.sh
 [`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/toggle.sh
 [`install/`]: https://github.com/get543/linux-beginner-guide/tree/main/install
+[`change-output/`]: https://github.com/get543/linux-beginner-guide/tree/main/change-output
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
 [`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/flatpak-install.sh
 [`upgrade.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/upgrade.sh
