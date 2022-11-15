@@ -24,7 +24,7 @@ then
   else
     echo -e "${Green}I'm sorry you're probably running distro other than.."
     echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
-    echo -e "I'm working for other distro as well.${Color_Off}"
+    echo -e "I'm working for other distro as well."
     echo -ne "\nEnter to continue... "
     read
   fi
