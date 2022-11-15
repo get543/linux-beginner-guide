@@ -316,3 +316,12 @@ then
 else
   echo -e "${BRed}flatpak ${Green}is installed.${Color_Off}"
 fi
+
+# NALA
+echo -ne "\n${Green}Checking ${BRed}nala ${Green}installed or not.\n${Color_Off}"
+if ! command -v nala &> /dev/null
+then
+  echo -e "${BRed}nala ${Green}is ${BRed}NOT ${Green}installed.${Color_Off}"
+else
+  echo -e "${BRed}nala ${Green}is installed.${Color_Off}"
+fi
