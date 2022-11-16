@@ -682,6 +682,9 @@ git push -u origin main
 git add .
 git commit -m "commit message"
 git push
+
+# connecting github repository using ssh
+git remote set-url origin git@github.com:get543/<project-name>.git
 ```
 
 ### Github Cheat Sheet
@@ -985,4 +988,7 @@ cat id_rsa.pub
 8. Give it a name, like :  **Github on Linux - RSA Key**
 9. Now that you've added your public key to Github, try `git push` and let see if it works.
 
-More help on [creating SSH Keys](https://help.github.com/articles/generating-ssh-keys)
+> Don't forget to connect the repository through ssh
+> `git remote set-url origin git@github.com:get543/<project-name>.git`
+
+More help on [creating SSH Keys.](https://help.github.com/articles/generating-ssh-keys)
