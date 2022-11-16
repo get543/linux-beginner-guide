@@ -948,3 +948,41 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[0
 ```bash
 source ~/.bashrc
 ```
+
+
+# Connecting Git using SSH Key
+### 'Permission Denied (publickey)' error 
+This means, on your local machine, you haven't made any SSH keys.
+
+### How To Fix :
+1. Open terminal.
+2. Change to `.ssh` directory.
+```bash
+# for linux
+cd ~/.ssh
+
+# for windows
+cd C:\Users\<your-windows-username>\.ssh\
+```
+3. Do a listing to see what file in that directory.
+```bash
+# listing
+ls
+
+# for long-listing
+ll
+```
+4. There should be these two files: `id_rsa` and `id_rsa.pub`. These are the files that tell your computer how to communicate with GitHub. If those two files don't show up, or if you have something similar just proceed to the next step, we are just going to create a new one. ***Your SSH keys must be named `id_rsa` and `id_rsa.pub` in order for GitHub to recognize them by default.***
+5. To create the SSH keys. Change `your_email@example.com` to your github email. This will create both `id_rsa` and `id_rsa.pub` files. 
+```bash
+ssh-keygen -t rsa -C "your_email@example.com"
+```
+6. Use the `cat` command to see what's the content inside of a file.
+```bash
+cat id_rsa.pub
+```
+7. Copy all of them, and paste it into your [GitHub Account Settings > SSH Keys](https://github.com/settings/keys). 
+8. Give it a name, like :  **Github on Linux - RSA Key**
+9. Now that you've added your public key to Github, try `git push` and let see if it works.
+
+More help on [creating SSH Keys](https://help.github.com/articles/generating-ssh-keys)
