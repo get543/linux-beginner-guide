@@ -720,7 +720,7 @@ node -v
 - [The Github Projects](https://github.com/nvm-sh/nvm)
 
  
-# Customize Terminal Command Prompt
+# Customize Terminal Prompt
 On most system usually will look something like this :
 ```bash
 user@host:~$ 
@@ -992,3 +992,199 @@ cat id_rsa.pub
 > `git remote set-url origin git@github.com:get543/<project-name>.git`
 
 More help on [creating SSH Keys.](https://help.github.com/articles/generating-ssh-keys)
+
+
+# Blackscreen on XFCE in Virt-Manager using 3D Acceleration
+**This issue can be resolve by replacing default XFCE Compositor to picom.**
+1. Boot into the VM using `QXL`.
+2. Disable the default display compositor, here is how to do that :
+	- search for `Window Manager Tweaks`.
+	- go to the `Compositor` tab.
+	- uncheck `Enable display compositing`.
+3. Install the new display compositor `(picom)`. Install it using your distro's default package manager.
+```bash
+# for debian based distros
+sudo apt install picom
+
+# for arch based distros
+sudo pacman -S picom
+```
+4. Make a `picom` directory in `.config` for start script and config file. And make the start script executable.
+```bash
+# change directory
+cd ~/.config
+
+# make directory
+mkdir picom
+
+# from .config change directory
+cd picom
+
+# make start.sh file
+touch start.sh
+
+# make start.sh an executable file
+chmod +x start.sh
+
+# make picom.conf file
+touch picom.conf
+```
+5. Paste this for `start.sh` file
+```bash
+sleep 2 && picom -b --config /home/<username>/.config/picom/picom.conf
+```
+  - sleep => delay the command for 2 seconds.
+	- -b => run picom in the background.
+	- --config => load a custom config path.
+6. Paste this for `picom.conf` file. Or go [here](https://raw.githubusercontent.com/jEsuSdA/the-perfect-desktop/master/compton-picom/picom.conf) and save the file as `picom.conf`.
+```bash
+#################################
+#
+# Backend
+#
+#################################
+backend = "glx";
+
+#################################
+#
+# GLX backend
+#
+#################################
+glx-no-stencil = true;
+glx-copy-from-front = false;
+glx-no-rebind-pixmap = true;
+use-damage = false;
+
+#################################
+#
+# Shadows
+#
+#################################
+
+# Enabled client-side shadows on windows.
+shadow = true;
+# The blur radius for shadows. (default 12)
+shadow-radius = 35;
+# The left offset for shadows. (default -15)
+shadow-offset-x = -35;
+# The top offset for shadows. (default -15)
+shadow-offset-y = -35;
+# The translucency for shadows. (default .75)
+shadow-opacity = 0.8;
+
+shadow-exclude = [
+	"_GTK_FRAME_EXTENTS@:c",
+  "name = 'Notification'",
+  "name = 'Plank'",
+  "name = 'Docky'",
+  "name = 'Kupfer'",
+	"name = 'Pensela'",
+	"name = 'Drawing Board'",
+	"name = 'VirtualBox'",
+	"name = 'VirtualBoxVM'",
+	"name = 'Negatron v0.100.1' && argb",
+  "name ?= 'xfwm4' && argb",
+  "class_g = 'Conky'",
+  "class_g = 'Kupfer'",
+  "class_g = 'Synapse'",
+  "class_g ?= 'Notify-osd'",
+  "class_g ?= 'Cairo-dock'",
+	"class_g = 'Cairo-clock'",
+  "class_g ?= 'Xfce4-notifyd'",
+  "class_g = 'Thunderbird' && argb",
+  "class_g = 'Telegram' && argb",
+	"class_g ?= 'Thunderbird' && class_i = 'Popup' && argb",
+	"class_g = 'firefox' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+	"class_g = 'Firefox' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+	"class_g = 'firefox-esr' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+	"class_g = 'Firefox-esr' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+	"class_g = 'Tor Browser' && (window_type = 'utility') && argb",
+	"class_g = 'Navegador Tor' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+	"class_g = 'Thunderbird' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+	"class_g = 'Mozilla Thunderbird' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+  "class_g ?= 'Xfce4-power-manager'",
+	"class_g ?= 'vokoscreen' && argb",
+	"name = 'Área'",
+	"name *= 'Cuenta regresiva'",
+	"_NET_WM_WINDOW_TYPE:a *= '_KDE_NET_WM_WINDOW_TYPE_OVERRIDE'"
+];
+shadow-ignore-shaped = false;
+
+#################################
+#
+# Opacity
+#
+#################################
+inactive-opacity = 1;
+active-opacity = 1;
+frame-opacity = 1;
+inactive-opacity-override = false;
+blur-background = true;
+blur-method = "kernel";
+blur-kern = "9x9gaussian"
+blur-background-exclude = [
+  "class_g = 'Peek'",
+	"class_g = 'Pensela'",
+	"name = 'Drawing Board'",
+  "window_type = 'dock'",
+  "window_type = 'dropdown_menu'",
+	"window_type = 'combo'",
+	"window_type = 'popup_menu'",
+	"window_type = 'utility'",
+  "window_type = 'desktop'",
+	"_GTK_FRAME_EXTENTS@:c"
+];
+opacity-exclude = [
+  "name = 'Stratagus'"
+];
+
+#################################
+#
+# Fading
+#
+#################################
+fading = true;
+fade-in-step = 0.07;
+fade-out-step = 0.07;
+fade-exclude = [ ];
+
+#################################
+#
+# OTHER CONFIG
+#
+#################################
+log-level = "warn";
+mark-wmwin-focused = true;
+mark-ovredir-focused = true;
+detect-rounded-corners = true;
+detect-client-opacity = true;
+refresh-rate = 0;
+
+focus-exclude = [ "class_g = 'Cairo-clock'" ];
+detect-transient = true;
+detect-client-leader = true;
+invert-color-include = [ ];
+resize-damage = 2;
+
+#################################
+#
+# Window type settings
+#
+#################################
+wintypes:
+{
+	dock = { shadow = true; }
+	dnd = { shadow = false; }
+	popup_menu = { opacity = 1; }
+	dropdown_menu = { opacity = 1; }
+};
+```
+7. Put the `start.sh` into start script at login. To do that, search for `Session and Startup`.
+8. Go to the `Application Autostart` tab and click `Add`.
+9. Fill it like this :
+	- Name => **Picom**
+	- Description => **Starts Picom Compositor**
+	- Command => `/home/<username>/.config/picom/start.sh`
+	- Trigger => **on login**
+10. Click `OK` and `Close`
+11. Finally, reboot your the VM.
