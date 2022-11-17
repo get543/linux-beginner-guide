@@ -1033,88 +1033,58 @@ touch picom.conf
 ```bash
 sleep 2 && picom -b --config /home/<username>/.config/picom/picom.conf
 ```
-  - sleep => delay the command for 2 seconds.
-	- -b => run picom in the background.
-	- --config => load a custom config path.
+  - `sleep` => delay the command for 2 seconds.
+  - `-b` => run picom in the background.
+  - `--config` => load a custom config path.
 6. Paste this for `picom.conf` file. Or go [here](https://raw.githubusercontent.com/jEsuSdA/the-perfect-desktop/master/compton-picom/picom.conf) and save the file as `picom.conf`.
 ```bash
-#################################
-#
-# Backend
-#
-#################################
 backend = "glx";
-
-#################################
-#
-# GLX backend
-#
-#################################
 glx-no-stencil = true;
 glx-copy-from-front = false;
 glx-no-rebind-pixmap = true;
 use-damage = false;
-
-#################################
-#
-# Shadows
-#
-#################################
-
-# Enabled client-side shadows on windows.
 shadow = true;
-# The blur radius for shadows. (default 12)
 shadow-radius = 35;
-# The left offset for shadows. (default -15)
 shadow-offset-x = -35;
-# The top offset for shadows. (default -15)
 shadow-offset-y = -35;
-# The translucency for shadows. (default .75)
 shadow-opacity = 0.8;
-
 shadow-exclude = [
-	"_GTK_FRAME_EXTENTS@:c",
+  "_GTK_FRAME_EXTENTS@:c",
   "name = 'Notification'",
   "name = 'Plank'",
   "name = 'Docky'",
   "name = 'Kupfer'",
-	"name = 'Pensela'",
-	"name = 'Drawing Board'",
-	"name = 'VirtualBox'",
-	"name = 'VirtualBoxVM'",
-	"name = 'Negatron v0.100.1' && argb",
+  "name = 'Pensela'",
+  "name = 'Drawing Board'",
+  "name = 'VirtualBox'",
+  "name = 'VirtualBoxVM'",
+  "name = 'Negatron v0.100.1' && argb",
   "name ?= 'xfwm4' && argb",
   "class_g = 'Conky'",
   "class_g = 'Kupfer'",
   "class_g = 'Synapse'",
   "class_g ?= 'Notify-osd'",
   "class_g ?= 'Cairo-dock'",
-	"class_g = 'Cairo-clock'",
+  "class_g = 'Cairo-clock'",
   "class_g ?= 'Xfce4-notifyd'",
   "class_g = 'Thunderbird' && argb",
   "class_g = 'Telegram' && argb",
-	"class_g ?= 'Thunderbird' && class_i = 'Popup' && argb",
-	"class_g = 'firefox' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
-	"class_g = 'Firefox' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
-	"class_g = 'firefox-esr' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
-	"class_g = 'Firefox-esr' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
-	"class_g = 'Tor Browser' && (window_type = 'utility') && argb",
-	"class_g = 'Navegador Tor' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
-	"class_g = 'Thunderbird' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
-	"class_g = 'Mozilla Thunderbird' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+  "class_g ?= 'Thunderbird' && class_i = 'Popup' && argb",
+  "class_g = 'firefox' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+  "class_g = 'Firefox' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+  "class_g = 'firefox-esr' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+  "class_g = 'Firefox-esr' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+  "class_g = 'Tor Browser' && (window_type = 'utility') && argb",
+  "class_g = 'Navegador Tor' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+  "class_g = 'Thunderbird' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
+  "class_g = 'Mozilla Thunderbird' && (window_type = 'utility' || window_type = 'popup_menu') && argb",
   "class_g ?= 'Xfce4-power-manager'",
-	"class_g ?= 'vokoscreen' && argb",
-	"name = 'Área'",
-	"name *= 'Cuenta regresiva'",
-	"_NET_WM_WINDOW_TYPE:a *= '_KDE_NET_WM_WINDOW_TYPE_OVERRIDE'"
+  "class_g ?= 'vokoscreen' && argb",
+  "name = 'Área'",
+  "name *= 'Cuenta regresiva'",
+  "_NET_WM_WINDOW_TYPE:a *= '_KDE_NET_WM_WINDOW_TYPE_OVERRIDE'"
 ];
 shadow-ignore-shaped = false;
-
-#################################
-#
-# Opacity
-#
-#################################
 inactive-opacity = 1;
 active-opacity = 1;
 frame-opacity = 1;
@@ -1124,53 +1094,34 @@ blur-method = "kernel";
 blur-kern = "9x9gaussian"
 blur-background-exclude = [
   "class_g = 'Peek'",
-	"class_g = 'Pensela'",
-	"name = 'Drawing Board'",
+  "class_g = 'Pensela'",
+  "name = 'Drawing Board'",
   "window_type = 'dock'",
   "window_type = 'dropdown_menu'",
-	"window_type = 'combo'",
-	"window_type = 'popup_menu'",
-	"window_type = 'utility'",
+  "window_type = 'combo'",
+  "window_type = 'popup_menu'",
+  "window_type = 'utility'",
   "window_type = 'desktop'",
-	"_GTK_FRAME_EXTENTS@:c"
+  "_GTK_FRAME_EXTENTS@:c"
 ];
 opacity-exclude = [
   "name = 'Stratagus'"
 ];
-
-#################################
-#
-# Fading
-#
-#################################
 fading = true;
 fade-in-step = 0.07;
 fade-out-step = 0.07;
 fade-exclude = [ ];
-
-#################################
-#
-# OTHER CONFIG
-#
-#################################
 log-level = "warn";
 mark-wmwin-focused = true;
 mark-ovredir-focused = true;
 detect-rounded-corners = true;
 detect-client-opacity = true;
 refresh-rate = 0;
-
 focus-exclude = [ "class_g = 'Cairo-clock'" ];
 detect-transient = true;
 detect-client-leader = true;
 invert-color-include = [ ];
 resize-damage = 2;
-
-#################################
-#
-# Window type settings
-#
-#################################
 wintypes:
 {
 	dock = { shadow = true; }
