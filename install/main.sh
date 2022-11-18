@@ -50,7 +50,7 @@ checkSUSE() {
   opensuse=$(grep -Ei 'SuSE' /etc/*release)
 }
 
-# menu function
+# menu dialog
 createMenu() {
   zenity --title="$TITLE" \
         --text="$PROMPT" \
@@ -61,6 +61,16 @@ createMenu() {
         --width="$WIDTH" \
         --height="$HEIGHT" \
         "${OPTIONS[@]}"
+}
+
+# question dialog
+questionDialog() {
+  zenity --question \
+        --text="$QUESTION" \
+        --ok-label=$OKLABEL \
+        --cancel-label=$CANCELLABEL \
+        --width="$WIDTH" \
+        --height="$HEIGHT"
 }
 
 # choose no option
@@ -829,27 +839,19 @@ zoom() { # flatpak available
 }
 
 installMissingDependecies() {
-  HEIGHT=200
-  WIDTH=600
-  PROMPT="Install missing dependencies ?"
-  TITLE="Dealing with Missing Dependencies"
-  COLUMN1="Choose One"
-  COLUMN2="Description"
-  COLUMN3=""
+  QUESTION="Install missing dependencies ?"
+  WIDTH="600"
+  HEIGHT="200"
+  OKLABEL="Yes"
+  CANCELLABEL="No"
 
-  OPTIONS=(
-    YES "continues to install missing dependencies" ""
-    NO "skip this process" ""
-  )
+  # dialog
+  questionDialog
 
-  clear
+  case "$?" in
+    0)
+      echo -e "\n${DMagenta}============= Fixing Broken Packages =============${Color_Off}"
 
-  # menu
-  opt=$(createMenu)
-
-  # case
-  case "$opt" in
-    YES)
       if [ "$debian" ]
       then
         sudo apt install --fix-broken
@@ -871,15 +873,15 @@ installMissingDependecies() {
         echo -e "${Green}I'm sorry you're probably running distro other than.."
         echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
         echo -e "working for other distro as well."
-        echo -ne "\nEnter to continue... "
+        echo -ne "Enter to continue... "
         read
       fi
     ;;
-    
-    NO)
+
+    1)
       echo "Abort."
     ;;
-
+    
     *)
       chooseOther
       installMissingDependecies
@@ -888,27 +890,19 @@ installMissingDependecies() {
 }
 
 removeUnused() {
-  HEIGHT=200
-  WIDTH=600
-  PROMPT="Remove unnecessary packages ?"
-  TITLE="Dealing with Unused Packages"
-  COLUMN1="Choose One"
-  COLUMN2="Description"
-  COLUMN3=""
+  QUESTION="Remove unnecessary packages ?"
+  WIDTH="600"
+  HEIGHT="200"
+  OKLABEL="Yes"
+  CANCELLABEL="No"
 
-  OPTIONS=(
-    YES "continues to remove unused packages" ""
-    NO "skip this process" ""
-  )
+  # dialog
+  questionDialog
 
-  clear
+  case "$?" in
+    0)
+      echo -e "\n${DMagenta}============= Remove Unused Packages =============${Color_Off}"
 
-  # menu
-  opt=$(createMenu)
-
-  # case
-  case "$opt" in
-    YES)
       if [ "$debian" ]
       then
         sudo apt autoremove
@@ -931,20 +925,80 @@ removeUnused() {
         echo -e "${Green}I'm sorry you're probably running distro other than.."
         echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
         echo -e "working for other distro as well."
-        echo -ne "\nEnter to continue... "
+        echo -ne "Enter to continue... "
         read
       fi
     ;;
 
-    NO)
+    1)
       echo "Abort."
     ;;
-
+    
     *)
       chooseOther
       removeUnused
     ;;
   esac
+
+
+
+  # HEIGHT=200
+  # WIDTH=600
+  # PROMPT="Remove unnecessary packages ?"
+  # TITLE="Dealing with Unused Packages"
+  # COLUMN1="Choose One"
+  # COLUMN2="Description"
+  # COLUMN3=""
+
+  # OPTIONS=(
+  #   YES "continues to remove unused packages" ""
+  #   NO "skip this process" ""
+  # )
+
+  # clear
+
+  # # menu
+  # opt=$(createMenu)
+
+  # # case
+  # case "$opt" in
+  #   YES)
+  #     if [ "$debian" ]
+  #     then
+  #       sudo apt autoremove
+  #       sudo apt clean
+
+  #     elif [ "$fedoraRedhat" ]
+  #     then
+  #       sudo dnf autoremove
+  #       sudo dnf clean all
+
+  #     elif [ "$arch" ]
+  #     then
+  #       echo -e "${Green}Sorry I don't know how to do that on Arch${Color_Off}"
+
+  #     elif [ "$opensuse" ]
+  #     then
+  #       echo -e "${Green}Sorry I don't know how to do that on OpenSUSE${Color_Off}"
+
+  #     else
+  #       echo -e "${Green}I'm sorry you're probably running distro other than.."
+  #       echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
+  #       echo -e "working for other distro as well."
+  #       echo -ne "Enter to continue... "
+  #       read
+  #     fi
+  #   ;;
+
+  #   NO)
+  #     echo "Abort."
+  #   ;;
+
+  #   *)
+  #     chooseOther
+  #     removeUnused
+  #   ;;
+  # esac
 }
 
 # export stuff
@@ -955,6 +1009,7 @@ export -f checkArch
 export -f checkDebian
 export -f checkSUSE
 export -f checkNala
+export -f questionDialog
 export BRed
 export Color_Off
 export DMagenta
@@ -962,7 +1017,7 @@ export DYellow
 export Green
 
 # -------------------------------------------------------------------------------------
-#                                 SCRIPT START
+#                                 SCRIPT STARTS
 # -------------------------------------------------------------------------------------
 
 # checking package

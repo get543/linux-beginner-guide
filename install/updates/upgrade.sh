@@ -1,11 +1,4 @@
 upgradeALL() {
-  # check
-  checkFedoraRedhat
-  checkArch
-  checkDebian
-  checkSUSE
-  checkNala
-
   if [ "$debian" ]
   then
     sudo apt upgrade
@@ -22,22 +15,20 @@ upgradeALL() {
     echo -e "${Green}I'm sorry you're probably running distro other than.."
     echo -e "fedora/redhat, arch, debian/ubuntu, opensuse"
     echo -e "working for other distro as well.${Color_Off}"
-    echo -ne "\nEnter to continue... "
+    echo -ne "Enter to continue... "
     read
   fi
 }
 
 chooseUpgrade() {
-  checkDebian
-
   if [[ "$debian" ]]
   then
     while :
     do
       clear
 
-      echo -e "${DMagenta}------------------ List Upgradable Package(s) ------------------${Color_Off}"
-      
+      echo -e "\n${DMagenta}============= List Upgradable Packages =============${Color_Off}"
+
       # check nala
       if ( ! command -v nala &> /dev/null )
       then
@@ -46,12 +37,14 @@ chooseUpgrade() {
         nala list --upgradable
       fi
 
-      echo -ne "\nType the exact package name you want to upgrade according to the list.\n"
+      echo -e "\n${DMagenta}=====================================================================================================${Color_Off}"
+      echo -e "Type the exact package name you want to upgrade according to the list."
       echo -e "If you want to do multiple packages, just put a space after each one."
-      echo -e "${Green}Usually the package name is before the slash (/).${Color_Off}"
+      echo -e "\n${Green}Usually the package name is before the slash (/)."
       echo -e "${Green}If you are using ${BRed}nala ${Green}the package name usually have different colors.${Color_Off}"
-      echo -e "Example : ${BRed}gimp kdenlive linux-firmware linux-headers-liquorix-amd64 linux-image-liquorix-amd64${Color_Off}"
-      echo -e "${Green}Type ${BRed}exit ${Green}to exit this process.${Color_Off}"
+      echo -e "\nExample : ${BRed}gimp kdenlive linux-firmware linux-headers-liquorix-amd64 linux-image-liquorix-amd64"
+      echo -e "${Green}Type ${BRed}exit ${Green}to exit this process."
+      echo -e "${DMagenta}=====================================================================================================${Color_Off}"
 
       echo -ne "${DYellow}\nUpgrade Package : ${Color_Off}"
       read packageName
@@ -70,6 +63,13 @@ chooseUpgrade() {
     echo -e "As far as I know only debian can do this.${Color_Off}"
   fi
 }
+
+# check
+checkFedoraRedhat
+checkArch
+checkDebian
+checkSUSE
+checkNala
 
 # ----------------------------------------------------------------------------------
 HEIGHT=300
