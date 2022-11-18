@@ -1,8 +1,9 @@
-# Check OS
+# Check
 checkFedoraRedhat
 checkArch
 checkDebian
 checkSUSE
+checkNala
 
 echo -ne "${DYellow}\nDo you want to update the system repository ? [Y/n] ${Color_Off}"
 read updateOptions
@@ -24,7 +25,7 @@ then
   else
     echo -e "${Green}I'm sorry you're probably running distro other than.."
     echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
-    echo -e "I'm working for other distro as well."
+    echo -e "working for other distro as well."
     echo -ne "\nEnter to continue... "
     read
   fi
