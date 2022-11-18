@@ -1,3 +1,15 @@
+installMenu() {
+  zenity --title="$TITLE" \
+        --text="$PROMPT" \
+        --list \
+        --column="$COLUMN1" \
+        --column="$COLUMN2" \
+        --column="$COLUMN3" \
+        --width="$WIDTH" \
+        --height="$HEIGHT" \
+        "${OPTIONS[@]}"
+}
+
 install() {
   echo -e "${DMagenta}================== START INSTALL ==================${Color_Off}"
   cd /tmp/
@@ -57,7 +69,7 @@ do
 	)
 
   # menu
-  opt=$(createMenu)
+  opt=$(installMenu)
 
 	clear
 
@@ -71,6 +83,6 @@ do
 
 		Cancel) break; echo "Done." ;;
 
-    *) chooseOther ;;
+    *) echo "You didn't choose option" ;;
 	esac
 done
