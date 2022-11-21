@@ -34,7 +34,7 @@ Free swap memory
 
 # [`install/`]
 
-It contains the autoinstall scripts. Don't move the file inside of it.
+It contains the autoinstall scripts that can be use to install a lot of popular apps on linux. **_Don't move the file inside of it._**
 
 # [`ytdlp.sh`]
 

@@ -1139,3 +1139,45 @@ wintypes:
 	- Trigger => **on login**
 10. Click `OK` and `Close`
 11. Finally, reboot your the VM.
+
+
+# Terminal Window Title Show Running Command
+If you have **[starship](https://starship.rs/)** installed, you can run the [custom function.](https://starship.rs/advanced-config/#change-window-title) 
+- Edit `.bashrc` file
+```bash
+nano ~/.bashrc
+```
+- Paste this
+```bash
+# custom starship window title function
+function set_win_title() {
+  local cmd=" 💨 ($@)"
+
+  if [[ "$cmd" == " 💨 (starship_precmd)" || "$cmd" == " 💨 ()" ]]
+  then
+    cmd=""
+  fi
+
+  if [[ $PWD == $HOME ]]
+  then
+    if [[ $SSH_TTY ]]
+    then
+      echo -ne "\033]0; 🏛️ @ $HOSTNAME ~$cmd\a" < /dev/null
+    else
+      echo -ne "\033]0; 🏠 ~$cmd\a" < /dev/null
+    fi
+  else
+    BASEPWD=$(basename "$PWD")
+    if [[ $SSH_TTY ]]
+    then
+      echo -ne "\033]0; 🌩️ $BASEPWD @ $HOSTNAME $cmd\a" < /dev/null
+    else
+      echo -ne "\033]0; 📁 $BASEPWD $cmd\a" < /dev/null
+    fi
+  fi
+}
+
+starship_precmd_user_func="set_win_title"
+eval "$(starship init bash)"
+trap "$(trap -p DEBUG |  awk -F"'" '{print $2}');set_win_title \${BASH_COMMAND}" DEBUG
+```
