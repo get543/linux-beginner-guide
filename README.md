@@ -14,20 +14,16 @@
 
 # [`arch-vm.sh`]
 
-My command to run arch vm using qemu
-You can read more on about qemu on [`Ultimate Guide For Beginner Linux User.md`]
-
-# [`droidcam.sh`]
-
-To troubleshoot droidcam including reinstalling, changing resolution
+My command to run arch vm using qemu.
+You can read more on about qemu on [`Ultimate Guide For Beginner Linux User.md`].
 
 # [`freeramcache.sh`]
 
-Free swap memory
+Free swap memory.
 
 # [`changing-output-device/`]
 
-Scripts to change output device or switch between headphones and speakers easily
+Scripts to change output device or switch between headphones and speakers easily.
 
 ## [`change.sh`]
 
@@ -35,35 +31,46 @@ This script is using [zenity] and it should work **_if you enter the soundcard n
 
 ## [`toggle.sh`]
 
-Same functionality as [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup_**
+Same functionality as [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup._**
 
 ## [`change-output.desktop`]
 
-Copy this file if you want to run [`change.sh`] without the terminal. And you need to change the `Exec=`' and `Icon=` to the path where you download [`change-output-device.desktop`] folder.
+Copy this file if you want to run [`change.sh`] without the terminal. And you need to change the `Exec=`' and `Icon=` to the path where you download [`changing-output-device/`] folder.
 
-# [`install/`]
+# [`autoinstall/`]
 
 It contains the autoinstall scripts that can be use to install a lot of popular apps on linux. **_Don't move the file inside of it._**
 
+## [`droidcam.sh`]
+
+To troubleshoot droidcam including reinstalling and changing resolution.
+
+## [`updates/`]
+
+Scripts that take care of system updates.
+
+## [`setups/`]
+
+Setup before getting into installing some apps.
+
 # [`ytdlp.sh`]
 
-- Commands to download video from youtube using [yt-dlp]
-- Selected for the best 1080p60 video
-- Can also download a youtube playlist
-- For audio, the best 'audio only' (.m4a)
+- Commands to download video from youtube using [yt-dlp].
+- Selected for the best 1080p60 video.
+- Can also download a youtube playlist.
+- For audio, the best 'audio only' (.m4a).
 
 # [`Ultimate Guide For Beginner Linux User.md`]
 
-- To troubleshoot problem that I face while trying to use linux for daily driver
-- Also contain tips and tricks to try
-- Tutorials, explanation, my config
-- Guide for installing arch with a script also the official arch wiki installation
+- To troubleshoot problem that I face while trying to use linux for daily driver.
+- Also contain tips and tricks to try.
+- Tutorials, explanation, my config.
+- Guide for installing arch with a script also the official arch wiki installation.
 
 [zenity]: https://help.gnome.org/users/zenity/stable/
 [yt-dlp]: https://github.com/yt-dlp/yt-dlp
 
 [`arch-vm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/arch-vm.sh
-[`droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam.sh
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
 
@@ -72,9 +79,11 @@ It contains the autoinstall scripts that can be use to install a lot of popular 
 [`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/toggle.sh
 [`change-output.desktop`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change-output.desktop
 
-[`install/`]: https://github.com/get543/linux-beginner-guide/tree/main/install
-[`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/flatpak-install.sh
-[`upgrade.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/upgrade.sh
+[`autoinstall/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall
+[`setups/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/setups
+[`updates/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/updates
+[`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/autoinstall/flatpak-install.sh
+[`droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam.sh
 
 [`ultimate guide for beginner linux user.md`]: https://github.com/get543/linux-beginner-guide/blob/main/Ultimate%20Guide%20For%20Beginner%20Linux%20User.md
 [`readme.md`]: https://github.com/get543/linux-beginner-guide/blob/main/README.md
