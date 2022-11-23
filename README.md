@@ -35,7 +35,8 @@ Same functionality as [`change.sh`] but it is toggle, which means that you run t
 
 ## [`change-output.desktop`]
 
-Copy this file if you want to run [`change.sh`] without the terminal. And you need to change the `Exec=`' and `Icon=` to the path where you download [`changing-output-device/`] folder.
+Copy this file if you want to run [`change.sh`] without the terminal.
+Before that you need to change `Exec=` and `Icon=` to path where you download [`changing-output-device/`] folder.
 
 # [`autoinstall/`]
 
