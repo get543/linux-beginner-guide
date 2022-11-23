@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
 sound_card_number=1 || $sound_card_number
 sink_port=3 || $sink_port

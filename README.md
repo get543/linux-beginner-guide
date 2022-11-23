@@ -25,12 +25,21 @@ To troubleshoot droidcam including reinstalling, changing resolution
 
 Free swap memory
 
-# [`change-output/`]
+# [`changing-output-device/`]
 
-##### Contains :
+Scripts to change output device or switch between headphones and speakers easily
 
-- [`change.sh`] => to change output device (headhones and speakers), using [zenity] and it should work **_if you enter the soundcard number and sink port correctly._**
-- [`toggle.sh`] => just like [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup_**
+## [`change.sh`]
+
+This script is using [zenity] and it should work **_if you enter the soundcard number and sink port correctly._**
+
+## [`toggle.sh`]
+
+Same functionality as [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup_**
+
+## [`change-output.desktop`]
+
+Copy this file if you want to run [`change.sh`] without the terminal. And you need to change the `Exec=`' and `Icon=` to the path where you download [`change-output-device.desktop`] folder.
 
 # [`install/`]
 
@@ -52,15 +61,20 @@ It contains the autoinstall scripts that can be use to install a lot of popular 
 
 [zenity]: https://help.gnome.org/users/zenity/stable/
 [yt-dlp]: https://github.com/yt-dlp/yt-dlp
+
 [`arch-vm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/arch-vm.sh
 [`droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam.sh
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
-[`change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/change.sh
-[`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-output/toggle.sh
-[`install/`]: https://github.com/get543/linux-beginner-guide/tree/main/install
-[`change-output/`]: https://github.com/get543/linux-beginner-guide/tree/main/change-output
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
+
+[`changing-output-device/`]: https://github.com/get543/linux-beginner-guide/tree/main/changing-output-device
+[`change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change.sh
+[`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/toggle.sh
+[`change-output.desktop`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change-output.desktop
+
+[`install/`]: https://github.com/get543/linux-beginner-guide/tree/main/install
 [`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/flatpak-install.sh
 [`upgrade.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/upgrade.sh
+
 [`ultimate guide for beginner linux user.md`]: https://github.com/get543/linux-beginner-guide/blob/main/Ultimate%20Guide%20For%20Beginner%20Linux%20User.md
 [`readme.md`]: https://github.com/get543/linux-beginner-guide/blob/main/README.md
