@@ -1,4 +1,5 @@
 upgradeALL() {
+  checkNala
   if [ "$debian" ]
   then
     sudo apt upgrade
@@ -69,7 +70,6 @@ checkFedoraRedhat
 checkArch
 checkDebian
 checkSUSE
-checkNala
 
 # ----------------------------------------------------------------------------------
 HEIGHT=300

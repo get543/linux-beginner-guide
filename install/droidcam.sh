@@ -28,7 +28,7 @@ changeResolution() {
   echo -e "change the height and width of your choosing"
   echo -e "${Green}width : 1920 | height : 1080 | 1080p"
   echo -e "width : 1280 | height : 720 | 720p${Color_Off}"
-  echo -ne "\nAnd so on .."
+  echo -ne "And so on ..."
   read
 
   cd /etc/modprobe.d/
@@ -39,12 +39,11 @@ unloadDriver() {
   echo -e "${DMagenta}================== UNLOADING DRIVER ==================${Color_Off}"
   sudo rmmod v4l2loopback_dc
 
-  echo -e "${Green}Reloading driver with the new resolution${Color_Off}"
-  echo -ne "${DYellow}Enter new resolution for width : ${Color_Off}"
-  read width
+  widthINPUT=$(zenity --entry --width=500 --title="Reloading driver with the new resolution" --text="Enter the width :")
+  width=$widthINPUT
 
-  echo -ne "${DYellow}Enter new resolution for height : ${Color_Off}"
-  read height
+  heightINPUT=$(zenity --entry --width=500 --title="Reloading driver with the new resolution" --text="Enter the height :")
+  height=$heightINPUT
 
   sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.ko width=$width height=$height
 }
