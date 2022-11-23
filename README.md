@@ -84,7 +84,7 @@ Setup before getting into installing some apps.
 [`setups/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/setups
 [`updates/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/updates
 [`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/autoinstall/flatpak-install.sh
-[`droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/install/droidcam.sh
+[`droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/autoinstall/droidcam.sh
 
 [`ultimate guide for beginner linux user.md`]: https://github.com/get543/linux-beginner-guide/blob/main/Ultimate%20Guide%20For%20Beginner%20Linux%20User.md
 [`readme.md`]: https://github.com/get543/linux-beginner-guide/blob/main/README.md
