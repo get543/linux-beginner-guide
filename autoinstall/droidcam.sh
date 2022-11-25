@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+
 installMenu() {
   zenity --title="$TITLE" \
         --text="$PROMPT" \
