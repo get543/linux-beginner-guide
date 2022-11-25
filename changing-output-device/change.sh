@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
-find_this_folder=$(find $HOME -type d -name "changing-output-device")
+script_directory=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # check for logs folder
-if ( ! $find_this_folder/logs )
+if ( ! $script_directory/logs 2>/dev/null )
 then
-  mkdir $find_this_folder/logs
-  touch $find_this_folder/logs/soundcardnumber.log
-  touch $find_this_folder/logs/sinkport.log
+  mkdir $script_directory/logs
+  touch $script_directory/logs/soundcardnumber.log
+  touch $script_directory/logs/sinkport.log
 fi
 
 red="\033[1;31m"
@@ -16,16 +16,16 @@ colour_off="\033[0m"
 sound_card_number=1 || $sound_card_number
 sink_port=3 || $sink_port
 
-soundcardnumber_logs="$find_this_folder/logs/soundcardnumber.log"
-sinkport_logs="$find_this_folder/logs/sinkport.log"
+soundcardnumber_logs="$script_directory/logs/soundcardnumber.log"
+sinkport_logs="$script_directory/logs/sinkport.log"
 
 title="Change Output Device"
 prompt="Status : unknown"
 column="Choose What Mode"
 options=("Speaker Mode" "Headphone Mode" "Change Port Number")
-headphones="$find_this_folder/icons/headphones.png"
-speaker="$find_this_folder/icons/speaker.png"
-output="$find_this_folder/icons/output.png"
+headphones="$script_directory/icons/headphones.png"
+speaker="$script_directory/icons/speaker.png"
+output="$script_directory/icons/output.png"
 
 main_menu() {
   zenity --title="$title" \
