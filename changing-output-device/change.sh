@@ -3,7 +3,7 @@
 script_directory=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # check for logs folder
-if ( ! $script_directory/logs 2>/dev/null )
+if ( ! $(cd $script_directory/logs &> /dev/null) )
 then
   mkdir $script_directory/logs
   touch $script_directory/logs/soundcardnumber.log
