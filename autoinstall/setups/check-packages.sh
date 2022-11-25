@@ -1,249 +1,102 @@
-packageDebian() {
-  echo -e "${Green}You are running on debian based distros${Color_Off}"
+template() {
+  echo -e "${Green}You are running on $DISTRO based distros${Color_Off}"
   echo -e "${Green}Checking ${BRed}zenity wget curl ${Green}installed or not.${Color_Off}"
 
   # Checking zenity
   if ( ! command -v zenity &> /dev/null )
   then
-    echo -e "${Green}zenity is not installed."
+    echo -e "${Green}\nzenity is not installed."
     echo -ne "${DYellow}Install zenity ? [Y/n] ${Color_Off}"
     read zenityOption
 
-    if [[ "$zenityOption" = "Y" || "$zenityOption" = "y" || "$zenityOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |             Installing zenity              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo apt install zenity
-    else
-      echo "Abort."
-    fi
+    case "$zenityOption" in
+      "Y"|"y"|"")
+        echo -e "${DMagenta}
+        ----------------------------------------------
+        |             Installing zenity              |
+        ---------------------------------------------- ${Color_Off}"
+        $ZENITY_COMMAND
+      ;;
+
+      *) echo "Abort" ;;
+    esac
   fi
 
   # Checking wget
   if ( ! command -v wget &> /dev/null )
   then
-    echo -e "${Green}wget is not installed."
+    echo -e "${Green}\nwget is not installed."
     echo -ne "${DYellow}Install wget ? [Y/n] ${Color_Off}"
     read wgetOption
 
-    if [[ "$wgetOption" = "Y" || "$wgetOption" = "y" || "$wgetOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |               Installing wget              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo apt install wget
-    else
-      echo "Abort."
-    fi
+    case "$wgetOption" in
+      "Y"|"y"|"")
+        echo -e "${DMagenta}
+        ----------------------------------------------
+        |               Installing wget              |
+        ---------------------------------------------- ${Color_Off}"
+        $WGET_COMMAND
+      ;;
+
+      *) echo "Abort" ;;
+    esac
   fi
 
   # Checking curl
   if ( ! command -v curl &> /dev/null )
   then
-    echo -e "${Green}curl is not installed."
+    echo -e "${Green}\ncurl is not installed."
     echo -ne "${DYellow}Install curl ? [Y/n] ${Color_Off}"
     read curlOption
 
-    if [[ "$curlOption" = "Y" || "$curlOption" = "y" || "$curlOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |               Installing curl              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo apt install curl
-    else
-      echo "Abort."
-    fi
+    case "$curlOption" in
+      "Y"|"y"|"")
+        echo -e "${DMagenta}
+        ----------------------------------------------
+        |               Installing curl              |
+        ---------------------------------------------- ${Color_Off}"
+        $CURL_COMMAND
+      ;;
+
+      *) echo "Abort" ;;
+    esac
   fi
+}
+
+packageDebian() {
+  DISTRO="Debian"
+  ZENITY_COMMAND="sudo apt install zenity"
+  WGET_COMMAND="sudo apt install wget"
+  CURL_COMMAND="sudo apt install curl"
+
+  template
 }
 
 packageFedoraRedhat() {
-  echo -e "${Green}You are running on fedora or redhat based distros${Color_Off}"
-  echo -e "${Green}Checking ${BRed}zenity wget curl ${Green}installed or not.${Color_Off}"
+  DISTRO="fedora or redhat"
+  ZENITY_COMMAND="sudo yum install zenity"
+  WGET_COMMAND="sudo yum install wget"
+  CURL_COMMAND="sudo yum install curl"
 
-  # Checking zenity
-  if ( ! command -v zenity &> /dev/null )
-  then
-    echo -e "${Green}zenity is not installed."
-    echo -ne "${DYellow}Install zenity ? [Y/n] ${Color_Off}"
-    read zenityOption
-
-    if [[ "$zenityOption" = "Y" || "$zenityOption" = "y" || "$zenityOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |             Installing zenity              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo yum install zenity
-    else
-      echo "Abort."
-    fi
-  fi
-
-  # Checking wget
-  if ( ! command -v wget &> /dev/null )
-  then
-    echo -e "${Green}wget is not installed."
-    echo -ne "${DYellow}Install wget ? [Y/n] ${Color_Off}"
-    read wgetOption
-
-    if [[ "$wgetOption" = "Y" || "$wgetOption" = "y" || "$wgetOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |               Installing wget              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo yum install wget
-    else
-      echo "Abort."
-    fi
-  fi
-
-  # Checking curl
-  if ( ! command -v curl &> /dev/null )
-  then
-    echo -e "${Green}curl is not installed."
-    echo -ne "${DYellow}Install curl ? [Y/n] ${Color_Off}"
-    read curlOption
-
-    if [[ "$curlOption" = "Y" || "$curlOption" = "y" || "$curlOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |               Installing curl              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo yum install curl
-    else
-      echo "Abort."
-    fi
-  fi
+  template
 }
 
 packageArch() {
-  echo -e "${Green}You are running on arch based distros${Color_Off}"
-  echo -e "${Green}Checking ${BRed}zenity wget curl ${Green}installed or not.${Color_Off}"
+  DISTRO="arch"
+  ZENITY_COMMAND="sudo pacman -Sy zenity"
+  WGET_COMMAND="sudo pacman -Sy wget"
+  CURL_COMMAND="sudo pacman -Sy curl"
 
-  # Checking zenity
-  if ( ! command -v zenity &> /dev/null )
-  then
-    echo -e "${Green}zenity is not installed."
-    echo -ne "${DYellow}Install zenity ? [Y/n] ${Color_Off}"
-    read zenityOption
-
-    if [[ "$zenityOption" = "Y" || "$zenityOption" = "y" || "$zenityOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |             Installing zenity              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo pacman -Sy zenity
-    else
-      echo "Abort."
-    fi
-  fi
-
-  # Checking wget
-  if ( ! command -v wget &> /dev/null )
-  then
-    echo -e "${Green}wget is not installed."
-    echo -ne "${DYellow}Install wget ? [Y/n] ${Color_Off}"
-    read wgetOption
-
-    if [[ "$wgetOption" = "Y" || "$wgetOption" = "y" || "$wgetOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |               Installing wget              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo pacman -Sy wget
-    else
-      echo "Abort."
-    fi
-  fi
-
-  # Checking curl
-  if ( ! command -v curl &> /dev/null )
-  then
-    echo -e "${Green}curl is not installed."
-    echo -ne "${DYellow}Install curl ? [Y/n] ${Color_Off}"
-    read curlOption
-
-    if [[ "$curlOption" = "Y" || "$curlOption" = "y" || "$curlOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |               Installing curl              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo pacman -Sy curl
-    else
-      echo "Abort."
-    fi
-  fi
+  template
 }
 
 packageSUSE() {
-  echo -e "${Green}You are running on OpenSUSE distros${Color_Off}"
-  echo -e "${Green}Checking ${BRed}zenity wget curl ${Green}installed or not.${Color_Off}"
+  DISTRO="OpenSUSE"
+  ZENITY_COMMAND="sudo zypper install zenity"
+  WGET_COMMAND="sudo zypper install wget"
+  CURL_COMMAND="sudo zypper install curl"
 
-  # Checking zenity
-  if ( ! command -v zenity &> /dev/null )
-  then
-    echo -e "${Green}zenity is not installed."
-    echo -ne "${DYellow}Install zenity ? [Y/n] ${Color_Off}"
-    read zenityOption
-
-    if [[ "$zenityOption" = "Y" || "$zenityOption" = "y" || "$zenityOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |             Installing zenity              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo zypper install zenity
-    else
-      echo "Abort."
-    fi
-  fi
-
-  # Checking wget
-  if ( ! command -v wget &> /dev/null )
-  then
-    echo -e "${Green}wget is not installed."
-    echo -ne "${DYellow}Install wget ? [Y/n] ${Color_Off}"
-    read wgetOption
-
-    if [[ "$wgetOption" = "Y" || "$wgetOption" = "y" || "$wgetOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |               Installing wget              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo zypper install wget
-    else
-      echo "Abort."
-    fi
-  fi
-
-  # Checking curl
-  if ( ! command -v curl &> /dev/null )
-  then
-    echo -e "${Green}curl is not installed."
-    echo -ne "${DYellow}Install curl ? [Y/n] ${Color_Off}"
-    read curlOption
-
-    if [[ "$curlOption" = "Y" || "$curlOption" = "y" || "$curlOption" = "" ]]
-    then
-      echo -e "${DMagenta}
-      ----------------------------------------------
-      |               Installing curl              |
-      ---------------------------------------------- ${Color_Off}"
-      sudo zypper install curl
-    else
-      echo "Abort."
-    fi
-  fi
+  template
 }
 
 otherDistros() {
@@ -272,6 +125,8 @@ otherDistros() {
   fi
 }
 
+
+# ----------------------------------------------
 # CHECK
 checkNala
 checkFedoraRedhat
@@ -307,8 +162,7 @@ echo -ne "\n${Green}Checking ${BRed}flatpak ${Green}installed or not.\n${Color_O
 
 if ( ! command -v flatpak &> /dev/null )
 then
-  ./setups/flatpak-install.sh
+  $SCRIPT_DIR/setups/flatpak-install.sh
 else
   echo -e "${BRed}flatpak ${Green}is installed.${Color_Off}"
 fi
-

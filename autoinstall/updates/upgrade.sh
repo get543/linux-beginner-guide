@@ -1,5 +1,6 @@
 upgradeALL() {
   checkNala
+
   if [ "$debian" ]
   then
     sudo apt upgrade

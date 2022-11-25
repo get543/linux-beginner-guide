@@ -36,7 +36,7 @@ updateRepository() {
     1)
       echo "Abort."
     ;;
-    
+
     *)
       chooseOther
       updateRepository
@@ -63,7 +63,7 @@ updateFlatpak() {
     1)
       echo "Abort."
     ;;
-    
+
     *)
       chooseOther
       updateFlatpak

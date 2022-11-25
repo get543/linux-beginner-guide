@@ -69,7 +69,7 @@ opensuse() {
 gentoo() {
   echo -e "${Green}Enabling the ~amd64 keyword for sys-apps/flatpak, acct-user/flatpak and acct-group/flatpak. ${Color_Off}"
   echo -e 'sys-apps/flatpak ~amd64\nacct-user/flatpak ~amd64\nacct-group/flatpak ~amd64\ndev-util/ostree ~amd64' >> /etc/portage/package.accept_keywords/flatpak
-  
+
   echo -e "${Green}Installing Flatpak. ${Color_Off}"
   emerge sys-apps/flatpak
 
@@ -270,7 +270,7 @@ pisilinux() {
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   else
     echo "Abort."
-  fi  
+  fi
 }
 
 # ----------------------------------------------------------------------------------
@@ -280,95 +280,99 @@ echo -e "${Green}It looks like flatpak is NOT installed!"
 echo -ne "${DYellow}You want to install it now ? [Y/n] ${Color_Off}"
 read flatpakOption
 
-if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
-then
-  HEIGHT=800
-  WIDTH=800
-  PROMPT="Package Install"
-  TITLE="Flatpak Installation"
-  COLUMN1="Choose Your Distribution"
-  COLUMN2="Description"
-  COLUMN3="Installed by Default"
+case "$flatpakOption" in
+  "Y"|"y"|"")
+    while :
+    do
+      HEIGHT=800
+      WIDTH=800
+      PROMPT="Package Install"
+      TITLE="Flatpak Installation"
+      COLUMN1="Choose Your Distribution"
+      COLUMN2="Description"
+      COLUMN3="Installed by Default"
 
-  OPTIONS=(
-    Ubuntu "A Linux Distro" "NO"
-    Fedora "A Linux Distro" "YES"
-    Arch "A Linux Distro" "NO"
-    Debian "A Linux Distro" "NO"
-    Red\ Hat\ Enterprise\ Linux "A Linux Distro" "NO"
-    EndavourOS "A Linux Distro" "NO"
-    openSUSE "A Linux Distro" "NO"
-    Gentoo "A Linux Distro" "NO"
-    Kubuntu "A Linux Distro" "NO"
-    Solus "A Linux Distro" "NO"
-    Alpine "A Linux Distro" "NO"
-    Mageia "A Linux Distro" "NO"
-    Pop\!_OS "A Linux Distro" "YES"
-    Raspberry\ Pi\ OS "A Linux Distro" "NO"
-    Clear\ Linux "A Linux Distro" "YES"
-    Void\ Linux "A Linux Distro" "NO"
-    SulinOS "A Linux Distro" "NO"
-    Ataraxia\ Linux "A Linux Distro" "NO"
-    Deepin "A Linux Distro" "NO"
-    Pardus "A Linux Distro" "NO"
-    Pisi\ GNU\ Linux "A Linux Distro" "NO"
-    "" "" ""
-    Cancel "exit this process" ""
-  )
+      OPTIONS=(
+        Ubuntu "A Linux Distro" "NO"
+        Fedora "A Linux Distro" "YES"
+        Arch "A Linux Distro" "NO"
+        Debian "A Linux Distro" "NO"
+        Red\ Hat\ Enterprise\ Linux "A Linux Distro" "NO"
+        EndavourOS "A Linux Distro" "NO"
+        openSUSE "A Linux Distro" "NO"
+        Gentoo "A Linux Distro" "NO"
+        Kubuntu "A Linux Distro" "NO"
+        Solus "A Linux Distro" "NO"
+        Alpine "A Linux Distro" "NO"
+        Mageia "A Linux Distro" "NO"
+        Pop\!_OS "A Linux Distro" "YES"
+        Raspberry\ Pi\ OS "A Linux Distro" "NO"
+        Clear\ Linux "A Linux Distro" "YES"
+        Void\ Linux "A Linux Distro" "NO"
+        SulinOS "A Linux Distro" "NO"
+        Ataraxia\ Linux "A Linux Distro" "NO"
+        Deepin "A Linux Distro" "NO"
+        Pardus "A Linux Distro" "NO"
+        Pisi\ GNU\ Linux "A Linux Distro" "NO"
+        "" "" ""
+        Cancel "exit this process" ""
+      )
 
-  # menu
-  opt=$(createMenu)
+      # menu
+      opt=$(createMenu)
 
-  clear
+      clear
 
-  # case
-  case "$opt" in
-    Ubuntu) ubuntu ;;
+      # case
+      case "$opt" in
+        Ubuntu) ubuntu ;;
 
-    Fedora) fedora ;;
+        Fedora) fedora ;;
 
-    Arch) arch ;;
+        Arch) arch ;;
 
-    Debian) debian ;;
+        Debian) debian ;;
 
-    Red\ Hat\ Enterprise\ Linux) redhat ;;
+        Red\ Hat\ Enterprise\ Linux) redhat ;;
 
-    EndavourOS) endavouros ;;
+        EndavourOS) endavouros ;;
 
-    openSUSE) opensuse ;;
+        openSUSE) opensuse ;;
 
-    Gentoo) gentoo ;;
+        Gentoo) gentoo ;;
 
-    Kubuntu) kubuntu ;;
+        Kubuntu) kubuntu ;;
 
-    Solus) solus ;;
+        Solus) solus ;;
 
-    Alpine) alpine ;;
+        Alpine) alpine ;;
 
-    Mageia) mageia ;;
+        Mageia) mageia ;;
 
-    Pop\!_OS) popos ;;
+        Pop\!_OS) popos ;;
 
-    Raspberry\ Pi\ OS) raspberrypios ;;
+        Raspberry\ Pi\ OS) raspberrypios ;;
 
-    Clear\ Linux) clearlinux ;;
+        Clear\ Linux) clearlinux ;;
 
-    Void\ Linux) voidlinux ;;
+        Void\ Linux) voidlinux ;;
 
-    SulinOS) sulinos ;;
+        SulinOS) sulinos ;;
 
-    Ataraxia\ Linux) ataraxialinux ;;
+        Ataraxia\ Linux) ataraxialinux ;;
 
-    Deepin) deepin ;;
+        Deepin) deepin ;;
 
-    Pardus) pardus ;;
+        Pardus) pardus ;;
 
-    Pisi\ GNU\ Linux) pisilinux ;;
+        Pisi\ GNU\ Linux) pisilinux ;;
 
-    Cancel) echo "Done." ;;
+        Cancel) echo "Done."; break ;;
 
-    *) chooseOther ;;
-  esac
-else
-  echo "Abort."
-fi
+        *) chooseOther ;;
+      esac
+    done
+  ;;
+
+  *) echo "Abort." ;;
+esac

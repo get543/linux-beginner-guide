@@ -1,4 +1,6 @@
-#!/bin/bash
+#! /usr/bin/env bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 BRed="\033[1;31m"
 Color_Off="\033[0m"
@@ -7,31 +9,9 @@ DMagenta="\033[35m"
 DYellow="\033[33m"
 Green="\033[92m"
 
-chmod u+x setups/*.sh
-chmod u+x updates/*.sh
-chmod u+x *.sh
-
-# check nala
-checkNala() {
-  if ( ! command -v nala &> /dev/null )
-  then
-    echo -e "\n${BRed}nala ${Green}is ${BRed}not ${Green}installed. Using ${BRed}apt ${Green}instead.${Color_Off}\n"
-  else
-    # replace apt for nala
-    apt() {
-      command nala "$@"
-    }
-
-    sudo() {
-      if [ "$1" = "apt" ]; then
-        shift
-        command sudo nala "$@"
-      else
-        command sudo "$@"
-      fi
-    }
-  fi
-}
+chmod u+x $SCRIPT_DIR/setups/*.sh
+chmod u+x $SCRIPT_DIR/updates/*.sh
+chmod u+x $SCRIPT_DIR/*.sh
 
 # check OS
 checkFedoraRedhat() {
@@ -48,6 +28,34 @@ checkDebian() {
 
 checkSUSE() {
   opensuse=$(grep -Ei 'SuSE' /etc/*release)
+}
+
+# check nala
+checkNala() {
+  checkDebian
+
+  if [ "$debian" ]
+  then
+    if ( ! command -v nala &> /dev/null )
+    then
+      echo -e "\n${BRed}nala ${Green}is ${BRed}not ${Green}installed. Using ${BRed}apt ${Green}instead.${Color_Off}\n"
+    else
+      # replace apt for nala
+      apt() {
+        command nala "$@"
+      }
+
+      sudo() {
+        if [ "$1" = "apt" ]
+        then
+          shift
+          command sudo nala "$@"
+        else
+          command sudo "$@"
+        fi
+      }
+    fi
+  fi
 }
 
 # menu dialog
@@ -209,7 +217,6 @@ deckboard() {
     echo -ne "Enter to continue... "
     read
   fi
-  
 }
 
 discord() { # flatpak available
@@ -868,7 +875,7 @@ installMissingDependecies() {
       elif [ "$opensuse" ]
       then
         echo -e "${Green}Sorry I don't know how to do that on OpenSUSE${Color_Off}"
-      
+
       else
         echo -e "${Green}I'm sorry you're probably running distro other than.."
         echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
@@ -881,7 +888,7 @@ installMissingDependecies() {
     1)
       echo "Abort."
     ;;
-    
+
     *)
       chooseOther
       installMissingDependecies
@@ -933,72 +940,12 @@ removeUnused() {
     1)
       echo "Abort."
     ;;
-    
+
     *)
       chooseOther
       removeUnused
     ;;
   esac
-
-
-
-  # HEIGHT=200
-  # WIDTH=600
-  # PROMPT="Remove unnecessary packages ?"
-  # TITLE="Dealing with Unused Packages"
-  # COLUMN1="Choose One"
-  # COLUMN2="Description"
-  # COLUMN3=""
-
-  # OPTIONS=(
-  #   YES "continues to remove unused packages" ""
-  #   NO "skip this process" ""
-  # )
-
-  # clear
-
-  # # menu
-  # opt=$(createMenu)
-
-  # # case
-  # case "$opt" in
-  #   YES)
-  #     if [ "$debian" ]
-  #     then
-  #       sudo apt autoremove
-  #       sudo apt clean
-
-  #     elif [ "$fedoraRedhat" ]
-  #     then
-  #       sudo dnf autoremove
-  #       sudo dnf clean all
-
-  #     elif [ "$arch" ]
-  #     then
-  #       echo -e "${Green}Sorry I don't know how to do that on Arch${Color_Off}"
-
-  #     elif [ "$opensuse" ]
-  #     then
-  #       echo -e "${Green}Sorry I don't know how to do that on OpenSUSE${Color_Off}"
-
-  #     else
-  #       echo -e "${Green}I'm sorry you're probably running distro other than.."
-  #       echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
-  #       echo -e "working for other distro as well."
-  #       echo -ne "Enter to continue... "
-  #       read
-  #     fi
-  #   ;;
-
-  #   NO)
-  #     echo "Abort."
-  #   ;;
-
-  #   *)
-  #     chooseOther
-  #     removeUnused
-  #   ;;
-  # esac
 }
 
 # export stuff
@@ -1010,6 +957,7 @@ export -f checkDebian
 export -f checkSUSE
 export -f checkNala
 export -f questionDialog
+export SCRIPT_DIR
 export BRed
 export Color_Off
 export DMagenta
@@ -1021,11 +969,11 @@ export Green
 # -------------------------------------------------------------------------------------
 
 # checking package
-./setups/check-packages.sh
+$SCRIPT_DIR/setups/check-packages.sh
 
 # update system
-./updates/update.sh
-./updates/upgrade.sh
+$SCRIPT_DIR/updates/update.sh
+$SCRIPT_DIR/updates/upgrade.sh
 
 while :
 do
@@ -1103,7 +1051,7 @@ do
 
     Discord) discord ;;
 
-    Droidcam) ./droidcam.sh ;;
+    Droidcam) $SCRIPT_DIR/droidcam.sh ;;
 
     Geary) geary ;;
 
