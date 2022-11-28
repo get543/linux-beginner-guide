@@ -9,7 +9,7 @@ updateRepository() {
   questionDialog
 
   case "$?" in
-    0)
+    0) # yes
       echo -e "\n${DMagenta}============= Updating Repository =============${Color_Off}"
 
       if [ "$debian" ]
@@ -33,7 +33,7 @@ updateRepository() {
       fi
     ;;
 
-    1)
+    1) # no
       echo "Abort."
     ;;
 
@@ -55,12 +55,12 @@ updateFlatpak() {
   questionDialog
 
   case "$?" in
-    0)
+    0) # yes
       echo -e "\n${DMagenta}============= Updating Flatpak Apps =============${Color_Off}"
       flatpak update
     ;;
 
-    1)
+    1) # no
       echo "Abort."
     ;;
 
