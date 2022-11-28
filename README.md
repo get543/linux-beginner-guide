@@ -25,34 +25,38 @@ Free swap memory.
 
 Scripts to change output device or switch between headphones and speakers easily.
 
-## [`change.sh`]
+## [`changing-output-device/change.sh`]
 
 This script is using [zenity] and it should work **_if you enter the soundcard number and sink port correctly._**
 
-## [`toggle.sh`]
+## [`changing-output-device/toggle.sh`]
 
-Same functionality as [`change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup._**
+Same functionality as [`changing-output-device/change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup._**
 
-## [`change-output.desktop`]
+## [`changing-output-device/change-output.desktop`]
 
-Copy this file if you want to run [`change.sh`] without the terminal.
+Copy this file if you want to run [`changing-output-device/change.sh`] without the terminal.
 Before that you need to change `Exec=` and `Icon=` to path where you download [`changing-output-device/`] folder.
 
 # [`autoinstall/`]
 
 It contains the autoinstall scripts that can be use to install a lot of popular apps on linux. **_Don't move the file inside of it._**
 
-## [`droidcam.sh`]
+## [`autoinstall/droidcam.sh`]
 
 To troubleshoot droidcam including reinstalling and changing resolution.
 
-## [`updates/`]
+## [`autoinstall/updates/`]
 
 Scripts that take care of system updates.
 
-## [`setups/`]
+## [`autoinstall/setups/`]
 
 Setup before getting into installing some apps.
+
+## [`autoinstall/apps/`]
+
+Consist all app functions to install the apps.
 
 # [`ytdlp.sh`]
 
@@ -76,15 +80,15 @@ Setup before getting into installing some apps.
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
 
 [`changing-output-device/`]: https://github.com/get543/linux-beginner-guide/tree/main/changing-output-device
-[`change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change.sh
-[`toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/toggle.sh
-[`change-output.desktop`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change-output.desktop
+[`changing-output-device/change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change.sh
+[`changing-output-device/toggle.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/toggle.sh
+[`changing-output-device/change-output.desktop`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change-output.desktop
 
 [`autoinstall/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall
-[`setups/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/setups
-[`updates/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/updates
-[`flatpak-install.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/autoinstall/flatpak-install.sh
-[`droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/autoinstall/droidcam.sh
+[`autoinstall/apps/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/apps
+[`autoinstall/setups/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/setups
+[`autoinstall/updates/`]: https://github.com/get543/linux-beginner-guide/tree/main/autoinstall/updates
+[`autoinstall/droidcam.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/autoinstall/droidcam.sh
 
 [`ultimate guide for beginner linux user.md`]: https://github.com/get543/linux-beginner-guide/blob/main/Ultimate%20Guide%20For%20Beginner%20Linux%20User.md
 [`readme.md`]: https://github.com/get543/linux-beginner-guide/blob/main/README.md
