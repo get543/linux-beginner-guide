@@ -64,9 +64,9 @@ flatpakAvailable() {
         --------------------------------------------------
         |              Installing $APPNAME                |
         -------------------------------------------------- ${Color_Off}"
-        REGULARINSTALL
+        REGULAR_DEBIAN_INSTALL
       else
-        echo "Only provided on debian package (apt or .deb)"
+        echo "Setup is only provided for debian based distros."
         echo -ne "Enter to continue... "
         read
       fi
@@ -76,4 +76,29 @@ flatpakAvailable() {
 
     *) chooseOther ;;
   esac
+}
+
+defaultInstallOnly() {
+  if [ "$debian" ]
+  then
+    echo -e "${DMagenta}
+    --------------------------------------------------
+    |           Installing $NAME                     |
+    -------------------------------------------------- ${Color_Off}"
+    DEBIANSETUP
+  else
+    echo "Setup is only provided for debian based distros."
+    echo -ne "Enter to continue... "
+    read
+  fi  
+}
+
+rmdirIfExist() {
+  if [ -f "$1" ]
+  then
+    echo -e "${Green}\nDeleting $1 debian package...${Color_Off}"
+    rm -v $1
+  else
+    echo -e "${BRed}\nError, $1 file does not exist.${Color_Off}"
+  fi
 }

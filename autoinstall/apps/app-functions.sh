@@ -1,19 +1,14 @@
-ao () {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |                Installing Ao                   |
-    -------------------------------------------------- ${Color_Off}"
+ao () { # default install only
+  NAME="Ao"
+  DEBIANSETUP() {
     cd ~/Downloads
-    wget https://github.com/klaussinani/ao/releases/download/v6.9.0/ao_6.9.0_amd64.deb -O ao-6.9-amd64.deb
+    wget https://github.com/klaudiosinani/ao/releases/download/v6.9.0/ao_6.9.0_amd64.deb -O ao-6.9-amd64.deb
     sudo apt install ./ao-6.9-amd64.deb
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+    rmdirIfExist ~/Downloads/ao-6.9-amd64.deb
+    sleep 5
+  }
 
+  defaultInstallOnly
 }
 
 audacity() { # flatpak only
@@ -23,9 +18,9 @@ audacity() { # flatpak only
   flatpakOnly
 }
 
-autokey() {
-  if [ "$debian" ]
-  then
+autokey() { # default install only
+  NAME="autokey"
+  DEBIANSETUP() {
     HEIGHT=400
     WIDTH=800
     TITLE="Which Version ?"
@@ -59,90 +54,68 @@ autokey() {
 
       *) chooseOther ;;
     esac
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
-balena-etcher() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |           Installing balena-etcher             |
-    -------------------------------------------------- ${Color_Off}"
+balena-etcher() { # default install only
+  NAME="balena-etcher"
+  DEBIANSETUP() {
     curl -1sLf \
       'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' \
       | sudo -E bash
 
     sudo apt-get update
     sudo apt-get install balena-etcher-electron
-  else
-    echo "Only provided for debian installation"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
-dconf-editor() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |           Installing dconf-editor              |
-    -------------------------------------------------- ${Color_Off}"
+dconf-editor() { # default install only
+  NAME="dconf-editor"
+  DEBIANSETUP() {
     sudo apt install dconf-editor
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
-deckboard() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |             Installing Deckboard               |
-    -------------------------------------------------- ${Color_Off}"
+deckboard() { # default install only
+  NAME="Deckboard"
+  DEBIANSETUP() {
     cd ~/Downloads
     wget https://github.com/rivafarabi/deckboard/releases/download/v2.0.56/deckboard_2.0.56_amd64.deb -O deckboard_2.0.56.deb
     sudo apt install ./deckboard_2.0.56.deb
-  else
-    echo "Only provided in debian package (.deb)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+    rmdirIfExist ~/Downloads/deckboard_2.0.56.deb
+    sleep 5
+  }
+
+  defaultInstallOnly
 }
 
 discord() { # flatpak available
   APPNAME="Discord"
   APPID="com.discordapp.Discord"
-  REGULARINSTALL() {
+  REGULAR_DEBIAN_INSTALL() {
     cd ~/Downloads
     wget "https://discord.com/api/download?platform=linux&format=deb" -O discord.deb
     sudo apt install ./discord.deb
+    rmdirIfExist ~/Downloads/discord.deb
+    sleep 5
   }
 
   flatpakAvailable
 }
 
-geary() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |                Installing Geary                |
-    -------------------------------------------------- ${Color_Off}"
+geary() { # default install only
+  NAME="Geary"
+  DEBIANSETUP() {
     sudo apt install geary
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
 fragments() { # flatpak only
@@ -155,78 +128,62 @@ fragments() { # flatpak only
 gimp() { # flatpak available
   APPNAME="GIMP"
   APPID="org.gimp.GIMP"
-  REGULARINSTALL() {
+  REGULAR_DEBIAN_INSTALL() {
     sudo apt install gimp
   }
 
   flatpakAvailable
 }
 
-git() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |                 Installing Git                 |
-    -------------------------------------------------- ${Color_Off}"
+git() { # default install only
+  NAME="Git"
+  DEBIANSETUP() {
     sudo apt install git
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
-encfs() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |         Installing Gnome Encfs Manager         |
-    -------------------------------------------------- ${Color_Off}"
+encfs() { # default install only
+  NAME="Gnome Encfs Manager"
+  DEBIANSETUP() {
     sudo apt install gnome-encfs-manager
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
+  }
+
+  defaultInstallOnly
+}
+
+gnome-tweaks() { # default install only
+  NAME="Gnome Tweaks"
+  DEBIANSETUP() {
+    sudo apt install gnome-tweaks
+    sudo apt install gnome-shell-extensions
+
+    echo -e "\nInstall this firefox extension :"
+    echo -e "${BRed}https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search ${Color_Off}"
+    echo "And you're good :)"
+    echo -ne "Press Enter to continue... "
     read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
-gnome-tweaks() {
-  echo -e "${DMagenta}
-  --------------------------------------------------
-  |            Installing Gnome Tweaks             |
-  -------------------------------------------------- ${Color_Off}"
-  sudo apt install gnome-tweaks
-  sudo apt install gnome-shell-extensions
-
-  echo -ne "\nInstall this firefox extension : ${BRed}\nhttps://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search \n${Color_Off}"
-  echo "And you're good :)"
-  echo -ne "Press Enter to continue... "
-  read
-}
-
-indicator-sound-switcher() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |      Installing Indicator-Sound-Switcher       |
-    -------------------------------------------------- ${Color_Off}"
+indicator-sound-switcher() { # default install only
+  NAME="Indicator-Sound-Switcher"
+  DEBIANSETUP() {
     sudo apt-add-repository ppa:yktooo/ppa
     sudo apt-get update
     sudo apt-get install indicator-sound-switcher
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
 inkscape() { # flatpak available
   APPNAME="Inkscape"
   APPID="org.inkscape.Inkscape"
-  REGULARINSTALL() {
+  REGULAR_DEBIAN_INSTALL() {
     sudo add-apt-repository ppa:inkscape.dev/stable
     sudo apt update
     sudo apt install inkscape
@@ -235,30 +192,16 @@ inkscape() { # flatpak available
   flatpakAvailable
 }
 
-kdenlive() {
-  echo -e "${DMagenta}
-  --------------------------------------------------
-  |                Installing Kdenlive             |
-  -------------------------------------------------- ${Color_Off}"
-  echo -ne "${DYellow}Do you want to install it with flatpak ? [Y/n] ${Color_Off}"
-  read flatpakOption
+kdenlive() { # flatpak available
+  APPNAME="Kdenlive"
+  APPID="org.kde.kdenlive"
+  REGULAR_DEBIAN_INSTALL() {
+    sudo add-apt-repository ppa:kdenlive/kdenlive-stable
+    sudo apt-get update
+    sudo apt-get install kdenlive
+  }
 
-  if [[ "$flatpakOption" = "Y" || "$flatpakOption" = "y" || "$flatpakOption" = "" ]]
-  then
-    flatpak install flathub org.kde.kdenlive
-
-  else
-    if [ "$debian" ]
-    then
-      sudo add-apt-repository ppa:kdenlive/kdenlive-stable
-      sudo apt-get update
-      sudo apt-get install kdenlive
-    else
-      echo "Only provided on debian based distros (apt)"
-      echo -ne "Enter to continue... "
-      read
-    fi
-  fi
+  flatpakAvailable
 }
 
 kolourpaint() { # flatpak only
@@ -275,21 +218,15 @@ krita() { # flatpak only
   flatpakOnly
 }
 
-obs-studio() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |             Installing OBS Studio              |
-    -------------------------------------------------- ${Color_Off}"
+obs-studio() { # default install only
+  NAME="OBS Studio"
+  DEBIANSETUP() {
     sudo add-apt-repository ppa:obsproject/obs-studio
     sudo apt update
     sudo apt install ffmpeg obs-studio
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
 obsidian() { # flatpak only
@@ -302,7 +239,7 @@ obsidian() { # flatpak only
 openrgb() { # flatpak available
   APPNAME="OpenRGB"
   APPID="org.openrgb.OpenRGB"
-  REGULARINSTALL() {
+  REGULAR_DEBIAN_INSTALL() {
     HEIGHT=400
     WIDTH=800
     TITLE="Choose Your Ubuntu Version"
@@ -324,18 +261,24 @@ openrgb() { # flatpak available
         cd ~/Downloads
         wget https://openrgb.org/releases/release_0.8/openrgb_0.8_amd64_buster_fb88964.deb -O openrgb_0.8_buster.deb
         sudo apt install ./openrgb_0.8_buster.deb
+        rmdirIfExist ~/Downloads/openrgb_0.8_buster.deb
+        sleep 5
       ;;
 
       21.04\ and\ newer)
         cd ~/Downloads
         wget https://openrgb.org/releases/release_0.8/openrgb_0.8_amd64_bullseye_fb88964.deb -O openrgb_0.8_bullseye.deb
         sudo apt install ./openrgb_0.8_bullseye.deb
+        rmdirIfExist ~/Downloads/openrgb_0.8_bullseye.deb
+        sleep 5
       ;;
 
       22.04\ LTS\ and\ newer)
         cd ~/Downloads
         wget https://openrgb.org/releases/release_0.8/openrgb_0.8_amd64_bookworm_fb88964.deb -O openrgb_0.8_bookwarm.deb
         sudo apt install ./openrgb_0.8_bookwarm.deb
+        rmdirIfExist ~/Downloads/openrgb_0.8_bookwarm.deb
+        sleep 5
       ;;
 
       *)
@@ -354,74 +297,52 @@ pinta() { # flatpak only
   flatpakOnly
 }
 
-pulseaudio() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |      Installing pulseaudio and pavucontrol     |
-    -------------------------------------------------- ${Color_Off}"
+pulseaudio() { # default install only
+  NAME="pulseaudio and pavucontrol"
+  DEBIANSETUP() {
     sudo apt install pulseaudio pavucontrol
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
-rambox() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |               Installing Rambox                |
-    -------------------------------------------------- ${Color_Off}"
+rambox() { # default install only
+  NAME="Rambox"
+  DEBIANSETUP() {
     cd ~/Downloads
     wget "https://rambox.app/api/download?os=linux&package=deb" -O rambox_2.0.deb
     sudo apt install ./rambox_2.0.deb
-  else
-    echo "Only provided in debian package (.deb)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+    rmdirIfExist ~/Downloads/rambox_2.0.deb
+    sleep 5
+  }
+
+  defaultInstallOnly
 }
 
-scrcpy() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |               Installing ScrCpy                |
-    -------------------------------------------------- ${Color_Off}"
+scrcpy() { # default install only
+  NAME="ScrCpy"
+  DEBIANSETUP() {
     sudo apt install scrcpy
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
-simplescreenrecorder() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |         Installing simplescreenrecorder        |
-    -------------------------------------------------- ${Color_Off}"
+simplescreenrecorder() { # default install only
+  NAME="simplescreenrecorder"
+  DEBIANSETUP() {
     sudo apt-add-repository ppa:maarten-baert/simplescreenrecorder
     sudo apt-get update
     sudo apt-get install simplescreenrecorder
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
 spotify() { # flatpak available
   APPNAME="Spotify"
   APPID="com.spotify.Client"
-  REGULARINSTALL() {
+  REGULAR_DEBIAN_INSTALL() {
     curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add -
     echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
@@ -438,19 +359,16 @@ telegram() { # flatpak only
   flatpakOnly
 }
 
-virt-manager() {
-  if [ "$debian" ]
-  then
+virt-manager() { # default install only
+  NAME="Virtual Machine Manager"
+  DEBIANSETUP() {
     virtualization=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
     echo "cpuinfo vm|svmx = $virtualization"
 
     if [ $virtualization > 0 ]
     then
-      echo -e "${Green}You have enabled virtualization on your machine${Color_Off}"
-      echo -e "${DMagenta}
-      --------------------------------------------------
-      |       Installing Virtual Machine Manager       |
-      -------------------------------------------------- ${Color_Off}"
+      echo -e "${Green}You have enabled virtualization on your machine."
+      echo -e "Installing necessary packages.${Color_Off}"
       sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
 
       echo -e "${Green}Verify that libvirt is running.${Color_Off}"
@@ -475,18 +393,15 @@ virt-manager() {
 
       break
     fi
+  }
 
-  else
-    echo "Only provided setup for debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  defaultInstallOnly
 }
 
 vlc() { # flatpak available
   APPNAME="VLC"
   APPID="org.videolan.VLC"
-  REGULARINSTALL() {
+  REGULAR_DEBIAN_INSTALL() {
     echo -e "${BRed}For this one there is no other option but using snap${Color_Off}"
     sudo snap install vlc
   }
@@ -494,22 +409,16 @@ vlc() { # flatpak available
   flatpakAvailable
 }
 
-vscode() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |         Installing Visual Studio Code          |
-    -------------------------------------------------- ${Color_Off}"
+vscode() { # default install only
+  NAME="Visual Studio Code"
+  DEBIANSETUP() {
     sudo apt install software-properties-common apt-transport-https wget
     wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
     sudo apt install code
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
 whatsapp() { # flatpak only
@@ -519,13 +428,9 @@ whatsapp() { # flatpak only
   flatpakOnly
 }
 
-wine() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |                 Installing WINE                |
-    -------------------------------------------------- ${Color_Off}"
+wine() { # default install only
+  NAME="WINE"
+  DEBIANSETUP() {
     sudo dpkg --add-architecture i386
     wget -nc https://dl.winehq.org/wine-builds/winehq.key
     sudo mv winehq.key /usr/share/keyrings/winehq-archive.key
@@ -569,37 +474,30 @@ wine() {
 
     sudo apt update
     sudo apt install --install-recommends winehq-stable
+  }
 
-  else
-    echo "Only provided setup for debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  defaultInstallOnly
 }
 
-ytdlp() {
-  if [ "$debian" ]
-  then
-    echo -e "${DMagenta}
-    --------------------------------------------------
-    |              Installing yt-dlp                 |
-    -------------------------------------------------- ${Color_Off}"
+ytdlp() { # default install only
+  NAME="dconf-editor"
+  DEBIANSETUP() {
     sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
     sudo chmod a+rx /usr/local/bin/yt-dlp
-  else
-    echo "Only provided on debian based distros (apt)"
-    echo -ne "Enter to continue... "
-    read
-  fi
+  }
+
+  defaultInstallOnly
 }
 
 zoom() { # flatpak available
   APPNAME="Zoom"
   APPID="us.zoom.Zoom"
-  REGULARINSTALL() {
+  REGULAR_DEBIAN_INSTALL() {
     cd ~/Downloads
     wget https://zoom.us/client/latest/zoom_amd64.deb -O zoom_amd64.deb
     sudo apt install ./zoom_amd64.deb
+    rmdirIfExist ~/Downloads/zoom_amd64.deb
+    sleep 5
   }
 
   flatpakAvailable

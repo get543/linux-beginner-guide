@@ -82,12 +82,15 @@ questionDialog() {
         --ok-label=$OKLABEL \
         --cancel-label=$CANCELLABEL \
         --width="$WIDTH" \
-        --height="$HEIGHT"
+        --height="$HEIGHT" \
+        --window-icon="$SCRIPT_DIR/icons/peepoThink.png"
 }
 
 # choose no option
 chooseOther() {
-  zenity --notification --window-icon="error" --text="Invalid option. You didn't choose any of the options."
+  zenity --notification \
+        --text="Invalid option. You didn't choose any of the options." \
+        --window-icon="$SCRIPT_DIR/icons/error.png"
 }
 
 installMissingDependecies() {
