@@ -199,7 +199,7 @@ sudo apt install autokey-gtk
 
 - Add a new script.
 
-- Name: Toggle Auto Mute.
+- Name: `Toggle Auto Mute`.
 
 - Add this script :
 ```Python
@@ -208,7 +208,7 @@ sudo apt install autokey-gtk
 import os
 
 # user input
-# To get sound card number, open Terminal -> Type -> alsamixer -> press Enter -> press F6
+# To get sound card number, open Terminal → Type → alsamixer → press Enter → press F6
 sound_card_number = 2
 # end of user input
 ###############################################################
@@ -239,7 +239,7 @@ alsamixer
 - Press `F6` to select sound card. And the number next to the sound card name is the `sound_card_number`.
 
 ## Using Shell Script
-You can use [this](https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change.sh) shell script to change output device between headphones and speakers. It uses zenity, it comes pre-installed on Ubuntu based distros. This is the same script as the Python script the only differrence is you don't have to download autokey.
+You can use [this](https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change.sh) shell script to change output device between headphones and speakers. It uses zenity, it comes pre-installed on Ubuntu based distros. This is the same script as the Python script the only differrence is you don't have to download autokey.
 
 
 # Open Anything On Default Apps
@@ -348,7 +348,7 @@ nautilus -q
 cd /usr/share/applications
 sudo gedit <app.name>.desktop
 ```
-**Replace** --> `Icon=/home/<your-user>/Pictures/Icons/something.png`
+**Replace** → `Icon=/home/<current-user>/Pictures/Icons/something.png`
 
 
 # Fonts
@@ -367,7 +367,7 @@ https://linuxhandbook.com/linux-file-permissions/
 - `sudo nano droidcam.conf`
 - change the width and height and then save it.
 
-**If there is a kernel update, you have to install the whole thing again :**
+**If there is a kernel update, you have to reinstall droidcam :**
 ```bash
 cd /tmp/
 wget -O droidcam_latest.zip https://files.dev47apps.net/linux/droidcam_1.8.2.zip
@@ -397,7 +397,7 @@ sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.k
 
 # Beginner Arch
 ### ArchTitus
-[Arch Titus](https://github.com/ChrisTitusTech/ArchTitus) --> Arch Linux with a script.
+[Arch Titus](https://github.com/ChrisTitusTech/ArchTitus) → Arch Linux with a script.
 
 **Installing ArchTitus:**
 ```bash
@@ -412,41 +412,48 @@ https://github.com/rickellis/Arch-Linux-Install-Guide
 
 
 # Guide For Gaming on Linux
-- Ultimate Guide --> https://www.christitus.com/ultimate-linux-gaming-guide/
-- Download Other Game Launcher (epic, gog, uplay) --> https://lutris.net/
-### GameMode
-`gamemoderun ./game`
-or
-`gamemoded ./game`
+- Ultimate Guide → https://www.christitus.com/ultimate-linux-gaming-guide/
+- Download Other Game Launcher (epic, gog, uplay) → https://lutris.net/
+### Run GameMode
+```bash
+# this
+gamemoderun ./game
+
+# or this
+gamemoded ./game
+```
 
 
 # QEMU 
-### Using QEMU on Terminal
+## Using QEMU on Terminal
 ```bash 
 # navigate to the .iso file
 cd /path/to/iso/file
 
 # create disk image 10GB
 qemu-img create -f qcow2 Image.img 10G
-
-# Works with Windows :
+```
+```powershell
+# for windows :
 qemu-system-x86_64.exe -cdrom .\manjaro-kde-20.0.3-200606-linux56.iso -boot menu=on -drive file=Image.img -m 2G -smp 2 --accel whpx
-
-# Works with Linux :
+```
+```bash
+# for linux :
 qemu-system-x86_64 -enable-kvm -show-cursor -cdrom ./archlinux-2022.04.05-x86_64.iso -boot menu=on -drive file=Image.img -m 2G -smp $(nproc) -cpu host -vga virtio -display gtk,gl=on
 ```
-==> **Basic performance options { LINUX ONLY }**
-- `-cpu host` (sets the CPU to the hosts' CPU).
-- `-smp 2` (sets the numbers of cores).
-- `-smp $(nproc)` (use all available CPU cores).
+### Basic performance options (Linux only)
+- `-cpu host` → sets the CPU to the hosts' CPU.
+- `-smp 2` → sets the numbers of cores.
+- `-smp $(nproc)` → use all available CPU cores.
 
-==> **Basic Graphics Acceleration**
-- The `-vga` option can be used to specify one of various vga card emulators: (Linux only).
+### Basic Graphics Acceleration
+- The **-vga** option can be used to specify one of various vga card emulators :
+  `-vga` → **Linux only**
 
-- "qxl" offers 2D acceleration but requires kernel modules "qxl" and "bochs_drm" to be enabled :
+- **qxl** offers 2D acceleration but requires kernel modules **qxl** and **bochs_drm** to be enabled :
 	`-vga qxl`
 
-- "virtio" works much better and supports some 3D emulation :
+- **virtio** works much better and supports some 3D emulation :
 	`-vga virtio -display sdl,gl=on`
 
 > **Source :**
@@ -455,52 +462,54 @@ https://youtu.be/AAfFewePE7c
 > **More Options & Explanations :**
 https://wiki.gentoo.org/wiki/QEMU/Options
 
-### Using QEMU with GUI
+## Using QEMU with GUI
 Guide Virtualization on Linux (virt-manager and qemu).
 [virt manager](https://www.christitus.com/vm-setup-in-linux)
 
 
 # Clear Swap Memory
 ```bash
-# Check free memory space
+# check free memory space
 free -m
 
-# Disable swap 
+# disable swap 
 swapoff -a
 
-### Wait approx 30 sec 
+##### wait approx 30 sec 
 
-# Enable swap
+# rnable swap
 swapon -a
 
-# See the amount of swap used/available decrease over time
+# see the amount of swap used/available, decrease over time
 free -m
 ```
 
 
 # Restart Audio Driver
 ```bash
-# Reload alsa driver
+# reload alsa driver
 sudo alsa force-reload
 
-# If it doesn't work, try using this
+# if it doesn't work, try using this
 systemctl --user restart pulseaudio
 
-# Start it again with pulseaudio
+# start it again with pulseaudio
 pulseaudio --start
 ```
 
 
 # Remove a Directory on Terminal
 > Remove a directory with nested folders and files.
-`rm -r` or `rm -rf`
+`rm -r` or `rm -rf` or `rm -rfv`
 
 **Example :**
-`sudo rm -r -v <folders>`
+```bash
+sudo rm -rfv <folders>
+```
 
 
 # Editing Thunar Visuals
-```
+```bash
 thunar -q
 GTK_DEBUG=interactive thunar
 ```
@@ -557,7 +566,9 @@ The regular shortcut still work, like `ctrl + w`, `ctrl + t`.
 >This works on Realtek Semiconductor Corp. 802.11n.
 
 **How to check :**
-`lsusb`
+```bash
+lsusb
+```
 
 **How To Install :**
 ```bash
@@ -581,40 +592,40 @@ echo "options rtl8188fu rtw_power_mgnt=0 rtw_enusbss=0" | sudo tee /etc/modprobe
 
 # Aliases
 ```bash
-# Show Aliases
+# show Aliases
 alias
 ````
 
 ### Creating temporary aliases
 ```bash
-# Syntax
+# syntax
 alias name="yourcustomcommand"
 
-# Example
+# example
 alias instalation="cd ~/Documents/shell && ./install.sh"
 ```
 
 ### Creating permanent aliases
-- bash --> *~/.bashrc*
-- zsh --> *~/.zshrc*
-- fish --> *~/.config/fish/config.fish*
+- bash → `~/.bashrc`
+- zsh → `~/.zshrc`
+- fish → `~/.config/fish/config.fish`
 ```bash
-# If you are using bash
+# if you are using bash
 nano ~/.bashrc
 
-# Put aliases in that file
+# put this aliases in that file
 alias instalation="cd ~/Documents/shell && ./install.sh"
 
-# Use it as current session
+# use it as current session
 source ~/.bashrc
 ```
 
 ### Remove Aliases
 ```bash
-# Remove added aliases
+# remove added aliases
 unalias instalation
 
-# Remove all aliases
+# remove all aliases
 unalias -a
 ```
 
@@ -629,7 +640,7 @@ discord --enable-gpu-rasterization
 
 - Edit or create the `discord.desktop` usually located here :
 ```bash
-nano /home/<your-user>/.local/share/applications/discord.desktop
+sudo nano /home/$USER/.local/share/applications/discord.desktop
 ```
 
 - Paste This :
@@ -647,8 +658,8 @@ Path=/usr/bin
 Path=/usr/bin
 ```
 
-- `CTRL + X` --> to save and exit.
-- `Y` --> to confirm.
+- `CTRL + X` → to save and exit.
+- `Y` → to confirm.
  
 
 # Git Basic Command
@@ -682,6 +693,7 @@ git push -u origin main
 git add .
 git commit -m "commit message"
 git push
+
 
 # connecting github repository using ssh
 git remote set-url origin git@github.com:get543/<project-name>.git
@@ -891,16 +903,16 @@ sudo systemd-resolve --statistics
 
 
 # Keyboard shortcuts for the Linux terminal on Ubuntu
-- `TAB` - autocomplete the command
-- `TAB TAB` - for displaying all file names and commands that start with those letters
-- `ctrl + alt + t` - for opening the terminal
-- `ctrl + u` - to remove the current line
-- `ctrl + a` - move the cursor to start of the line
-- `ctrl + e` - move the cursor to the end of the line
-- `ctrl + c` - to stop the current command
-- `ctrl + z` - to put a running command to sleep
-- `fg` - to continue the process that's put to sleep
-- `bg` - to continue the process in the background
+- `TAB` → autocomplete the command
+- `TAB TAB` → for displaying all file names and commands that start with those letters
+- `ctrl + alt + t` → for opening the terminal
+- `ctrl + u` → to remove the current line
+- `ctrl + a` → move the cursor to start of the line
+- `ctrl + e` → move the cursor to the end of the line
+- `ctrl + c` → to stop the current command
+- `ctrl + z` → to put a running command to sleep
+- `fg` → to continue the process that's put to sleep
+- `bg` → to continue the process in the background
 
 
 # Listen to your own microphone
@@ -916,12 +928,12 @@ It loads a loopback module. The number 1 means the latency you receive. The late
 
 
 # Add Git Branch on Bash Prompt
-Before:
+**Before:**
 ```bash
 user@host ~/Downloads/linux-beginner-guide
 $
 ```
-After:
+**After:**
 ```bash
 user@host ~/Downloads/linux-beginner-guide (main)
 $
@@ -1031,12 +1043,13 @@ touch picom.conf
 ```
 5. Paste this for `start.sh` file
 ```bash
-sleep 2 && picom -b --config /home/<username>/.config/picom/picom.conf
+sleep 2 && picom -b --config /home/$USER/.config/picom/picom.conf
 ```
-  - `sleep` => delay the command for 2 seconds.
-  - `-b` => run picom in the background.
-  - `--config` => load a custom config path.
-6. Paste this for `picom.conf` file. Or go [here](https://raw.githubusercontent.com/jEsuSdA/the-perfect-desktop/master/compton-picom/picom.conf) and save the file as `picom.conf`.
+  - `sleep` → delay the command for 2 seconds.
+  - `-b` → run picom in the background.
+  - `--config` → load a custom config path.
+6. Paste this for `picom.conf` file.
+Or go [here](https://raw.githubusercontent.com/jEsuSdA/the-perfect-desktop/master/compton-picom/picom.conf) and save the file as `picom.conf` on `~/.config/picom/picom.conf`.
 ```bash
 backend = "glx";
 glx-no-stencil = true;
@@ -1133,12 +1146,12 @@ wintypes:
 7. Put the `start.sh` into start script at login. To do that, search for `Session and Startup`.
 8. Go to the `Application Autostart` tab and click `Add`.
 9. Fill it like this :
-	- Name => **Picom**
-	- Description => **Starts Picom Compositor**
-	- Command => `/home/<username>/.config/picom/start.sh`
-	- Trigger => **on login**
+	- Name → **Picom**
+	- Description → **Starts Picom Compositor**
+	- Command → `/home/$USER/.config/picom/start.sh`
+	- Trigger → **on login**
 10. Click `OK` and `Close`
-11. Finally, reboot your the VM.
+11. Finally, reboot your VM.
 
 
 # Terminal Window Title Show Running Command
@@ -1180,4 +1193,34 @@ function set_win_title() {
 starship_precmd_user_func="set_win_title"
 eval "$(starship init bash)"
 trap "$(trap -p DEBUG |  awk -F"'" '{print $2}');set_win_title \${BASH_COMMAND}" DEBUG
+```
+
+
+# Dealing With Disk Permissions
+
+## Unmount & remount with different permission
+```bash
+# list all disks
+lsblk
+
+# unmount /dev/sdb1 disk
+sudo umount /dev/sdb1
+
+# make usbdrive directory in /media/$USER
+mkdir /media/$USER/usbdrive
+
+# mount /dev/sdb1 with read, write, exe permissions to usbdrive folder
+sudo mount -t vfat -o rw,exec,uid=1000,gid=1000,umask=022 /dev/sdb1 usbdrive
+```
+
+## Mount disk to startup applications
+```bash
+# mount /dev/sdb3 disk
+udisksctl mount -b /dev/sdb3
+```
+
+## Change ownership of a folder
+```bash
+# change owner of usbdrive folder to the current user
+sudo chown -R $USER usbdrive
 ```
