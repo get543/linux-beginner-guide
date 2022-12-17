@@ -1224,3 +1224,101 @@ udisksctl mount -b /dev/sdb3
 # change owner of usbdrive folder to the current user
 sudo chown -R $USER usbdrive
 ```
+
+
+# Bash Completion Case Insensitive
+Add this to the `~/.bashrc` file
+```bash
+bind -s 'set completion-ignore-case on'
+```
+
+
+# Thunar Change  Default Terminal
+Create a file and edit it
+```bash
+nano ~/.config/xfce4/helpers.rc
+```
+Add this to the file. **This is an example of `kitty` terminal**
+```config
+TerminalEmulator=kitty
+TerminalEmulatorDismissed=true
+```
+
+
+# Change from `Bash` to `Zsh`
+## Zsh Installation
+[This wiki page](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH) covers a very detail installation of zsh with a lot of distros as an example.
+- Install `zsh` to package.
+```bash
+# if you are using debian or ubuntu based distros
+sudo apt install zsh
+
+# if you are using arch based distros
+sudo pacman -Sy zsh
+
+# if you are using fedora based distros
+sudo dnf install zsh
+```
+
+- Run `zsh` command to make sure that it is installed and create a `.zshrc` file as a starting point.
+- Change default shell to `zsh`.
+```bash
+chsh -c $(which zsh)
+```
+
+## Installing Oh-My-Zsh
+- Make sure that git and wget and curl is installed.
+```bash
+# for debian
+sudo apt install git curl wget
+
+# for arch
+sudo pacman -Sy git curl wget
+
+# for fedora
+sudo dnf install git curl wget
+```
+- Installing Oh-My-Zsh using the official script from oh-my-zsh github.
+```bash
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+- Oh-My-Zsh will create a new file of `.zshrc` and for the old one is still there just under different name.
+- Change theme and other cool stuff in `.zshrc`. If you don't know what to do, you can go to the official [Oh-My-Zsh wiki page](https://github.com/ohmyzsh/ohmyzsh/wiki).
+```bash
+nano ~/.zshrc
+```
+- And if you are done, you can use it as a current session with this command
+```bash
+source ~/.zshrc
+```
+
+**Just to be safe, logout and logback in to make sure everything is set up as it should be.**
+
+### Oh-My-Zsh Plugins
+https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+Some of my favourites :
+- git
+- sudo
+- archlinux
+- fedora
+- ubuntu
+- web-search
+- autojump (install autojump first)
+- zsh-autosuggestions (you have do additional steps)
+
+### Oh-My-Zsh Theme
+https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+Some of my fovourite themes :
+- robbyrussell
+- agnoster
+- steeef
+- josh
+- jispwoso
+- half-life
+- gnzh
+- fino-time
+- dst
+- bira
+- avit
+- amuse
+- af-magic
