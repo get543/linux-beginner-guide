@@ -1295,7 +1295,6 @@ source ~/.zshrc
 **Just to be safe, logout and logback in to make sure everything is set up as it should be.**
 
 ### Oh-My-Zsh Plugins
-Official page: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 Some of my favourites :
 - git
 - sudo
@@ -1306,8 +1305,9 @@ Some of my favourites :
 - autojump (install autojump first)
 - zsh-autosuggestions (you have do additional steps)
 
+Find out more: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+
 ### Oh-My-Zsh Theme
-Official page: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 Some of my fovourite themes :
 - robbyrussell
 - agnoster
@@ -1322,3 +1322,5 @@ Some of my fovourite themes :
 - avit
 - amuse
 - af-magic
+
+Find out more: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
