@@ -5,9 +5,9 @@ script_directory=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && 
 # check for logs folder
 if ( ! $(cd $script_directory/logs &> /dev/null) )
 then
-  mkdir $script_directory/logs
-  touch $script_directory/logs/soundcardnumber.log
-  touch $script_directory/logs/sinkport.log
+  mkdir "$script_directory"/logs
+  touch "$script_directory"/logs/soundcardnumber.log
+  touch "$script_directory"/logs/sinkport.log
 fi
 
 red="\033[1;31m"
@@ -67,7 +67,7 @@ changeport_terminal() {
   read sink_port
 }
 
-changeport_menu() {
+changeport_zenity() {
   # list active soundcard
   looking_soundcardnumber
   zenity --text-info --width=700 --height=500 --title="List of Active Sound Card" --filename="$soundcardnumber_logs"
@@ -137,7 +137,7 @@ do
 
     "${options[1]}") headphone_mode ;;
 
-    "${options[2]}") changeport_menu ;;
+    "${options[2]}") changeport_zenity ;;
 
     *) choose_other_options ;;
   esac

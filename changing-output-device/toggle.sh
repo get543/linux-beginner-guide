@@ -1,34 +1,51 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
-sound_card_number=1 || $sound_card_number
-sink_port=3 || $sink_port
+red="\033[1;31m"
+colour_off="\033[0m"
 
-if [[ $1 == port ]]
+# setting port to use what currently being use (ALC887-VD = my usual soundcard)
+active_sink_port=$(pacmd list-sinks | grep "* index:" | awk '{print $3}')
+active_soundcard_number=$(aplay --list-devices | grep ALC887-VD | awk '{print $2}' | tr -d ':')
+
+# get automute info
+get_info=$(amixer -c $active_soundcard_number get 'Auto-Mute Mode' | grep "Item0" | awk '{print $2}')
+
+headphone_mode() {
+  # set automute to enabled
+  amixer -c $active_soundcard_number set 'Auto-Mute Mode' Enabled
+  
+  # change output to headphones
+  pactl set-sink-port $active_sink_port analog-output-headphones
+
+  clear
+
+  # display status
+  echo -e "${red}\tHeadphone Mode ${colour_off}"
+  notify-send --urgency=low "Output Change to \"Headphone Mode\""
+}
+
+speaker_mode() {
+  # set automute to disabled
+  amixer -c $active_soundcard_number set 'Auto-Mute Mode' Disabled
+
+  # set output to speakers
+  pactl set-sink-port $active_sink_port analog-output-lineout
+
+  clear
+
+  # display status
+  echo -e "${red}\tSpeaker Mode ${colour_off}"
+  notify-send --urgency=low "Output Change to \"Speaker Mode\""
+}
+
+
+# if automute is disabled
+if [[ "$get_info" = "'Disabled'" ]]
 then
-    echo -e "\033[1;31m\n\t\tActive Sound Card \033[0m"
-    aplay --list-devices
-    echo -ne "\033[1;31mPlease put the sound card number :\033[0m "
-    read sound_card_number
+  headphone_mode
 
-    echo -e "\033[1;31m\n\t\tActive Sink Port \033[0m"
-    pacmd list-sinks | grep -e name -e index -e description -e muted
-    echo -ne "\033[1;31mPlease put the sink port :\033[0m "
-    read sink_port
-fi
-
-getinfo=$(amixer -c $sound_card_number get 'Auto-Mute Mode' | grep "Item0" | awk '{print $2}')
-
-if [[ "$getinfo" == "'Disabled'" ]]
+# if automute is enabled
+elif [[ "$get_info" = "'Enabled'" ]]
 then
-    amixer -c $sound_card_number set 'Auto-Mute Mode' Enabled
-    pactl set-sink-port $sink_port analog-output-headphones
-    clear
-    echo -e "\033[1;31m\tHeadphone Mode \033[0m"
-
-elif [[ "$getinfo" == "'Enabled'" ]]
-then
-    amixer -c $sound_card_number set 'Auto-Mute Mode' Disabled
-    pactl set-sink-port $sink_port analog-output-lineout
-    clear
-    echo -e "\033[1;31m\tSpeaker Mode \033[0m"
+  speaker_mode
 fi
