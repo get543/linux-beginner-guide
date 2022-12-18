@@ -162,7 +162,7 @@ echo -ne "\n${Green}Checking ${BRed}flatpak ${Green}installed or not.\n${Color_O
 
 if ( ! command -v flatpak &> /dev/null )
 then
-  $SCRIPT_DIR/setups/flatpak-install.sh
+  "$SCRIPT_DIR"/setups/flatpak-install.sh
 else
   echo -e "${BRed}flatpak ${Green}is installed.${Color_Off}"
 fi

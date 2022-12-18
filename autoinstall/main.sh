@@ -9,10 +9,10 @@ DMagenta="\033[35m"
 DYellow="\033[33m"
 Green="\033[92m"
 
-chmod u+x $SCRIPT_DIR/setups/*.sh
-chmod u+x $SCRIPT_DIR/updates/*.sh
-chmod u+x $SCRIPT_DIR/apps/*.sh
-chmod u+x $SCRIPT_DIR/*.sh
+chmod u+x "$SCRIPT_DIR"/setups/*.sh
+chmod u+x "$SCRIPT_DIR"/updates/*.sh
+chmod u+x "$SCRIPT_DIR"/apps/*.sh
+chmod u+x "$SCRIPT_DIR"/*.sh
 
 source "$SCRIPT_DIR/apps/app-functions.sh"
 source "$SCRIPT_DIR/apps/template.sh"
@@ -217,11 +217,11 @@ export Green
 # -------------------------------------------------------------------------------------
 
 # checking package
-$SCRIPT_DIR/setups/check-packages.sh
+"$SCRIPT_DIR"/setups/check-packages.sh
 
 # update system
-$SCRIPT_DIR/updates/update.sh
-$SCRIPT_DIR/updates/upgrade.sh
+"$SCRIPT_DIR"/updates/update.sh
+"$SCRIPT_DIR"/updates/upgrade.sh
 
 while :
 do
@@ -301,7 +301,7 @@ do
 
     Discord) discord ;;
 
-    Droidcam) $SCRIPT_DIR/droidcam.sh ;;
+    Droidcam) "$SCRIPT_DIR"/droidcam.sh ;;
 
     Fragments) fragments ;;
 
