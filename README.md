@@ -72,12 +72,22 @@ Consist all app functions to install the apps.
 - Tutorials, explanation, my config.
 - Guide for installing arch with a script also the official arch wiki installation.
 
+# [`starship.toml`]
+My starship config. [Starship] is what I use to customise my bash prompt. Don't forget to use [nerd font], because compatibility is much better with the starship icon.
+
+# [`picom.conf`]
+XFCE compositor config file. Works well if you are running XFCE on VM and cannot use 3D Acceleration.
+
 [zenity]: https://help.gnome.org/users/zenity/stable/
 [yt-dlp]: https://github.com/yt-dlp/yt-dlp
+[starship]: https://starship.rs
+[nerd font]: https://www.nerdfonts.com/
 
 [`arch-vm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/arch-vm.sh
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
+[`starship.toml`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/starship.toml
+[`picom.conf`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/picom.conf
 
 [`changing-output-device/`]: https://github.com/get543/linux-beginner-guide/tree/main/changing-output-device
 [`changing-output-device/change.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/changing-output-device/change.sh
