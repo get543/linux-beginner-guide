@@ -27,16 +27,19 @@ Scripts to change output device or switch between headphones and speakers easily
 
 ## [`changing-output-device/change.sh`]
 
-This script is using [zenity] and it should work **_if you enter the soundcard number and sink port correctly._**
+This script is using [zenity]. It should work ***if you enter the soundcard number and sink port correctly.***
+
+**WARNING: THIS IS ONLY WORK WHEN YOU HAVE PULSEAUDIO AS YOUR AUDIO SERVER.**
 
 ## [`changing-output-device/toggle.sh`]
 
-Same functionality as [`changing-output-device/change.sh`] but it is toggle, which means that you run this file again to change the output device. **_soundcard number and sink port has to be correctly setup._**
+Same functionality as [`changing-output-device/change.sh`] but it is toggle instead, which means that you run this file again to change the output device. ***soundcard number*** and ***sink port*** has to be correctly setup. And you have to use ***pulseaudio*** as your default audio server.
+
+**WARNING: THIS ONLY WORK FOR MY SPECIFIC SETUP. YOU CAN MODIFY THE SCRIPT TO AS YOU SEE FIT.**
 
 ## [`changing-output-device/change-output.desktop`]
 
-Copy this file if you want to run [`changing-output-device/change.sh`] without the terminal.
-Before that you need to change `Exec=` and `Icon=` to path where you download [`changing-output-device/`] folder.
+Copy this file to `~/.local/share/applications`, if you want to run [`changing-output-device/change.sh`] without the terminal. After that, you need to change `Exec=` and `Icon=` to the path where you download [`changing-output-device/`] folder.
 
 # [`autoinstall/`]
 
