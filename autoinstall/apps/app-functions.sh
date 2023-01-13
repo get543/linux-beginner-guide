@@ -352,6 +352,14 @@ spotify() { # flatpak available
   flatpakAvailable
 }
 
+starship() {
+  echo -e "${DMagenta}
+    --------------------------------------------------
+    |           Installing $NAME                     |
+    -------------------------------------------------- ${Color_Off}"
+  sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+}
+
 telegram() { # flatpak only
   PACKAGENAME="Telegram"
   ID="org.telegram.desktop"

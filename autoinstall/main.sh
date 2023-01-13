@@ -261,6 +261,7 @@ do
     ScrCpy "display and control Android devices connected via USB" "NO"
     simplescreenrecorder "a feature rich screen recorder that supports X11 and OpenGL" "NO"
     Spotify "online music streaming service" "YES"
+    starship "minimal, blazing-fast, and infinitely customizable prompt for any shell" "No"
     Telegram\ Desktop "official desktop version of Telegram messaging app" "YES"
     Visual\ Studio\ Code "code editor" "NO"
     Virtual\ Machine\ Manager "virtual machine (VM) based on QEMU" "NO"
@@ -342,6 +343,8 @@ do
     simplescreenrecorder) simplescreenrecorder ;;
 
     Spotify) spotify ;;
+
+    starship) starship ;;
 
     Telegram\ Desktop) telegram ;;
 
