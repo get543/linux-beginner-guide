@@ -1,10 +1,11 @@
 ao () { # default install only
   NAME="Ao"
+  VERSION=6.9.0
   DEBIANSETUP() {
     cd ~/Downloads
-    wget https://github.com/klaudiosinani/ao/releases/download/v6.9.0/ao_6.9.0_amd64.deb -O ao-6.9-amd64.deb
-    sudo apt install ./ao-6.9-amd64.deb
-    rmdirIfExist ~/Downloads/ao-6.9-amd64.deb
+    wget https://github.com/klaudiosinani/ao/releases/download/v${VERSION}/ao_${VERSION}_amd64.deb -O ao_${VERSION}_amd64.deb
+    sudo apt install ./ao_${VERSION}_amd64.deb
+    rmdirIfExist ~/Downloads/ao_${VERSION}_amd64.deb
     sleep 5
   }
 
@@ -84,11 +85,12 @@ dconf-editor() { # default install only
 
 deckboard() { # default install only
   NAME="Deckboard"
+  VERSION=2.1.0
   DEBIANSETUP() {
     cd ~/Downloads
-    wget https://github.com/rivafarabi/deckboard/releases/download/v2.0.56/deckboard_2.0.56_amd64.deb -O deckboard_2.0.56.deb
-    sudo apt install ./deckboard_2.0.56.deb
-    rmdirIfExist ~/Downloads/deckboard_2.0.56.deb
+    wget https://github.com/rivafarabi/deckboard/releases/download/v${VERSION}/deckboard_${VERSION}_amd64.deb -O deckboard_${VERSION}.deb
+    sudo apt install ./deckboard_${VERSION}.deb
+    rmdirIfExist ~/Downloads/deckboard_${VERSION}.deb
     sleep 5
   }
 
@@ -256,28 +258,30 @@ openrgb() { # flatpak available
     # menu
     opt=$(createMenu)
 
+    VERSION=0.8
+
     case "$opt" in
       20.10\ and\ older)
         cd ~/Downloads
-        wget https://openrgb.org/releases/release_0.8/openrgb_0.8_amd64_buster_fb88964.deb -O openrgb_0.8_buster.deb
-        sudo apt install ./openrgb_0.8_buster.deb
-        rmdirIfExist ~/Downloads/openrgb_0.8_buster.deb
+        wget https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_buster_fb88964.deb -O openrgb_${VERSION}_buster.deb
+        sudo apt install ./openrgb_${VERSION}_buster.deb
+        rmdirIfExist ~/Downloads/openrgb_${VERSION}_buster.deb
         sleep 5
       ;;
 
       21.04\ and\ newer)
         cd ~/Downloads
-        wget https://openrgb.org/releases/release_0.8/openrgb_0.8_amd64_bullseye_fb88964.deb -O openrgb_0.8_bullseye.deb
-        sudo apt install ./openrgb_0.8_bullseye.deb
-        rmdirIfExist ~/Downloads/openrgb_0.8_bullseye.deb
+        wget https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bullseye_fb88964.deb -O openrgb_${VERSION}_bullseye.deb
+        sudo apt install ./openrgb_${VERSION}_bullseye.deb
+        rmdirIfExist ~/Downloads/openrgb_${VERSION}_bullseye.deb
         sleep 5
       ;;
 
       22.04\ LTS\ and\ newer)
         cd ~/Downloads
-        wget https://openrgb.org/releases/release_0.8/openrgb_0.8_amd64_bookworm_fb88964.deb -O openrgb_0.8_bookwarm.deb
-        sudo apt install ./openrgb_0.8_bookwarm.deb
-        rmdirIfExist ~/Downloads/openrgb_0.8_bookwarm.deb
+        wget https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bookworm_fb88964.deb -O openrgb_${VERSION}_bookwarm.deb
+        sudo apt install ./openrgb_${VERSION}_bookwarm.deb
+        rmdirIfExist ~/Downloads/openrgb_${VERSION}_bookwarm.deb
         sleep 5
       ;;
 
