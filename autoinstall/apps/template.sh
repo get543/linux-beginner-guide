@@ -93,6 +93,27 @@ defaultInstallOnly() {
   fi  
 }
 
+buildFromSource() {
+  if [ "$debian" ]
+  then
+    echo -e "${DMagenta}
+    --------------------------------------------------
+    |    Installing Prerequisite Package $NAME       |
+    -------------------------------------------------- ${Color_Off}"
+    PREREQUISITE
+
+    echo -e "${DMagenta}
+    --------------------------------------------------
+    |       Clone Repo and Installing $NAME          |
+    -------------------------------------------------- ${Color_Off}"
+    INSTALLATION
+  else
+    echo "Setup is only provided for debian based distros."
+    echo -ne "Enter to continue... "
+    read
+  fi
+}
+
 rmdirIfExist() {
   if [ -f "$1" ]
   then

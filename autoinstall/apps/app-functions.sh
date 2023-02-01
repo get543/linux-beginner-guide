@@ -323,13 +323,50 @@ rambox() { # default install only
   defaultInstallOnly
 }
 
-scrcpy() { # default install only
-  NAME="ScrCpy"
-  DEBIANSETUP() {
-    sudo apt install scrcpy
-  }
+scrcpy() { # default install or build source
+  HEIGHT=400
+  WIDTH=900
+  TITLE="How do you want to install ScrCpy ?"
+  PROMPT="Method"
+  COLUMN1="Name"
+  COLUMN2="Description"
+  COLUMN3="Note"
+  OPTIONS=(
+    Default\ Repo "using default repository of your distribution" "not the newest version installed"
+    Build\ From\ Source "using repository from github" "getting the latest version, but need to rebuild to update"
+  )
 
-  defaultInstallOnly
+  opt=$(createMenu)
+
+  case "$opt" in
+    Default\ Repo)
+      NAME="ScrCpy"
+      DEBIANSETUP() {
+        sudo apt install scrcpy
+      }
+
+      defaultInstallOnly
+    ;;
+
+    Build\ From\ Source)
+      NAME="ScrCpy"
+      PREREQUISITE() {
+        sudo apt install ffmpeg libsdl2-2.0-0 adb wget gcc git pkg-config ninja-build libsdl2-dev libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev libusb-1.0-0 libusb-1.0-0-dev
+      }
+      INSTALLATION() {
+        cd ~/Downloads
+        git clone https://github.com/Genymobile/scrcpy
+        cd scrcpy
+        ./install_release.sh
+      }
+
+      buildFromSource
+    ;;
+
+    *)
+      chooseOther
+    ;;
+  esac
 }
 
 simplescreenrecorder() { # default install only
