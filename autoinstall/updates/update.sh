@@ -17,7 +17,7 @@ updateRepository() {
         sudo apt update
       elif [ "$arch" ]
       then
-        sudo pacman -Syu
+        sudo pacman -Sy
       elif [ "$fedoraRedhat" ]
       then
         sudo dnf update
