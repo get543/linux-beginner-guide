@@ -20,7 +20,7 @@ sudo apt --only-upgrade install gimp code kdenlive
 # upgrade all packages
 sudo apt upgrade
 ```
- 
+
 
 # Unpack `.deb` File
 ```bash 
@@ -33,7 +33,7 @@ sudo apt install ./thefilename.deb
 # run this if you get any dependency errors
 sudo apt install -f
 ```
- 
+
 
 # Extract `.tar.xz` File
 https://linuxize.com/post/how-to-extract-unzip-tar-xz-file/
@@ -58,7 +58,7 @@ make
 sudo make install
 ```
 **see this for more info :** https://help.ubuntu.com/community/CompilingEasyHowTo
- 
+
 
 # How To Clone Git Repositories
 `git clone <repository URL>`
@@ -66,7 +66,7 @@ sudo make install
 Example : 
 `git clone https://github.com/get543/linux-beginner-guide`
 
- 
+
 # Other Tips Tutorials
 - [How to Dual Boot POP OS 20.04 LTS and Windows 10 - 2021](https://youtu.be/hbzCSjlbInY)
 - [15 Best GNOME Extensions for Ubuntu (2021 Edition) - OMG! Ubuntu!](https://www.omgubuntu.co.uk/best-gnome-shell-extensions)
@@ -76,7 +76,7 @@ Example :
 - [10 Fun Linux Command-Line Programs You Should Try When Bored](https://www.makeuseof.com/fun-linux-command-line-programs/)
 - [Run Windows Software On Linux With Bottles - OSTechNix](https://ostechnix.com/run-windows-software-on-linux-with-bottles/)
 - [Correct Errors In Previous Console Commands In Linux](https://ostechnix.com/correct-errors-in-linux-commands/ )
- 
+
 
 # Node JS 
 ### nodejs repository :
@@ -85,7 +85,7 @@ https://github.com/nodesource/distributions/blob/master/README.md#debinstall
 ### installing nodejs :
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
 
- 
+
 # yt-dlp
 Download a video from youtube, [how to install it.](https://github.com/yt-dlp/yt-dlp#installation)
 
@@ -1231,3 +1231,72 @@ Some of my fovourite themes :
 - af-magic
 
 Find out more: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+
+
+# Change Linux Login Screen's Resolution
+
+## XFCE (lightdm)
+- Find the name of connected display
+```bash
+xrandr -d
+```
+
+- Result of `xrandr -d`
+```bash
+Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192
+Virtual-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 0mm x 0mm
+...
+```
+**`Virtual-1` is my display**
+
+- Create a script in /usr/share with `sudo nano /usr/share/lightdmxrandr.sh`
+```bash
+#!/bin/sh
+xrandr --output Virtual-1 --primary --mode 1920x1080
+```
+
+- Make the script executable
+```bash
+chmod u+x /usr/share/lightdmxrandr.sh
+```
+
+- Edit lightdm config file with `sudo nano /etc/lightdm/lightdm.conf`
+
+- Uncomment and Add the script. Add it below **`[Seat:*]`**.
+```conf
+[Seat:*]
+display-setup-script=/usr/share/lightdmxrandr.sh
+greeter-setup-script=/usr/share/lightdmxrandr.sh
+```
+
+- `reboot`
+
+## KDE Plasma (sddm)
+- Find the display name with `xrandr -q`, and this is the result
+```bash
+Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192
+Virtual-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 403mm x 302mm
+...
+```
+
+- Edit the setup script `sudo nano /usr/share/sddm/scripts/Xsetup`
+
+- Add this line
+```bash
+# change display resolution
+xrandr --output Virtual-1 --mode 1920x1080 --rate 60.00
+```
+
+- `reboot`
+
+## Gnome (gdm)
+- Set the resolution in `Settings > Display` and click `Apply`. That will create a `monitor.xml` file, a configuration file for your monitor.
+
+- Copy that configuration file in the gdm `.config` folder.
+```bash
+# this 
+sudo cp ~/.config/monitors.xml /var/lib/gdm3/.config/monitors.xml
+
+# if it doesn't work, go with this
+sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/monitors.xml
+```
