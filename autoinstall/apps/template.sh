@@ -94,7 +94,7 @@ defaultInstallOnly() {
 }
 
 buildFromSource() {
-  if [ "$debian" ]
+  if [[ "$debian" || "$arch" || "$fedoraRedhat" || "$opensuse" ]]
   then
     echo -e "${DMagenta}
     --------------------------------------------------
@@ -102,16 +102,18 @@ buildFromSource() {
     -------------------------------------------------- ${Color_Off}"
     PREREQUISITE
 
-    echo -e "${DMagenta}
+  else
+    echo "Prerequisite setup is not available on your distro."
+    echo -ne "Enter to continue... "
+    read
+    exit 1
+  fi
+
+  echo -e "${DMagenta}
     --------------------------------------------------
     |       Clone Repo and Installing $NAME          |
     -------------------------------------------------- ${Color_Off}"
     INSTALLATION
-  else
-    echo "Setup is only provided for debian based distros."
-    echo -ne "Enter to continue... "
-    read
-  fi
 }
 
 rmdirIfExist() {

@@ -240,6 +240,7 @@ do
     dconf\ Editor "customise gnome deeply, like registry editor on windows" "NO"
     Deckboard "turn your phone into a streamdeck" "NO"
     Discord "all-in-one voice and text chat for gamers" "YES"
+    Docker "a self-sufficient runtime for containers" "NO"
     Droidcam "use your phone as a webcam" "NO"
     Fragments "download and share files using the BitTorrent protocol" "YES"
     Geary "send and receive email (email client)" "NO"
@@ -247,6 +248,7 @@ do
     GNU\ Image\ Manipulation\ Program\ \(GIMP\) "create images and edit photographs" "YES"
     Gnome\ Encfs\ Manager "a manager and mounter for encfs stashes (encrypt folders)" "NO"
     Gnome\ Tweaks "tweak advanced gnome 3 settings" "NO"
+    Google\ Cloud\ CLI "the gcloud CLI includes the gcloud, gsutil and bq command-line tools." "NO"
     Indicator-Sound-Switcher "sound input and output selector indicator" "NO"
     Inkscape "create and edits Scalable Vector Graphics (SVG) images" "YES"
     Kdenlive "video editing program by KDE" "YES"
@@ -255,14 +257,16 @@ do
     Obsidian "application for taking notes based on markdown file" "YES"
     OBS\ Studio "live streaming and video recording software" "YES"
     OpenRGB "control rgb lighting of your peripherals" "NO"
+    PhoneInfoga "PhoneInfoga is one of the most advanced tools to scan international phone numbers" "NO"
     Pinta "edit images and paint digitally" "YES"
     pulseaudio\ and\ pavucontrol "sound server and to adjust the volume level" "NO"
     Rambox "an all-in-one messenger that lets you combine multiple services in one place" "NO"
     ScrCpy "display and control Android devices connected via USB" "NO"
     simplescreenrecorder "a feature rich screen recorder that supports X11 and OpenGL" "NO"
     Spotify "online music streaming service" "YES"
-    starship "minimal, blazing-fast, and infinitely customizable prompt for any shell" "No"
+    starship "minimal, blazing-fast, and infinitely customizable prompt for any shell" "NO"
     Telegram\ Desktop "official desktop version of Telegram messaging app" "YES"
+    Universal\ Android\ Debloater\ GUI "GUI to debloat non-rooted android devices using ADB" "NO"
     Visual\ Studio\ Code "code editor" "NO"
     Virtual\ Machine\ Manager "virtual machine (VM) based on QEMU" "NO"
     VLC "VLC media player, the open-source multimedia player" "YES"
@@ -302,6 +306,8 @@ do
 
     Discord) discord ;;
 
+    Docker) docker ;;
+
     Droidcam) "$SCRIPT_DIR"/droidcam.sh ;;
 
     Fragments) fragments ;;
@@ -315,6 +321,8 @@ do
     Gnome\ Encfs\ Manager) encfs ;;
 
     Gnome\ Tweaks) gnome-tweaks ;;
+
+    Google\ Cloud\ CLI) gcloudcli ;;
 
     Indicator-Sound-Switcher) indicator-sound-switcher ;;
 
@@ -332,6 +340,8 @@ do
 
     OpenRGB) openrgb ;;
 
+    PhoneInfoga) phoneinfoga ;;
+
     Pinta) pinta ;;
 
     pulseaudio\ and\ pavucontrol) pulseaudio ;;
@@ -347,6 +357,8 @@ do
     starship) starship ;;
 
     Telegram\ Desktop) telegram ;;
+
+    Universal\ Android\ Debloater\ GUI) universal-android-debloater ;;
 
     Virtual\ Machine\ Manager) virt-manager ;;
 

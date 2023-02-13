@@ -111,6 +111,21 @@ discord() { # flatpak available
   flatpakAvailable
 }
 
+docker() {
+  NAME="Docker"
+  echo -e "${DMagenta}
+    --------------------------------------------------
+    |           Installing $NAME                     |
+    -------------------------------------------------- ${Color_Off}"
+  cd ~/Downloads
+  curl -FsSL https://get.docker.com/ -o docker-install.sh
+  chmod +x docker-install.com
+  sudo ./docker-install.sh
+
+  echo "Github: https://github.com/docker/docker-install"
+  sleep 5
+}
+
 geary() { # default install only
   NAME="Geary"
   DEBIANSETUP() {
@@ -169,6 +184,21 @@ gnome-tweaks() { # default install only
   }
 
   defaultInstallOnly
+}
+
+gcloudcli() {
+  NAME="Google Cloud CLI"
+  echo -e "${DMagenta}
+    --------------------------------------------------
+    |           Installing $NAME                     |
+    -------------------------------------------------- ${Color_Off}"
+  cd
+  curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-417.0.1-linux-x86_64.tar.gz
+  tar -xfv google-cloud-cli-417.0.1-linux-x86.tar.gz
+  ./google-cloud-sdk/install.sh
+  rmdirIfExist ~/google-cloud-cli-417.0.1-linux-x86.tar.gz
+
+  sleep 5
 }
 
 indicator-sound-switcher() { # default install only
@@ -294,6 +324,20 @@ openrgb() { # flatpak available
   flatpakAvailable
 }
 
+phoneinfoga() {
+  NAME="PhoneInfoga"
+  echo -e "${DMagenta}
+    --------------------------------------------------
+    |           Installing $NAME                     |
+    -------------------------------------------------- ${Color_Off}"
+  curl -sSL https://raw.githubusercontent.com/sundowndev/phoneinfoga/master/support/scripts/install | bash
+  sudo install ./phoneinfoga /usr/local/bin/phoneinfoga
+  ./phoneinfoga version
+
+  echo "Github : https://github.com/sundowndev/phoneinfoga"
+  sleep 5
+}
+
 pinta() { # flatpak only
   PACKAGENAME="Pinta"
   ID="com.github.PintaProject.Pinta"
@@ -351,7 +395,23 @@ scrcpy() { # default install or build source
     Build\ From\ Source)
       NAME="ScrCpy"
       PREREQUISITE() {
-        sudo apt install ffmpeg libsdl2-2.0-0 adb wget gcc git pkg-config ninja-build libsdl2-dev libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev libusb-1.0-0 libusb-1.0-0-dev
+        if [ "$debian" ]
+        then
+          PACKMAN="apt install"
+        elif [ "$arch" ]
+        then
+          PACKMAN="pacman -Sy"
+        elif [ "$fedoraRedhat" ]
+        then
+          PACKMAN="dnf install"
+        elif [ "$opensuse" ]
+        then
+          PACKMAN="zypper install"
+        else
+          exit 1
+        fi
+
+        sudo $PACKMAN ffmpeg libsdl2-2.0-0 adb wget gcc git pkg-config ninja-build libsdl2-dev libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev libusb-1.0-0 libusb-1.0-0-dev
       }
       INSTALLATION() {
         cd ~/Downloads
@@ -361,6 +421,9 @@ scrcpy() { # default install or build source
       }
 
       buildFromSource
+
+      echo "Github: https://github.com/Genymobile/scrcpy"
+      sleep 5
     ;;
 
     *)
@@ -394,11 +457,13 @@ spotify() { # flatpak available
 }
 
 starship() {
+  NAME="starship"
   echo -e "${DMagenta}
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
   sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+  sleep 5
 }
 
 telegram() { # flatpak only
@@ -406,6 +471,22 @@ telegram() { # flatpak only
   ID="org.telegram.desktop"
 
   flatpakOnly
+}
+
+universal-android-debloater() {
+  NAME="Universal Android Debloater"
+  VERSION=0.5.1
+  echo -e "${DMagenta}
+    --------------------------------------------------
+    |           Installing $NAME                     |
+    -------------------------------------------------- ${Color_Off}"
+  cd ~/Downloads
+  wget https://github.com/0x192/universal-android-debloater/releases/download/$VERSION/uad_gui-linux.tar.gz
+  tar xfvz uad_gui-linux.tar.gz
+  rmdirIfExist ~/Downloads/uad_gui-linux.tar.gz
+
+  echo "Github: https://github.com/0x192/universal-android-debloater"
+  sleep 5
 }
 
 virt-manager() { # default install only
