@@ -3,7 +3,7 @@ ao () { # default install only
   VERSION=6.9.0
   DEBIANSETUP() {
     cd ~/Downloads
-    wget https://github.com/klaudiosinani/ao/releases/download/v${VERSION}/ao_${VERSION}_amd64.deb -O ao_${VERSION}_amd64.deb
+    curl -o "ao_${VERSION}_amd64.deb" -fLC - "https://github.com/klaudiosinani/ao/releases/download/v${VERSION}/ao_${VERSION}_amd64.deb"
     sudo apt install ./ao_${VERSION}_amd64.deb
     rmdirIfExist ~/Downloads/ao_${VERSION}_amd64.deb
     sleep 5
@@ -88,7 +88,7 @@ deckboard() { # default install only
   VERSION=2.1.0
   DEBIANSETUP() {
     cd ~/Downloads
-    wget https://github.com/rivafarabi/deckboard/releases/download/v${VERSION}/deckboard_${VERSION}_amd64.deb -O deckboard_${VERSION}.deb
+    curl -o "deckboard_${VERSION}.deb" -fLC - "https://github.com/rivafarabi/deckboard/releases/download/v${VERSION}/deckboard_${VERSION}_amd64.deb"
     sudo apt install ./deckboard_${VERSION}.deb
     rmdirIfExist ~/Downloads/deckboard_${VERSION}.deb
     sleep 5
@@ -102,7 +102,7 @@ discord() { # flatpak available
   APPID="com.discordapp.Discord"
   REGULAR_DEBIAN_INSTALL() {
     cd ~/Downloads
-    wget "https://discord.com/api/download?platform=linux&format=deb" -O discord.deb
+    curl -o "discord.deb" -fLC - "https://discord.com/api/download?platform=linux&format=deb"
     sudo apt install ./discord.deb
     rmdirIfExist ~/Downloads/discord.deb
     sleep 5
@@ -293,7 +293,7 @@ openrgb() { # flatpak available
     case "$opt" in
       20.10\ and\ older)
         cd ~/Downloads
-        wget https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_buster_fb88964.deb -O openrgb_${VERSION}_buster.deb
+        curl -o "openrgb_${VERSION}_buster.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_buster_fb88964.deb"
         sudo apt install ./openrgb_${VERSION}_buster.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_buster.deb
         sleep 5
@@ -301,7 +301,7 @@ openrgb() { # flatpak available
 
       21.04\ and\ newer)
         cd ~/Downloads
-        wget https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bullseye_fb88964.deb -O openrgb_${VERSION}_bullseye.deb
+        curl -o "openrgb_${VERSION}_bullseye.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bullseye_fb88964.deb"
         sudo apt install ./openrgb_${VERSION}_bullseye.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_bullseye.deb
         sleep 5
@@ -309,7 +309,7 @@ openrgb() { # flatpak available
 
       22.04\ LTS\ and\ newer)
         cd ~/Downloads
-        wget https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bookworm_fb88964.deb -O openrgb_${VERSION}_bookwarm.deb
+        curl -o "openrgb_${VERSION}_bookwarm.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bookworm_fb88964.deb"
         sudo apt install ./openrgb_${VERSION}_bookwarm.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_bookwarm.deb
         sleep 5
@@ -358,7 +358,7 @@ rambox() { # default install only
   NAME="Rambox"
   DEBIANSETUP() {
     cd ~/Downloads
-    wget "https://rambox.app/api/download?os=linux&package=deb" -O rambox_2.0.deb
+    curl -o "rambox_2.0.deb" -fLC - "https://rambox.app/api/download?os=linux&package=deb"
     sudo apt install ./rambox_2.0.deb
     rmdirIfExist ~/Downloads/rambox_2.0.deb
     sleep 5
@@ -481,7 +481,7 @@ universal-android-debloater() {
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
   cd ~/Downloads
-  wget https://github.com/0x192/universal-android-debloater/releases/download/$VERSION/uad_gui-linux.tar.gz
+  curl -o "uad_gui-linux.tar.gz" -fLC - "https://github.com/0x192/universal-android-debloater/releases/download/$VERSION/uad_gui-linux.tar.gz"
   tar xfvz uad_gui-linux.tar.gz
   rmdirIfExist ~/Downloads/uad_gui-linux.tar.gz
 
@@ -624,7 +624,7 @@ zoom() { # flatpak available
   APPID="us.zoom.Zoom"
   REGULAR_DEBIAN_INSTALL() {
     cd ~/Downloads
-    wget https://zoom.us/client/latest/zoom_amd64.deb -O zoom_amd64.deb
+    curl -o "zoom_amd64.deb" -fLC - "https://zoom.us/client/latest/zoom_amd64.deb"
     sudo apt install ./zoom_amd64.deb
     rmdirIfExist ~/Downloads/zoom_amd64.deb
     sleep 5
