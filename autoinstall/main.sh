@@ -17,6 +17,11 @@ chmod u+x "$SCRIPT_DIR"/*.sh
 source "$SCRIPT_DIR/apps/app-functions.sh"
 source "$SCRIPT_DIR/apps/template.sh"
 
+loadNvm() {
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+}
+
 # check OS
 checkFedoraRedhat() {
   fedoraRedhat=$(grep -Ei 'fedora|redhat' /etc/*release)
@@ -197,6 +202,7 @@ removeUnused() {
 }
 
 # export stuff
+export -f loadNvm
 export -f createMenu
 export -f chooseOther
 export -f checkFedoraRedhat
