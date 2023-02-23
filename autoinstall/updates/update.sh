@@ -120,11 +120,23 @@ updateNode() {
     case "$?" in
       0) # yes
         echo -e "\n${DMagenta}============= Updating Node JS Package =============${Color_Off}"
-        echo -e "${Green}Uninstalling old versions of node.${Color_Off}"
-        nvm uninstall --lts
+        echo -e "${Green}Installing latest LTS release of node.${Color_Off}"
+        nvm install --lts
 
-        echo -e "${Green}Installing latest LTS release of node and npm and migrate your existing installed packages.${Color_Off}"
-        nvm install 'lts/*' --reinstall-packages-from=default --latest-npm
+        echo -e "${Green}\nUsing node latest LTS release.${Color_Off}"
+        nvm use --lts
+
+        echo -e "${Green}\nInstalling latest version of npm.${Color_Off}"
+        npm install -g npm@latest
+
+        echo -e "${Green}\n\n\n---------- List installed node version ----------${Color_Off}"
+        nvm list
+        echo -e "${Green}\n(-> N/A) means that it is not installed.${Color_Off}"
+        echo -ne "${DYellow}Which version of node you want to uninstall ? ${Color_Off}"
+        read nodeVersion
+
+        echo -e "${Green}\nUninstalling old version of node.${Color_Off}"
+        nvm uninstall $nodeVersion
       ;;
 
       1) # no
