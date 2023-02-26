@@ -175,7 +175,7 @@ removeUnused() {
 
       elif [ "$arch" ]
       then
-        echo -e "${Green}Sorry I don't know how to do that on Arch${Color_Off}"
+	sudo pacman -Scc
 
       elif [ "$opensuse" ]
       then
