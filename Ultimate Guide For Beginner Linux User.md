@@ -307,7 +307,8 @@ sudo apt install vlc obs-studio simplenote steam wine
 ```
 
 
-# Show Thumbnails In File Manager (Nautilus)
+# Show Thumbnails In File Manager 
+## Nautilus
 #### For Video Files
 https://askubuntu.com/questions/1034595/thumbnails-not-showing-in-video-in-ubuntu-18-04
 ```bash
@@ -340,6 +341,26 @@ sudo add-apt-repository --remove ppa:krifa75/eog-ordissimo
 
 # quit file manager
 nautilus -q 
+```
+
+## Thunar File Manger
+https://superuser.com/questions/258633/why-is-thunar-not-creating-and-showing-thumbnails-of-images
+To get thumbnail on your thunar file manager, you need to install tumbler package.
+```bash
+# example on arch based systems
+sudo pacman -Sy tumbler
+
+# example on debian based systems
+sudo apt install tumbler
+```
+
+Restart the file manager
+```bash
+# quit the application
+thunar -q
+
+# run it again
+thunar
 ```
 
 
@@ -1203,32 +1224,34 @@ source ~/.zshrc
 
 ### Oh-My-Zsh Plugins
 Some of my favourites :
-- git
-- sudo
-- archlinux
-- fedora
-- ubuntu
-- web-search
-- autojump (install autojump first)
-- zsh-autosuggestions (you have do additional steps)
+- [git](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git) → Add git aliases.
+- [sudo](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo) → If you forgot to run the command as `sudo`, press `esc` twice.
+- [archlinux](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/archlinux) [dnf](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dnf) [ubuntu](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/ubuntu) → Add aliases to your distro's package manager.
+- [web-search](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/web-search) → Search something in the terminal.
+- [dirhistory](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory) → Navigating directory using keyboard shortcut, like in file manager.
+- [copybuffer](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer) → Copy current text in the command line to system clipboard with `CTRL + O`
+- [coppypath](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copypath) → Copy path to system clipboard by running `copypath` command.
+- [autojump](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump) → Jump to directory based on your history [**install autojump first.**](https://github.com/wting/autojump#installation)
+- [zsh-syntax-highliting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md) → Add syntax highliting to your shell, like fish shell.
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md) → Add suggestions as you type the command, like fish shell.
 
 Find out more: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 
 ### Oh-My-Zsh Theme
 Some of my fovourite themes :
-- robbyrussell
-- agnoster
-- steeef
-- josh
-- jispwoso
-- half-life
-- gnzh
-- fino-time
-- dst
-- bira
-- avit
-- amuse
-- af-magic
+- [robbyrussell](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#robbyrussell) (default)
+- [af-magic](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#af-magic)
+- [amuse](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#amuse) 
+- [avit](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#avit) (currently)
+- [bira](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#bira)
+- [cloud](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#cloud)
+- [dst](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#dst)
+- [fino-time](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#fino-time)
+- [gnzh](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#gnzh)
+- [half-life](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#half-life)
+- [jispwoso](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#jispwoso)
+- [josh](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#josh)
+- [steeef](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#steeef)
 
 Find out more: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
@@ -1300,3 +1323,6 @@ sudo cp ~/.config/monitors.xml /var/lib/gdm3/.config/monitors.xml
 # if it doesn't work, go with this
 sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/monitors.xml
 ```
+
+
+# 
