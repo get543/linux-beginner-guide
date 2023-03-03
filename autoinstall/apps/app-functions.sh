@@ -1,11 +1,11 @@
 ao () { # default install only
   NAME="Ao"
-  VERSION=6.9.0
+  VERSION=$(curl -s "https://api.github.com/repos/klaudiosinani/ao/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
   DEBIANSETUP() {
     cd ~/Downloads
-    curl -o "ao_${VERSION}_amd64.deb" -fLC - "https://github.com/klaudiosinani/ao/releases/download/v${VERSION}/ao_${VERSION}_amd64.deb"
-    sudo apt install ./ao_${VERSION}_amd64.deb
-    rmdirIfExist ~/Downloads/ao_${VERSION}_amd64.deb
+    curl -o "ao_${VERSION}.deb" -fLC - "https://github.com/klaudiosinani/ao/releases/latest/download/ao_${VERSION}_amd64.deb"
+    sudo apt install ./ao_${VERSION}.deb
+    rmdirIfExist ~/Downloads/ao_${VERSION}.deb
     sleep 5
   }
 
@@ -85,10 +85,10 @@ dconf-editor() { # default install only
 
 deckboard() { # default install only
   NAME="Deckboard"
-  VERSION=2.1.0
+  VERSION=$(curl -s "https://api.github.com/repos/rivafarabi/deckboard/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
   DEBIANSETUP() {
     cd ~/Downloads
-    curl -o "deckboard_${VERSION}.deb" -fLC - "https://github.com/rivafarabi/deckboard/releases/download/v${VERSION}/deckboard_${VERSION}_amd64.deb"
+    curl -o "deckboard_${VERSION}.deb" -fLC - "https://github.com/rivafarabi/deckboard/releases/latest/download/deckboard_${VERSION}_amd64.deb"
     sudo apt install ./deckboard_${VERSION}.deb
     rmdirIfExist ~/Downloads/deckboard_${VERSION}.deb
     sleep 5
@@ -192,7 +192,7 @@ gcloudcli() {
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
-  cd
+  cd ~
   curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-417.0.1-linux-x86_64.tar.gz
   tar -xfv google-cloud-cli-417.0.1-linux-x86.tar.gz
   ./google-cloud-sdk/install.sh
@@ -248,6 +248,22 @@ krita() { # flatpak only
   ID="org.kde.krita"
 
   flatpakOnly
+}
+
+lazygit() { # default install only
+  NAME="lazygit"
+  DEBIANSETUP() {
+    cd ~/Downloads
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xfv lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
+    
+    rmdirIfExist ~/Downloads/lazygit.tar.gz
+    rmdirIfExist ~/Downloads/lazygit
+
+    sleep 5
+  }
 }
 
 obs-studio() { # default install only

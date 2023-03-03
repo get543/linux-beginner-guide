@@ -260,6 +260,7 @@ do
     Kdenlive "video editing program by KDE" "YES"
     KolourPaint "an easy-to-use paint program" "YES"
     Krita "digital painting, creative freedom" "YES"
+    lazygit "a simple terminal UI for git commands." "NO"
     Obsidian "application for taking notes based on markdown file" "YES"
     OBS\ Studio "live streaming and video recording software" "YES"
     OpenRGB "control rgb lighting of your peripherals" "NO"
@@ -339,6 +340,8 @@ do
     KolourPaint) kolourpaint ;;
 
     Krita) krita ;;
+
+    lazygit) lazygit ;;
 
     OBS\ Studio) obs-studio ;;
 
