@@ -110,10 +110,10 @@ buildFromSource() {
   fi
 
   echo -e "${DMagenta}
-    --------------------------------------------------
-    |       Clone Repo and Installing $NAME          |
-    -------------------------------------------------- ${Color_Off}"
-    INSTALLATION
+  --------------------------------------------------
+  |       Clone Repo and Installing $NAME          |
+  -------------------------------------------------- ${Color_Off}"
+  INSTALLATION
 }
 
 rmdirIfExist() {

@@ -111,7 +111,7 @@ discord() { # flatpak available
   flatpakAvailable
 }
 
-docker() {
+docker() { # custom
   NAME="Docker"
   echo -e "${DMagenta}
     --------------------------------------------------
@@ -186,7 +186,7 @@ gnome-tweaks() { # default install only
   defaultInstallOnly
 }
 
-gcloudcli() {
+gcloudcli() { # custom
   NAME="Google Cloud CLI"
   echo -e "${DMagenta}
     --------------------------------------------------
@@ -222,6 +222,15 @@ inkscape() { # flatpak available
   }
 
   flatpakAvailable
+}
+
+joplin() { # custom
+  NAME="Joplin"
+  echo -e "${DMagenta}
+    --------------------------------------------------
+    |           Installing $NAME                     |
+    -------------------------------------------------- ${Color_Off}"
+  wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
 }
 
 kdenlive() { # flatpak available
