@@ -27,13 +27,13 @@ Scripts to change output device or switch between headphones and speakers easily
 
 ## [`changing-output-device/change.sh`]
 
-This script is using [zenity]. It should work ***if you enter the soundcard number and sink port correctly.***
+This script is using [zenity]. It should work **_if you enter the soundcard number and sink port correctly._**
 
 **WARNING: THIS IS ONLY WORK WHEN YOU HAVE PULSEAUDIO AS YOUR AUDIO SERVER.**
 
 ## [`changing-output-device/toggle.sh`]
 
-Same functionality as [`changing-output-device/change.sh`] but it is toggle instead, which means that you run this file again to change the output device. ***soundcard number*** and ***sink port*** has to be correctly setup. And you have to use ***pulseaudio*** as your default audio server.
+Same functionality as [`changing-output-device/change.sh`] but it is toggle instead, which means that you run this file again to change the output device. **_soundcard number_** and **_sink port_** has to be correctly setup. And you have to use **_pulseaudio_** as your default audio server.
 
 **WARNING: THIS ONLY WORK FOR MY SPECIFIC SETUP. YOU CAN MODIFY THE SCRIPT TO AS YOU SEE FIT.**
 
@@ -76,10 +76,22 @@ Consist all app functions to install the apps.
 - Guide for installing arch with a script also the official arch wiki installation.
 
 # [`starship.toml`]
+
 My starship config. [Starship] is what I use to customise my bash prompt. Don't forget to use [nerd font], because compatibility is much better with the starship icon.
 
 # [`picom.conf`]
+
 XFCE compositor config file. Works well if you are running XFCE on VM and cannot use 3D Acceleration.
+
+# [`loopback.sh`]
+
+A script to turn on or off loopback of your mic. In other words, a script to hear your own microphone.
+
+- `./loopback.sh on` to turn it on.
+- `./loopback.sh off` to turn it off.
+
+# [`change-perm.sh`]
+Script to change usb or drive permission. It will change it to be able to have read, write, and execute permission.
 
 [zenity]: https://help.gnome.org/users/zenity/stable/
 [yt-dlp]: https://github.com/yt-dlp/yt-dlp
@@ -89,6 +101,8 @@ XFCE compositor config file. Works well if you are running XFCE on VM and cannot
 [`arch-vm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/arch-vm.sh
 [`freeramcache.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/freeramcache.sh
 [`ytdlp.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/ytdlp.sh
+[`loopback.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/loopback.sh
+[`change-perm.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/change-perm.sh
 [`starship.toml`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/starship.toml
 [`picom.conf`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/picom.conf
 

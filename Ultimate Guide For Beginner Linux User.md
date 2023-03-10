@@ -1325,4 +1325,65 @@ sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/monitors.xml
 ```
 
 
-# 
+# Change Grub Theme
+
+## Look location of the current installed theme (if available).
+```bash
+cat /etc/default/grub | grep GRUB_THEME=
+```
+**If it shows a value to a path**, that means that you have to install the theme there. Example for me :
+```config
+GRUB_THEME=/usr/share/grub/themes/zorin/theme.txt
+```
+So I have to install the theme in `/usr/share/grub/themes` folder.
+
+**If there's a `#` in front of `GRUBTHEME=`**, it means that no themes is being used. So, it is better to install the theme in `/boot/grub/themes` folder. If you don't have it, follow this step :
+
+- Create folder with `mkdir` command. (`-p` to just create every folder before `themes` if it doesn't exist).
+```bash
+mkdir -p /boot/grub/themes
+```
+
+- Change the ownership of `/boot/grub/themes` folder.
+```bash
+sudo chown $USER /boot/grub/themes
+```
+
+## Installing Theme
+Your theme that you downloaded should have a file called `theme.txt`. That file you will going to put it in `GRUB_THEME=` in `/etc/default/grub`.
+
+- So the first step you need to do is edit the config file.
+```bash
+nano /etc/default/grub
+```
+
+- Find `GRUB_THEME=` and your new theme refrencing to the `theme.txt`.
+```bash
+# grub theme before i changed it
+GRUB_THEME=/usr/share/grub/themes/zorin/theme.txt
+
+# the new grub theme
+GRUB_THEME=/usr/share/grub/themes/legion/dedsec/theme.txt
+```
+
+## Change desired resolution for the grub menu (optional)
+- Edit the config file.
+```bash
+nano /etc/default/grub
+```
+
+- Find `GRUB_GFXMODE=` and change it to your disired resolution `GRUB_GFXMODE=1920x1080`.
+
+## Run this command everytime you make changes to the config file
+```bash
+# would mostly work
+sudo update-grub
+
+# if that doesn't work, try this
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# if it doesn't work either, try this one
+sudo grub2-mkconfig -o /boot/grub/grub.cfg
+```
+
+> Please see the github repo of your theme to install it properly.
