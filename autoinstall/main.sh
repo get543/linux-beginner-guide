@@ -115,7 +115,6 @@ installMissingDependecies() {
       if [ "$debian" ]
       then
         sudo apt install --fix-broken
-        sudo apt install -f
 
       elif [ "$fedoraRedhat" ]
       then
@@ -175,7 +174,7 @@ removeUnused() {
 
       elif [ "$arch" ]
       then
-	sudo pacman -Scc
+	      sudo pacman -Scc
 
       elif [ "$opensuse" ]
       then
@@ -231,8 +230,8 @@ export Green
 
 while :
 do
-  HEIGHT=900
-  WIDTH=1000
+  HEIGHT=800
+  WIDTH=1200
   TITLE="AutoInstall"
   PROMPT="Choose What App You Want To Install"
   COLUMN1="Apps"
