@@ -2,7 +2,7 @@
 > You can use this as a guide if you are using **ubuntu or ubuntu based** distros.
 > I think some of this will work to on **debian** distros.
 
-> If you see something like this `<name>` in the command, remove the brackets and replace it with what the bracket says.
+> If you see something like this `<name>` in the command, remove the brackets `<>` and replace it with what the bracket says.
 
 > Read before copy and pasting!
 
@@ -35,23 +35,82 @@ sudo apt install -f
 ```
 
 
+# Upgrade Major Versions
+## Fedora
+In this example, I'm going to show you how to upgrade from fedora 36 to fedora 37.
+- Make sure the packages in your system is already up-to-date.
+```bash
+# upgrade system and reboot pc
+sudo dnf upgrade
+reboot
+```
+
+- Check again if it is fully upgraded.
+```bash
+sudo dnf upgrade --refresh
+```
+
+- Install the `dnf-plugin-system-upgrade` if you haven't done that already.
+```bash
+sudo dnf install dnf-plugin-system-upgrade
+```
+
+- Download the upgrade. Keep in mind that it is only support for 2 major releases. If you want to upgrade more please visit the [official documentation.](https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/#sect-how-many-releases-can-i-upgrade-across-at-once)
+```bash
+sudo dnf system-upgrade download --releasever=37
+```
+Change the `--releasever=` number if you want to upgrade to a different version.
+
+- If you are having an issue with dependencies, you can try this command. **Only if you're having problems.**
+```bash
+sudo dnf system-upgrade download --releasever=37 --allowerasing --best
+```
+
+- When you are done with the process, trigger the `uprade-system`. This will reboot the system immediately without countdown and confirmation, so close all the programs and save your work.
+```bash
+sudo dnf system-upgrade reboot
+```
+Reboot process going to take longer because it needs to apply the update just before the OS (on the boot logo).
+Don't touch anything assume that everything is fine even if the progress bar is not moving.
+
+- Remove cache and unused packages from previous versions and upgrades.
+```bash
+# remove cached metadata and transaction
+sudo dnf system-upgrade clean
+
+# remove cached packages
+sudo dnf clean packages
+```
+
+> Please Visit this official documentation from fedora. Because there's  a lot of things that I didn't cover here.
+> **Source :** https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/
+
+
 # Extract `.tar.xz` File
 https://linuxize.com/post/how-to-extract-unzip-tar-xz-file/
 ```bash
-tar -xf archive.tar.xz
-tar xf archive.tar.xz
-tar xf archive.tar.gz
-tar xf archive.tar
+tar xfv <file-name>.tar.xz
+tar xfv <file-name>.tar.bz2
+tar xfv <file-name>.tar.gz
+tar xfv <file-name>.tar
 ```
-**If tar gives a Cannot exec error, you may need to run `sudo apt install xz-utils` first.**
+
+Extract file into a directory
+```bash
+tar xfv <archive-name>.tar --directory=path/to/directory
+tar xfv <archive-name>.tar.gz --directory=path/to/directory
+tar xfv <archive-name>.tar.bz2 --directory=path/to/directory
+tar xfv <archive-name>.tar.xz --directory=path/to/directory
+````
+**If tar gives a `Cannot exec` error, you may need to run `sudo apt install xz-utils` first.**
 
 ### Installing from a `.tar` file
 ```bash
 # if the file is .tar.gz
-tar xvzf PACKAGENAME.tar.gz
+tar xfvz <archive-name>.tar.gz
 
 # if the file is .tar.bz2
-tar xvjf PACKAGENAME.tar.bz2
+tar xfvj <archive-name>.tar.bz2
 
 ./configure
 make
@@ -91,7 +150,7 @@ Download a video from youtube, [how to install it.](https://github.com/yt-dlp/yt
 
 ##### Download the best :
 ```bash
-yt-dlp -f best <link_here>
+yt-dlp -f best <link-here>
 ```
 ##### Config that I use :
 Download the highest 1080p .mp4 video-only and merge it with the best audio-only format. If no 1080p, use the highest before that.
@@ -367,7 +426,7 @@ thunar
 # Change App Icon on Ubuntu
 ```bash
 cd /usr/share/applications
-sudo gedit <app.name>.desktop
+sudo gedit <app-name>.desktop
 ```
 **Replace** → `Icon=/home/<current-user>/Pictures/Icons/something.png`
 
@@ -489,20 +548,68 @@ Guide Virtualization on Linux (virt-manager and qemu).
 
 
 # Clear Swap Memory
+I made my own script it is a file called `freeramcache.sh`. But if you want essentially the same thing as the command below.
+
 ```bash
 # check free memory space
-free -m
+free -h
 
 # disable swap 
 swapoff -a
 
 ##### wait approx 30 sec 
 
-# rnable swap
+# enable swap
 swapon -a
 
 # see the amount of swap used/available, decrease over time
-free -m
+free -h
+```
+
+
+# Expand or Create A New Swap Memory
+- See the current status of your swap memory.
+```bash
+# swap usage info
+free -h
+
+# swap status
+swapon -s
+```
+
+- Disable the swap memory.
+```bash
+# disable swap memory
+sudo swapoff -a
+```
+
+- Create or overwrite the old one with `/swapfile`
+  - `1G` is the units
+  - `8` is the integer
+    So together they define the size.
+  - size = 8GB
+It may take a while to create the file, for me it was a couple of minutes.
+```bash
+# create a /swapfile that is 8GB in size
+sudo dd if=/dev/zero of=/swapfile bs=1G count=8
+
+# set the correct permissions
+sudo chmod 0600 /swapfile
+
+# set up a linux swap area
+sudo mkswap /swapfile
+```
+
+## To make it permanent upon restart
+```bash
+# # edit the file
+# sudo nano /etc/fstab
+
+# add that line in /etc/fstab
+echo "/swapfile   none  swap  sw  0   0" > /etc/fstab
+
+# enable swap memory
+sudo swapon /swapfile
 ```
 
 
@@ -536,7 +643,7 @@ GTK_DEBUG=interactive thunar
 ```
 
 
-# Using wget
+# Using Wget
 ##### Download a file or webpage using wget
 ```bash
 wget <URL>
@@ -549,24 +656,42 @@ wget -O <filename> <URL>
 wget -r <link>
 ```
 
-##### Download an entire website using wget
+##### Download an entire website using wget 
+This is done by creating a mirror of the website.
 ```bash
 wget -m --convert-links --page-requisites website_address
 ```
 
-##### Customize download location (recommended)
+##### Customise download location
 ```bash
 wget <link> -O ~/Downloads/<custom-file-name>.deb
 ```
 
-##### Download with a redirect link
+##### Download with a redirect link and custom download location (recommended)
 ```bash
-wget -O <custom-file-name>.deb '<link>'
+wget -O <custom-file-name>.deb "<link>"
 ```
 
 ##### Resume incomplete downloads
 ```bash
 wget -c
+```
+
+
+# Using cURL
+##### Download a web page and put it in a file
+```bash
+curl "<http://example.com>" --output "<filepath>"
+```
+
+##### Download a file from a URL and keep file name from what its given
+```bash
+curl --remote-name "<http://example.com/filename>"
+```
+
+##### Download with a redirect link, auto resume if there's an error, shows the error, and custom file path (recommended)
+```bash
+curl --output "<filepath-or-filename>" --fail --show-error --location --continue-at - "<http://example.com/filename>"
 ```
 
 
@@ -753,7 +878,7 @@ node -v
 - [The Github Projects](https://github.com/nvm-sh/nvm)
 
  
-# Customize Terminal Prompt
+# Customise Terminal Prompt
 On most system usually will look something like this :
 ```bash
 user@host:~$ 
@@ -771,12 +896,12 @@ Edit the `.bashrc` file.
 nano ~/.bashrc
 ```
 
-Find something like this. Now this is the special characters before adding the color into the prompt.
+Find something like this. Now this is the special characters before adding the colour into the prompt.
 ```bash
 PS1="\u@\h:\W\$ "
 ```
 
-And this is after adding a color into the prompt. The coloring added before and after the special characters.
+And this is after adding a colour into the prompt. The colouring added before and after the special characters.
 ```bash
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 ```
@@ -1387,3 +1512,21 @@ sudo grub2-mkconfig -o /boot/grub/grub.cfg
 ```
 
 > Please see the github repo of your theme to install it properly.
+
+# Obsidian Fix Empty Space
+Fix the obsidian empty space left and right.
+- Open Settings.
+- In Editor, Turn off `Readable line length`.
+
+If you want to use custom css. This only works if you **Turn On** `Readable line length`
+- find the `.obsidian` file on that vault.
+- Open it on any text editor and add this line.
+```css
+.markdown-source-view.is-readable-line-width .CodeMirror,
+.markdown-preview-view.is-readable-line-width .CodeMirror,
+.markdown-source-view.is-readable-line-width .markdown-preview-sizer,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+	max-width: 1000px;
+	margin: auto;
+}
+```
