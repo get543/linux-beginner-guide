@@ -17,10 +17,10 @@ updateRepository() {
         sudo apt update
       elif [ "$arch" ]
       then
-        sudo pacman -Sy
+        sudo pacman -Syy
       elif [ "$fedoraRedhat" ]
       then
-        sudo dnf update
+        sudo dnf update --assumeno
       elif [ "$opensuse" ]
       then
         sudo zypper update
@@ -129,11 +129,18 @@ updateNode() {
         echo -e "${Green}\nInstalling latest version of npm.${Color_Off}"
         npm install -g npm@latest
 
-        echo -e "${Green}\n\n\n---------- List installed node version ----------${Color_Off}"
+        echo -e "${Green}\n\n\n------------- List installed node version -------------${Color_Off}"
         nvm list
         echo -e "${Green}\n(-> N/A) means that it is not installed.${Color_Off}"
+        echo -e "${Green}Type ${BRed}skip ${Green}to skip this process."
         echo -ne "${DYellow}Which version of node you want to uninstall ? ${Color_Off}"
         read nodeVersion
+
+        if [ "$nodeVersion" = "skip" ]
+        then
+          echo "Done."
+          return
+        fi
 
         echo -e "${Green}\nUninstalling old version of node.${Color_Off}"
         nvm uninstall $nodeVersion
@@ -151,7 +158,10 @@ updateNode() {
   fi
 }
 
-# Check
+
+# -------------------------------------------------------------------------------------
+#                                 SCRIPT STARTS
+# -------------------------------------------------------------------------------------
 checkFedoraRedhat
 checkArch
 checkDebian
