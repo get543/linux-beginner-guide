@@ -4,7 +4,7 @@ sudo df -H &&
 
 echo -e "\nExample of USB Drive : /dev/sdb1"
 echo -e "If you don't see the drive you want, it probably isn't mounted already."
-echo -e "So, don't run the script and look at your disk utility."
+echo -e "So, don't run the script and look at your disk utility to find the name."
 echo -ne "Which drive : "
 read drive
 
@@ -12,7 +12,7 @@ echo -e "\nExample of Mount Point Folder: USB STICK"
 echo -ne "Mount point name : "
 read mountPoint
 
-echo -e "Example of file type : ntfs, vfat, ext4"
+echo -e "\nExample of file type : ntfs, vfat, ext4"
 echo -ne "Drive file type : "
 read fileType
 
