@@ -131,7 +131,7 @@ chooseUpgrade() {
         echo "Done."
         break
       fi
-      
+
       clear
       echo -e "\n${DMagenta}============= Upgrading $packageName =============${Color_Off}\n"
       sudo pacman -Sy $packageName

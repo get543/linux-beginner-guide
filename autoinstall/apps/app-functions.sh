@@ -4,7 +4,7 @@ ao () { # default install only
   DEBIANSETUP() {
     cd ~/Downloads
     curl -o "ao_${VERSION}.deb" -fLC - "https://github.com/klaudiosinani/ao/releases/latest/download/ao_${VERSION}_amd64.deb"
-    sudo apt install ./ao_${VERSION}.deb
+    sudo apt install -y ./ao_${VERSION}.deb
     rmdirIfExist ~/Downloads/ao_${VERSION}.deb
     sleep 5
   }
@@ -89,7 +89,7 @@ deckboard() { # default install only
   DEBIANSETUP() {
     cd ~/Downloads
     curl -o "deckboard_${VERSION}.deb" -fLC - "https://github.com/rivafarabi/deckboard/releases/latest/download/deckboard_${VERSION}_amd64.deb"
-    sudo apt install ./deckboard_${VERSION}.deb
+    sudo apt install -y ./deckboard_${VERSION}.deb
     rmdirIfExist ~/Downloads/deckboard_${VERSION}.deb
     sleep 5
   }
@@ -103,7 +103,7 @@ discord() { # flatpak available
   REGULAR_DEBIAN_INSTALL() {
     cd ~/Downloads
     curl -o "discord.deb" -fLC - "https://discord.com/api/download?platform=linux&format=deb"
-    sudo apt install ./discord.deb
+    sudo apt install -y ./discord.deb
     rmdirIfExist ~/Downloads/discord.deb
     sleep 5
   }
@@ -192,7 +192,7 @@ gcloudcli() { # custom
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
-  cd ~
+  cd $HOME
   curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-417.0.1-linux-x86_64.tar.gz
   tar -xfv google-cloud-cli-417.0.1-linux-x86.tar.gz
   ./google-cloud-sdk/install.sh
@@ -267,7 +267,7 @@ lazygit() { # default install only
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     tar xfv lazygit.tar.gz lazygit
     sudo install lazygit /usr/local/bin
-    
+
     rmdirIfExist ~/Downloads/lazygit.tar.gz
     rmdirIfExist ~/Downloads/lazygit
 
@@ -319,7 +319,7 @@ openrgb() { # flatpak available
       20.10\ and\ older)
         cd ~/Downloads
         curl -o "openrgb_${VERSION}_buster.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_buster_fb88964.deb"
-        sudo apt install ./openrgb_${VERSION}_buster.deb
+        sudo apt install -y ./openrgb_${VERSION}_buster.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_buster.deb
         sleep 5
       ;;
@@ -327,7 +327,7 @@ openrgb() { # flatpak available
       21.04\ and\ newer)
         cd ~/Downloads
         curl -o "openrgb_${VERSION}_bullseye.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bullseye_fb88964.deb"
-        sudo apt install ./openrgb_${VERSION}_bullseye.deb
+        sudo apt install -y ./openrgb_${VERSION}_bullseye.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_bullseye.deb
         sleep 5
       ;;
@@ -335,7 +335,7 @@ openrgb() { # flatpak available
       22.04\ LTS\ and\ newer)
         cd ~/Downloads
         curl -o "openrgb_${VERSION}_bookwarm.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bookworm_fb88964.deb"
-        sudo apt install ./openrgb_${VERSION}_bookwarm.deb
+        sudo apt install -y ./openrgb_${VERSION}_bookwarm.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_bookwarm.deb
         sleep 5
       ;;
@@ -383,9 +383,9 @@ rambox() { # default install only
   NAME="Rambox"
   DEBIANSETUP() {
     cd ~/Downloads
-    curl -o "rambox_2.0.deb" -fLC - "https://rambox.app/api/download?os=linux&package=deb"
-    sudo apt install ./rambox_2.0.deb
-    rmdirIfExist ~/Downloads/rambox_2.0.deb
+    curl -o "rambox_V2.deb" -fLC - "https://rambox.app/api/download?os=linux&package=deb"
+    sudo apt install -y ./rambox_V2.deb
+    rmdirIfExist ~/Downloads/rambox_V2.deb
     sleep 5
   }
 
@@ -650,7 +650,7 @@ zoom() { # flatpak available
   REGULAR_DEBIAN_INSTALL() {
     cd ~/Downloads
     curl -o "zoom_amd64.deb" -fLC - "https://zoom.us/client/latest/zoom_amd64.deb"
-    sudo apt install ./zoom_amd64.deb
+    sudo apt install -y ./zoom_amd64.deb
     rmdirIfExist ~/Downloads/zoom_amd64.deb
     sleep 5
   }

@@ -1194,7 +1194,7 @@ sleep 2 && picom -b --config /home/$USER/.config/picom/picom.conf
   - `sleep` → delay the command for 2 seconds.
   - `-b` → run picom in the background.
   - `--config` → load a custom config path.
-6.  - Save [`picom.conf`](https://raw.githubusercontent.com/get543/linux-beginner-guide/main/picom.conf) file to `~/.config/picom/picom.conf`.
+6.  - Save [`picom.conf`](https://raw.githubusercontent.com/get543/linux-beginner-guide/main/config/picom.conf) file to `~/.config/picom/picom.conf`.
     - Or this [`picom.conf`](https://raw.githubusercontent.com/jEsuSdA/the-perfect-desktop/master/compton-picom/picom.conf) file for the full version, and save the file as `picom.conf` on `~/.config/picom/picom.conf`.
 7. Put the `start.sh` into start script at login. To do that, search for `Session and Startup`.
 8. Go to the `Application Autostart` tab and click `Add`.

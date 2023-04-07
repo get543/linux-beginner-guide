@@ -90,7 +90,7 @@ defaultInstallOnly() {
     echo "Setup is only provided for debian based distros."
     echo -ne "Enter to continue... "
     read
-  fi  
+  fi
 }
 
 buildFromSource() {
