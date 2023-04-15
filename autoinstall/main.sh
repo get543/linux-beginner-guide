@@ -17,6 +17,11 @@ chmod u+x "$SCRIPT_DIR"/*.sh
 source "$SCRIPT_DIR/apps/app-functions.sh"
 source "$SCRIPT_DIR/apps/template.sh"
 
+# sudo gui prompt
+sudo() {
+  /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo "$@"
+}
+
 loadNvm() {
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -49,18 +54,15 @@ checkNala() {
     then
       echo -e "\n${BRed}nala ${Green}is ${BRed}not ${Green}installed. Using ${BRed}apt ${Green}instead.${Color_Off}\n"
     else
-      # replace apt for nala
-      apt() {
-        command nala "$@"
-      }
-
       sudo() {
         if [ "$1" = "apt" ]
         then
+          # using nala but with sudo gui prompt
           shift
-          command sudo nala "$@"
+          command /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo nala "$@"
         else
-          command sudo "$@"
+          # keep apt but with sudo gui prompt
+          command /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo "$@"
         fi
       }
     fi
@@ -77,6 +79,7 @@ createMenu() {
         --column="$COLUMN3" \
         --width="$WIDTH" \
         --height="$HEIGHT" \
+        --window-icon="$SCRIPT_DIR/icons/list.png" \
         "${OPTIONS[@]}"
 }
 
@@ -201,6 +204,7 @@ removeUnused() {
 }
 
 # export stuff
+export -f sudo
 export -f loadNvm
 export -f createMenu
 export -f chooseOther

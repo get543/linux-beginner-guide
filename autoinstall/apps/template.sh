@@ -38,7 +38,7 @@ flatpakAvailable() {
 
   OPTIONS=(
     Yes "continue installation using flatpak" "not all apps better with flatpak"
-    No "it will install the regular package from the website" "only provided on debian package (apt or .deb)"
+    No "it will install the regular package from the website" "only provided on debian package (apt | .deb | appimage)"
     Back "go back to the installation menu" "-"
   )
 
@@ -62,7 +62,7 @@ flatpakAvailable() {
       then
         echo -e "${DMagenta}
         --------------------------------------------------
-        |              Installing $APPNAME                |
+        |              Installing $APPNAME               |
         -------------------------------------------------- ${Color_Off}"
         REGULAR_DEBIAN_INSTALL
       else
@@ -97,9 +97,9 @@ buildFromSource() {
   if [[ "$debian" || "$arch" || "$fedoraRedhat" || "$opensuse" ]]
   then
     echo -e "${DMagenta}
-    --------------------------------------------------
-    |    Installing Prerequisite Package $NAME       |
-    -------------------------------------------------- ${Color_Off}"
+    ------------------------------------------------------
+    |    Installing Prerequisite Package For $NAME       |
+    ------------------------------------------------------ ${Color_Off}"
     PREREQUISITE
 
   else

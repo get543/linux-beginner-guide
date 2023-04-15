@@ -2,11 +2,10 @@ ao () { # default install only
   NAME="Ao"
   VERSION=$(curl -s "https://api.github.com/repos/klaudiosinani/ao/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
   DEBIANSETUP() {
-    cd ~/Downloads
-    curl -o "ao_${VERSION}.deb" -fLC - "https://github.com/klaudiosinani/ao/releases/latest/download/ao_${VERSION}_amd64.deb"
-    sudo apt install -y ./ao_${VERSION}.deb
+    curl -o ~/Downloads/ao_${VERSION}.deb -fLC - "https://github.com/klaudiosinani/ao/releases/latest/download/ao_${VERSION}_amd64.deb"
+    sudo apt install -y ~/Downloads/ao_${VERSION}.deb
     rmdirIfExist ~/Downloads/ao_${VERSION}.deb
-    sleep 5
+    sleep 20
   }
 
   defaultInstallOnly
@@ -63,10 +62,7 @@ autokey() { # default install only
 balena-etcher() { # default install only
   NAME="balena-etcher"
   DEBIANSETUP() {
-    curl -1sLf \
-      'https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh' \
-      | sudo -E bash
-
+    curl -1sLf "https://dl.cloudsmith.io/public/balena/etcher/setup.deb.sh" | sudo -E bash
     sudo apt-get update
     sudo apt-get install balena-etcher-electron
   }
@@ -87,11 +83,10 @@ deckboard() { # default install only
   NAME="Deckboard"
   VERSION=$(curl -s "https://api.github.com/repos/rivafarabi/deckboard/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
   DEBIANSETUP() {
-    cd ~/Downloads
-    curl -o "deckboard_${VERSION}.deb" -fLC - "https://github.com/rivafarabi/deckboard/releases/latest/download/deckboard_${VERSION}_amd64.deb"
-    sudo apt install -y ./deckboard_${VERSION}.deb
+    curl -o ~/Downloads/deckboard_${VERSION}.deb -fLC - "https://github.com/rivafarabi/deckboard/releases/latest/download/deckboard_${VERSION}_amd64.deb"
+    sudo apt install -y ~/Downloads/deckboard_${VERSION}.deb
     rmdirIfExist ~/Downloads/deckboard_${VERSION}.deb
-    sleep 5
+    sleep 20
   }
 
   defaultInstallOnly
@@ -101,11 +96,10 @@ discord() { # flatpak available
   APPNAME="Discord"
   APPID="com.discordapp.Discord"
   REGULAR_DEBIAN_INSTALL() {
-    cd ~/Downloads
-    curl -o "discord.deb" -fLC - "https://discord.com/api/download?platform=linux&format=deb"
-    sudo apt install -y ./discord.deb
+    curl -o ~/Downloads/discord.deb -fLC - "https://discord.com/api/download?platform=linux&format=deb"
+    sudo apt install -y ~/Downloads/discord.deb
     rmdirIfExist ~/Downloads/discord.deb
-    sleep 5
+    sleep 20
   }
 
   flatpakAvailable
@@ -117,13 +111,13 @@ docker() { # custom
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
-  cd ~/Downloads
-  curl -FsSL https://get.docker.com/ -o docker-install.sh
-  chmod +x docker-install.com
-  sudo ./docker-install.sh
+  curl -fsSL https://get.docker.com -o ~/Downloads/docker-install.sh
+  chmod u+x ~/Downloads/docker-install.sh
+  . ~/Downloads/docker-install.sh
 
-  echo "Github: https://github.com/docker/docker-install"
-  sleep 5
+  echo -e "\nGithub: https://github.com/docker/docker-install"
+  echo -ne "Press Enter to continue... "
+  read
 }
 
 geary() { # default install only
@@ -188,17 +182,17 @@ gnome-tweaks() { # default install only
 
 gcloudcli() { # custom
   NAME="Google Cloud CLI"
+  VERSION=426.0.0
   echo -e "${DMagenta}
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
-  cd $HOME
-  curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-417.0.1-linux-x86_64.tar.gz
-  tar -xfv google-cloud-cli-417.0.1-linux-x86.tar.gz
-  ./google-cloud-sdk/install.sh
-  rmdirIfExist ~/google-cloud-cli-417.0.1-linux-x86.tar.gz
+  curl -o ~/gcloud-cli.tar.gz -fLC - "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-${VERSION}-linux-x86_64.tar.gz"
+  tar xfv ~/gcloud-cli.tar.gz -C $HOME
+  . ~/google-cloud-sdk/install.sh
+  rmdirIfExist ~/gcloud-cli.tar.gz
 
-  sleep 5
+  sleep 20
 }
 
 indicator-sound-switcher() { # default install only
@@ -262,17 +256,18 @@ krita() { # flatpak only
 lazygit() { # default install only
   NAME="lazygit"
   DEBIANSETUP() {
-    cd ~/Downloads
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xfv lazygit.tar.gz lazygit
-    sudo install lazygit /usr/local/bin
+    curl -Lo ~/Downloads/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xfv ~/Downloads/lazygit.tar.gz -C ~/Downloads
+    sudo install ~/Downloads/lazygit /usr/local/bin
 
     rmdirIfExist ~/Downloads/lazygit.tar.gz
     rmdirIfExist ~/Downloads/lazygit
 
-    sleep 5
+    sleep 20
   }
+
+  defaultInstallOnly
 }
 
 obs-studio() { # default install only
@@ -317,27 +312,24 @@ openrgb() { # flatpak available
 
     case "$opt" in
       20.10\ and\ older)
-        cd ~/Downloads
-        curl -o "openrgb_${VERSION}_buster.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_buster_fb88964.deb"
-        sudo apt install -y ./openrgb_${VERSION}_buster.deb
+        curl -o ~/Downloads/openrgb_${VERSION}_buster.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_buster_fb88964.deb"
+        sudo apt install -y ~/Downloads/openrgb_${VERSION}_buster.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_buster.deb
-        sleep 5
+        sleep 20
       ;;
 
       21.04\ and\ newer)
-        cd ~/Downloads
-        curl -o "openrgb_${VERSION}_bullseye.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bullseye_fb88964.deb"
-        sudo apt install -y ./openrgb_${VERSION}_bullseye.deb
+        curl -o ~/Downloads/openrgb_${VERSION}_bullseye.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bullseye_fb88964.deb"
+        sudo apt install -y ~/Downloads/openrgb_${VERSION}_bullseye.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_bullseye.deb
-        sleep 5
+        sleep 20
       ;;
 
       22.04\ LTS\ and\ newer)
-        cd ~/Downloads
-        curl -o "openrgb_${VERSION}_bookwarm.deb" -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bookworm_fb88964.deb"
-        sudo apt install -y ./openrgb_${VERSION}_bookwarm.deb
+        curl -o ~/Downloads/openrgb_${VERSION}_bookwarm.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bookworm_fb88964.deb"
+        sudo apt install -y ~/Downloads/openrgb_${VERSION}_bookwarm.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_bookwarm.deb
-        sleep 5
+        sleep 20
       ;;
 
       *)
@@ -349,7 +341,7 @@ openrgb() { # flatpak available
   flatpakAvailable
 }
 
-phoneinfoga() {
+phoneinfoga() { # custom
   NAME="PhoneInfoga"
   echo -e "${DMagenta}
     --------------------------------------------------
@@ -359,8 +351,9 @@ phoneinfoga() {
   sudo install ./phoneinfoga /usr/local/bin/phoneinfoga
   ./phoneinfoga version
 
-  echo "Github : https://github.com/sundowndev/phoneinfoga"
-  sleep 5
+  echo -e "\nGithub : https://github.com/sundowndev/phoneinfoga"
+  echo -ne "Press Enter to continue... "
+  read
 }
 
 pinta() { # flatpak only
@@ -382,11 +375,10 @@ pulseaudio() { # default install only
 rambox() { # default install only
   NAME="Rambox"
   DEBIANSETUP() {
-    cd ~/Downloads
-    curl -o "rambox_V2.deb" -fLC - "https://rambox.app/api/download?os=linux&package=deb"
-    sudo apt install -y ./rambox_V2.deb
+    curl -o ~/Downloads/rambox_V2.deb -fLC - "https://rambox.app/api/download?os=linux&package=deb"
+    sudo apt install -y ~/Downloads/rambox_V2.deb
     rmdirIfExist ~/Downloads/rambox_V2.deb
-    sleep 5
+    sleep 20
   }
 
   defaultInstallOnly
@@ -447,8 +439,9 @@ scrcpy() { # default install or build source
 
       buildFromSource
 
-      echo "Github: https://github.com/Genymobile/scrcpy"
-      sleep 5
+      echo -e "\nGithub: https://github.com/Genymobile/scrcpy"
+      echo -ne "Press Enter to continue... "
+      read
     ;;
 
     *)
@@ -481,14 +474,14 @@ spotify() { # flatpak available
   flatpakAvailable
 }
 
-starship() {
+starship() { # custom
   NAME="starship"
   echo -e "${DMagenta}
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
   sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-  sleep 5
+  sleep 20
 }
 
 telegram() { # flatpak only
@@ -505,13 +498,13 @@ universal-android-debloater() {
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
-  cd ~/Downloads
-  curl -o "uad_gui-linux.tar.gz" -fLC - "https://github.com/0x192/universal-android-debloater/releases/download/$VERSION/uad_gui-linux.tar.gz"
-  tar xfvz uad_gui-linux.tar.gz
+  curl -o ~/Downloads/uad_gui-linux.tar.gz -fLC - "https://github.com/0x192/universal-android-debloater/releases/download/$VERSION/uad_gui-linux.tar.gz"
+  tar xfv ~/Downloads/uad_gui-linux.tar.gz -C ~/Downloads
   rmdirIfExist ~/Downloads/uad_gui-linux.tar.gz
 
-  echo "Github: https://github.com/0x192/universal-android-debloater"
-  sleep 5
+  echo -e "\nGithub: https://github.com/0x192/universal-android-debloater"
+  echo -ne "Press Enter to continue... "
+  read
 }
 
 virt-manager() { # default install only
@@ -648,11 +641,10 @@ zoom() { # flatpak available
   APPNAME="Zoom"
   APPID="us.zoom.Zoom"
   REGULAR_DEBIAN_INSTALL() {
-    cd ~/Downloads
-    curl -o "zoom_amd64.deb" -fLC - "https://zoom.us/client/latest/zoom_amd64.deb"
-    sudo apt install -y ./zoom_amd64.deb
+    curl -o ~/Downloads/zoom_amd64.deb -fLC - "https://zoom.us/client/latest/zoom_amd64.deb"
+    sudo apt install -y ~/Downloads/zoom_amd64.deb
     rmdirIfExist ~/Downloads/zoom_amd64.deb
-    sleep 5
+    sleep 20
   }
 
   flatpakAvailable
