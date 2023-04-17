@@ -13,11 +13,14 @@ installMenu() {
 }
 
 install() {
+  VERSION=$(curl -s "https://api.github.com/repos/dev47apps/droidcam/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+
   echo -e "${DMagenta}================== START INSTALL ==================${Color_Off}"
   cd /tmp/
-  wget -O droidcam_latest.zip https://files.dev47apps.net/linux/droidcam_1.8.2.zip
-  # sha1sum: d1038e6d62cac6f60b0dd8caa8d5849c79065a7b
-  unzip droidcam_latest.zip -d droidcam
+
+  # sha1sum: 7b213dcf0bb4ac20d17007f52192c7914b10ed3f
+  wget -O droidcam_${VERSION}.zip "https://github.com/dev47apps/droidcam/releases/latest/download/droidcam_${VERSION}.zip"
+  unzip droidcam_${VERSION}.zip -d droidcam
 
   cd droidcam
   sudo ./install-client
@@ -30,11 +33,10 @@ changeResolution() {
   echo -e "change the height and width of your choosing"
   echo -e "${Green}width : 1920 | height : 1080 | 1080p"
   echo -e "width : 1280 | height : 720 | 720p${Color_Off}"
-  echo -ne "And so on ..."
+  echo -ne "Enter to continue..."
   read
 
-  cd /etc/modprobe.d/
-  sudo nano droidcam.conf
+  sudo nano /etc/modprobe.d/droidcam.conf
 }
 
 unloadDriver() {
@@ -47,6 +49,7 @@ unloadDriver() {
   heightINPUT=$(zenity --entry --width=500 --title="Reloading driver with the new resolution" --text="Enter the height :")
   height=$heightINPUT
 
+  echo -e "${DMagenta}================== LOADING DRIVER With New Resolution ==================${Color_Off}"
   sudo insmod /lib/modules/`uname -r`/kernel/drivers/media/video/v4l2loopback-dc.ko width=$width height=$height
 }
 
@@ -66,8 +69,8 @@ do
 
 	OPTIONS=(
 		Install "install or reinstall droidcam" ""
-		Change\ Resolution "changing camera resolution" ""
-		Unload\ Driver "ususally do this if there's an error" ""
+		Change\ Resolution "changing webcam resolution by editing config file" ""
+		Unload\ Driver "ususally due to an error or to change resolution" ""
 		Cancel "exit this process" ""
 	)
 
