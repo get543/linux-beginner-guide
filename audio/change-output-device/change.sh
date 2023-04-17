@@ -74,7 +74,7 @@ changeport_zenity() {
 
   # soundcard number input
   soundcardnumber_user_input=$(zenity --entry --width=500 --title="Sound Card Number" --text="Please put the sound card number :")
-  
+
   # change sound_card_number variables to match user input
   sound_card_number=$soundcardnumber_user_input
 
@@ -105,7 +105,7 @@ speaker_mode() {
 
   # display status
   echo -e "\nStatus :${red}\t\tSpeaker Mode ${colour_off}"
-  zenity --notification --window-icon="$speaker" --text="You are now on '$opt'" 
+  zenity --notification --window-icon="$speaker" --text="You are now on '$opt'"
   prompt="Status : Speaker Mode"
 }
 

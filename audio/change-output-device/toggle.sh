@@ -13,7 +13,7 @@ get_info=$(amixer -c $active_soundcard_number get 'Auto-Mute Mode' | grep "Item0
 headphone_mode() {
   # set automute to enabled
   amixer -c $active_soundcard_number set 'Auto-Mute Mode' Enabled
-  
+
   # change output to headphones
   pactl set-sink-port $active_sink_port analog-output-headphones
 
