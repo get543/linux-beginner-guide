@@ -70,7 +70,7 @@ do
 	OPTIONS=(
 		Install "install or reinstall droidcam" ""
 		Change\ Resolution "changing webcam resolution by editing config file" ""
-		Unload\ Driver "ususally due to an error or to change resolution" ""
+		Unload\ Driver "usually due to an error or to change resolution" ""
 		Cancel "exit this process" ""
 	)
 
