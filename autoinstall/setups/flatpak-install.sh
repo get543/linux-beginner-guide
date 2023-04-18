@@ -1,3 +1,18 @@
+#! /usr/bin/env bash
+
+# menu function
+createMenu() {
+  zenity --title="$TITLE" \
+        --text="$PROMPT" \
+        --list \
+        --column="$COLUMN1" \
+        --column="$COLUMN2" \
+        --column="$COLUMN3" \
+        --width="$WIDTH" \
+        --height="$HEIGHT" \
+        "${OPTIONS[@]}"
+}
+
 # distro functions
 ubuntu() {
   echo -e "${Green}Adding the flatpak ppa. ${Color_Off}"
