@@ -12,7 +12,7 @@ upgradeALL() {
     sudo dnf upgrade
   elif [ "$opensuse" ]
   then
-    sudo zypper upgrade
+    sudo zypper dup
   else
     echo -e "${Green}I'm sorry you're probably running distro other than.."
     echo -e "fedora/redhat, arch, debian/ubuntu, opensuse"
