@@ -260,7 +260,7 @@ do
     Google\ Cloud\ CLI "the gcloud CLI includes the gcloud, gsutil and bq command-line tools." "NO"
     Indicator-Sound-Switcher "sound input and output selector indicator" "NO"
     Inkscape "create and edits Scalable Vector Graphics (SVG) images" "YES"
-    Joplin "an open source note taking and to-do application with synchronisation capabilities." "YES"
+    Joplin "an open source note taking and to-do application with synchronisation capabilities." "NO"
     Kdenlive "video editing program by KDE" "YES"
     KolourPaint "an easy-to-use paint program" "YES"
     Krita "digital painting, creative freedom" "YES"
