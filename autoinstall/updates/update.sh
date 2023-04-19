@@ -23,7 +23,7 @@ updateRepository() {
         sudo dnf update --assumeno
       elif [ "$opensuse" ]
       then
-        sudo zypper update
+        sudo zypper up
       else
         echo -e "${Green}I'm sorry you're probably running distro other than.."
         echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
@@ -127,7 +127,7 @@ updateNode() {
         nvm use --lts
 
         echo -e "${Green}\nInstalling latest version of npm.${Color_Off}"
-        npm install -g npm@latest
+        npm install -g npm@latest corepack@latest
 
         echo -e "${Green}\n\n\n------------- List installed node version -------------${Color_Off}"
         nvm list
