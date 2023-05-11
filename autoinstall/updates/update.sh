@@ -23,7 +23,7 @@ updateRepository() {
         sudo dnf update --assumeno
       elif [ "$opensuse" ]
       then
-        sudo zypper up
+        sudo zypper refresh
       else
         echo -e "${Green}I'm sorry you're probably running distro other than.."
         echo -e "fedora/redhat, arch, debian/ubuntu, opensuse${Color_Off}"
@@ -59,7 +59,7 @@ updateFlatpak() {
     case "$?" in
       0) # yes
         echo -e "\n${DMagenta}============= Updating Flatpak Apps =============${Color_Off}"
-        flatpak update
+        flatpak update --assumeyes
       ;;
 
       1) # no
@@ -106,6 +106,7 @@ updateYtdlp() {
 
 updateNode() {
   loadNvm
+
   if ( command -v node nvm &> /dev/null )
   then
     QUESTION="Update Node JS to the latest LTS release ?"
