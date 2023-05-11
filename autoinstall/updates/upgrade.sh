@@ -49,7 +49,7 @@ chooseUpgradeDebian() {
 
       else
         clear
-        sudo nala install --update --assume-yes $choices
+        sudo nala install --update --assume-yes $final
 
       fi
     done
@@ -77,7 +77,7 @@ chooseUpgradeDebian() {
     else
       clear
       sudo apt update
-      sudo apt --only-upgrade install $packageName
+      sudo apt --only-upgrade install $final
 
     fi
   fi
