@@ -33,7 +33,7 @@ chooseUpgradeDebian() {
       menu=$(zenity --list \
         --checklist \
         --height=800 \
-        --width=900 \
+        --width=700 \
         --column "Checkbox" \
         --column "Package Name" \
         ${nalaList}
@@ -60,7 +60,7 @@ chooseUpgradeDebian() {
     menu=$(zenity --list \
       --checklist \
       --height=800 \
-      --width=900 \
+      --width=700 \
       --column "Checkbox" \
       --column "Package Name" \
       ${aptList}

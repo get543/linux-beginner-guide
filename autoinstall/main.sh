@@ -299,10 +299,10 @@ do
   clear
 
   # menu
-  opt=$(createMenu)
+  option=$(createMenu)
 
   # case
-  case "$opt" in
+  case "$option" in
     Ao) ao ;;
 
     Audacity) audacity ;;
