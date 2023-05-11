@@ -2,11 +2,9 @@
 Name=Change Output Device
 StartupWMClass=change.sh
 Comment=Shell script that uses zenity to change output device.
-GenericName=Change Output
-Exec=bash /home/<your-username>/Downloads/changing-output-device/change.sh
-Icon=/home/<your-username>/Downloads/changing-output-device/icons/output.png
+GenericName=Change Output Device
+Exec=/path/to/script/linux-beginner-guide/audio/change-output-device/change.sh
+Icon=/path/to/script/linux-beginner-guide/audio/change-output-device/icons/output.png
 Type=Application
 Categories=Utilities;
-Path=/usr/bin
-Path=/usr/bin
-
+Terminal=false
