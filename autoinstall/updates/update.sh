@@ -47,30 +47,32 @@ updateRepository() {
 updateFlatpak() {
   if ( command -v flatpak &> /dev/null )
   then
-    QUESTION="Update flatpak applications ?"
-    WIDTH="600"
-    HEIGHT="200"
-    OKLABEL="Yes"
-    CANCELLABEL="No"
+    while :
+    do
+      HEIGHT=800
+      WIDTH=700
+      COLUMN1="Checkbox"
+      COLUMN2="ID"
+      COLUMN3="Size"
 
-    # dialog
-    questionDialog
+      appList=$(no &> /dev/null | LC_ALL=en_US.UTF-8 flatpak update | grep 1. | awk '{print "FALSE", $2, $7}')
 
-    case "$?" in
-      0) # yes
-        echo -e "\n${DMagenta}============= Updating Flatpak Apps =============${Color_Off}"
-        flatpak update --assumeyes
-      ;;
+      menu=$(checklistMenu)
 
-      1) # no
-        echo "Abort."
-      ;;
+      choices="${menu[@]}"
 
-      *)
-        chooseOther
-        updateFlatpak
-      ;;
-    esac
+      final=$(echo "$choices" | tr "|" " ")
+
+      if [[ ! $final ]]
+      then
+        break
+
+      else
+        clear
+        flatpak update --assumeyes $final
+
+      fi
+    done
   fi
 }
 
