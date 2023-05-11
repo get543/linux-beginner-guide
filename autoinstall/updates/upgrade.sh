@@ -28,16 +28,15 @@ chooseUpgradeDebian() {
   then
     while :
     do
-      nalaList=$(command nala list --upgradable | awk 'NR%2==1' | awk '{print $1}' | tr -d '└──' | awk NF | awk '{print "FALSE", $1}')
+      HEIGHT=800
+      WIDTH=700
+      COLUMN1="Checkbox"
+      COLUMN2="Package Name"
+      COLUMN3="-"
 
-      menu=$(zenity --list \
-        --checklist \
-        --height=800 \
-        --width=700 \
-        --column "Checkbox" \
-        --column "Package Name" \
-        ${nalaList}
-      )
+      appList=$(command nala list --upgradable | awk 'NR%2==1' | awk '{print $1}' | tr -d '└──' | awk NF | awk '{print "FALSE", $1, "-"}')
+
+      menu=$(checklistMenu)
 
       choices="${menu[@]}"
 
@@ -55,16 +54,15 @@ chooseUpgradeDebian() {
     done
 
   else
-    aptList=$(command apt list --upgradable | awk '{print $1}' | cut -d / -f 1 | tail -n +2 | awk '{print "FALSE", $1}')
+    HEIGHT=800
+    WIDTH=700
+    COLUMN1="Checkbox"
+    COLUMN2="Package Name"
+    COLUMN3="-"
 
-    menu=$(zenity --list \
-      --checklist \
-      --height=800 \
-      --width=700 \
-      --column "Checkbox" \
-      --column "Package Name" \
-      ${aptList}
-    )
+    appList=$(command apt list --upgradable | awk '{print $1}' | cut -d / -f 1 | tail -n +2 | awk '{print "FALSE", $1, "-"}')
+
+    menu=$(checklistMenu)
 
     choices="${menu[@]}"
 
@@ -119,7 +117,7 @@ chooseUpgradeArch() {
     clear
 
     echo -e "\n${DMagenta}============= List Upgradable Packages =============${Color_Off}"
-    no | LC_ALL=en_US.UTF-8 sudo pacman -Syu
+    no &> /dev/null | LC_ALL=en_US.UTF-8 sudo pacman -Syu
 
     echo -e "\n${DMagenta}=====================================================================================================${Color_Off}"
     echo -e "Type the exact package name you want to upgrade according to the ${BRed}Packages${ColorOff} section."

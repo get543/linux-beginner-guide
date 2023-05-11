@@ -94,6 +94,18 @@ questionDialog() {
         --window-icon="$SCRIPT_DIR/icons/peepoThink.png"
 }
 
+# checklist menu
+checklistMenu() {
+  zenity --list \
+        --checklist \
+        --height="$HEIGHT" \
+        --width="$WIDTH" \
+        --column="$COLUMN1" \
+        --column="$COLUMN2" \
+        --column="$COLUMN3" \
+        ${appList}
+}
+
 # choose no option
 chooseOther() {
   zenity --notification \
@@ -203,17 +215,18 @@ removeUnused() {
   esac
 }
 
-# export stuff
+# export variables & functions
 export -f sudo
 export -f loadNvm
 export -f createMenu
+export -f questionDialog
+export -f checklistMenu
 export -f chooseOther
 export -f checkFedoraRedhat
 export -f checkArch
 export -f checkDebian
 export -f checkSUSE
 export -f checkNala
-export -f questionDialog
 export SCRIPT_DIR
 export BRed
 export Color_Off
@@ -242,6 +255,8 @@ do
   COLUMN2="Description"
   COLUMN3="Flatpak Support"
   OPTIONS=(
+    Exit "exit this installing process if you are done :)" "-"
+    "" "" ""
     Ao "an unofficial, third-party, Microsoft To-Do desktop app" "NO"
     Audacity "record and edit audio files" "YES"
     Autokey "control os with python script and keyboard shortcut" "NO"
@@ -285,8 +300,6 @@ do
     WINE "a compatibility layer to run windows applications on linux" "NO"
     yt-dlp "download youtube videos" "NO"
     Zoom "zoom video conference" "YES"
-    "" "" ""
-    Exit "exit this installing process if you are done :)" "-"
   )
 
   # check
@@ -303,6 +316,11 @@ do
 
   # case
   case "$option" in
+    Exit)
+      echo "Done."
+      break
+    ;;
+
     Ao) ao ;;
 
     Audacity) audacity ;;
@@ -388,11 +406,6 @@ do
     yt-dlp) ytdlp ;;
 
     Zoom) zoom ;;
-
-    Exit)
-      echo "Done."
-      break
-    ;;
 
     *) chooseOther ;;
   esac
