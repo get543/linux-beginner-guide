@@ -122,14 +122,13 @@ updateNode() {
       0) # yes
         echo -e "\n${DMagenta}============= Updating Node JS Package =============${Color_Off}"
         echo -e "${Green}Installing latest LTS release of node.${Color_Off}"
-        nvm install 'lts/*' --reinstall-packages-from=current --latest-npm
-        # nvm install --lts
+        nvm install --lts
 
-        # echo -e "${Green}\nUsing node latest LTS release.${Color_Off}"
-        # nvm use --lts
+        echo -e "${Green}\nUsing node latest LTS release.${Color_Off}"
+        nvm use --lts
 
-        # echo -e "${Green}\nInstalling latest version of npm.${Color_Off}"
-        # npm install -g npm@latest corepack@latest
+        echo -e "${Green}\nInstalling latest version of npm.${Color_Off}"
+        npm install -g npm@latest corepack@latest
 
         echo -e "${Green}\n\n\n------------- List installed node version -------------${Color_Off}"
         nvm list
