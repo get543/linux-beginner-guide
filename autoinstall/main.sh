@@ -87,8 +87,8 @@ createMenu() {
 questionDialog() {
   zenity --question \
         --text="$QUESTION" \
-        --ok-label=$OKLABEL \
-        --cancel-label=$CANCELLABEL \
+        --ok-label="$OKLABEL" \
+        --cancel-label="$CANCELLABEL" \
         --width="$WIDTH" \
         --height="$HEIGHT" \
         --window-icon="$SCRIPT_DIR/icons/peepoThink.png"
@@ -103,6 +103,7 @@ checklistMenu() {
         --column="$COLUMN1" \
         --column="$COLUMN2" \
         --column="$COLUMN3" \
+        --window-icon="$SCRIPT_DIR/icons/list.png" \
         ${appList}
 }
 
@@ -115,8 +116,8 @@ chooseOther() {
 
 installMissingDependecies() {
   QUESTION="Install missing dependencies ?"
-  WIDTH="600"
-  HEIGHT="200"
+  WIDTH=600
+  HEIGHT=200
   OKLABEL="Yes"
   CANCELLABEL="No"
 
@@ -165,8 +166,8 @@ installMissingDependecies() {
 
 removeUnused() {
   QUESTION="Remove unnecessary packages ?"
-  WIDTH="600"
-  HEIGHT="200"
+  WIDTH=600
+  HEIGHT=200
   OKLABEL="Yes"
   CANCELLABEL="No"
 
