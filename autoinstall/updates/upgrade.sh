@@ -75,7 +75,7 @@ chooseUpgradeDebian() {
     else
       clear
       sudo apt update
-      sudo apt --only-upgrade install $final
+      sudo apt --only-upgrade --assume-yes install $final
 
     fi
   fi
