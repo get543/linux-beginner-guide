@@ -1,7 +1,7 @@
 updateRepository() {
   QUESTION="Do you want to update the system repository ?"
-  WIDTH="600"
-  HEIGHT="200"
+  WIDTH=600
+  HEIGHT=200
   OKLABEL="Yes"
   CANCELLABEL="No"
 
@@ -47,32 +47,54 @@ updateRepository() {
 updateFlatpak() {
   if ( command -v flatpak &> /dev/null )
   then
-    while :
-    do
-      HEIGHT=800
-      WIDTH=700
-      COLUMN1="Checkbox"
-      COLUMN2="ID"
-      COLUMN3="Size"
+    QUESTION="Update flatpak applications ?"
+    WIDTH=600
+    HEIGHT=200
+    OKLABEL="Yes"
+    CANCELLABEL="No"
 
-      appList=$(no &> /dev/null | LC_ALL=en_US.UTF-8 flatpak update | grep 1. | awk '{print "FALSE", $2, $7}')
+    # dialog
+    questionDialog
 
-      menu=$(checklistMenu)
+    case "$?" in
+      0) # yes
+        while :
+        do
+          HEIGHT=800
+          WIDTH=700
+          COLUMN1="Checkbox"
+          COLUMN2="ID"
+          COLUMN3="Size"
 
-      choices="${menu[@]}"
+          appList=$(no &> /dev/null | LC_ALL=en_US.UTF-8 flatpak update | grep 1. | awk '{print "FALSE", $2, $7}')
 
-      final=$(echo "$choices" | tr "|" " ")
+          menu=$(checklistMenu)
 
-      if [[ ! $final ]]
-      then
-        break
+          choices="${menu[@]}"
 
-      else
-        clear
-        flatpak update --assumeyes $final
+          final=$(echo "$choices" | tr "|" " ")
 
-      fi
-    done
+          if [[ ! $final ]]
+          then
+            break
+
+          else
+            clear
+            flatpak update --assumeyes $final
+
+          fi
+        done
+      ;;
+
+      1) # no
+        echo "Abort."
+      ;;
+
+      *)
+        chooseOther
+        updateFlatpak
+      ;;
+    esac
   fi
 }
 
@@ -80,8 +102,8 @@ updateYtdlp() {
   if ( command -v yt-dlp &> /dev/null )
   then
     QUESTION="Update yt-dlp package ?"
-    WIDTH="600"
-    HEIGHT="200"
+    WIDTH=600
+    HEIGHT=200
     OKLABEL="Yes"
     CANCELLABEL="No"
 
@@ -112,8 +134,8 @@ updateNode() {
   if ( command -v node nvm &> /dev/null )
   then
     QUESTION="Update Node JS to the latest LTS release ?"
-    WIDTH="600"
-    HEIGHT="200"
+    WIDTH=600
+    HEIGHT=200
     OKLABEL="Yes"
     CANCELLABEL="No"
 
@@ -124,29 +146,38 @@ updateNode() {
       0) # yes
         echo -e "\n${DMagenta}============= Updating Node JS Package =============${Color_Off}"
         echo -e "${Green}Installing latest LTS release of node.${Color_Off}"
-        nvm install --lts
+        nvm install 'lts/*' --reinstall-packages-from=current --latest-npm
 
-        echo -e "${Green}\nUsing node latest LTS release.${Color_Off}"
-        nvm use --lts
-
-        echo -e "${Green}\nInstalling latest version of npm.${Color_Off}"
-        npm install -g npm@latest corepack@latest
-
-        echo -e "${Green}\n\n\n------------- List installed node version -------------${Color_Off}"
+        echo -e "${Green}\n\n------------- List installed node version -------------${Color_Off}"
         nvm list
-        echo -e "${Green}\n(-> N/A) means that it is not installed.${Color_Off}"
-        echo -e "${Green}Type ${BRed}skip ${Green}to skip this process."
-        echo -ne "${DYellow}Which version of node you want to uninstall ? ${Color_Off}"
-        read nodeVersion
 
-        if [ "$nodeVersion" = "skip" ]
-        then
-          echo "Done."
-          return
-        fi
+        while :
+        do
+          HEIGHT=800
+          WIDTH=700
+          COLUMN1="Checkbox"
+          COLUMN2="Node Version Name"
+          COLUMN3="Node Version Number"
 
-        echo -e "${Green}\nUninstalling old version of node.${Color_Off}"
-        nvm uninstall $nodeVersion
+          appList=$(nvm list --no-colors | grep lts/ | awk '{print "FALSE", $1, $3}')
+
+          menu=$(checklistMenu)
+
+          choices="${menu[@]}"
+
+          final=$(echo "$choices" | tr "|" "\n")
+
+          if [[ ! $final ]]
+          then
+            break
+
+          else
+            for version in $final
+            do
+              nvm uninstall --lts=$version
+            done
+          fi
+        done
       ;;
 
       1) # no
