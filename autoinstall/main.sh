@@ -288,7 +288,7 @@ do
     Pinta "edit images and paint digitally" "YES"
     pulseaudio\ and\ pavucontrol "sound server and to adjust the volume level" "NO"
     Rambox "an all-in-one messenger that lets you combine multiple services in one place" "NO"
-    Saving\'s\ Portmaster "see all connection on your system and block them" "NO"
+    Safing\'s\ Portmaster "see all connection on your system and block them" "NO"
     ScrCpy "display and control Android devices connected via USB" "NO"
     simplescreenrecorder "a feature rich screen recorder that supports X11 and OpenGL" "NO"
     Spotify "online music streaming service" "YES"
@@ -383,7 +383,7 @@ do
 
     Rambox) rambox ;;
 
-    Saving\'s\ Portmaster) portmaster ;;
+    Safing\'s\ Portmaster) portmaster ;;
 
     ScrCpy) scrcpy ;;
 
