@@ -105,7 +105,7 @@ discord() { # flatpak available
   flatpakAvailable
 }
 
-docker() { # custom
+docker() { # custom, works for all
   NAME="Docker"
   echo -e "${DMagenta}
     --------------------------------------------------
@@ -180,7 +180,7 @@ gnome-tweaks() { # default install only
   defaultInstallOnly
 }
 
-gcloudcli() { # custom
+gcloudcli() { # custom, works for all
   NAME="Google Cloud CLI"
   VERSION=426.0.0
   echo -e "${DMagenta}
@@ -341,7 +341,7 @@ openrgb() { # flatpak available
   flatpakAvailable
 }
 
-phoneinfoga() { # custom
+phoneinfoga() { # custom, works for all
   NAME="PhoneInfoga"
   echo -e "${DMagenta}
     --------------------------------------------------
@@ -378,6 +378,18 @@ rambox() { # default install only
     curl -o ~/Downloads/rambox_V2.deb -fLC - "https://rambox.app/api/download?os=linux&package=deb"
     sudo apt install -y ~/Downloads/rambox_V2.deb
     rmdirIfExist ~/Downloads/rambox_V2.deb
+    sleep 20
+  }
+
+  defaultInstallOnly
+}
+
+portmaster() { # default install only
+  NAME="Saving's Portmaster"
+  DEBIANSETUP() {
+    curl -o ~/Downloads/portmaster.deb -fLC - "https://updates.safing.io/latest/linux_amd64/packages/portmaster-installer.deb"
+    sudo apt install -y ~/Downloads/portmaster.deb
+    rmdirIfExist ~/Downloads/portmaster.deb
     sleep 20
   }
 
@@ -474,7 +486,7 @@ spotify() { # flatpak available
   flatpakAvailable
 }
 
-starship() { # custom
+starship() { # custom, works for all
   NAME="starship"
   echo -e "${DMagenta}
     --------------------------------------------------
@@ -491,7 +503,7 @@ telegram() { # flatpak only
   flatpakOnly
 }
 
-universal-android-debloater() {
+universal-android-debloater() { # custom, works for all
   NAME="Universal Android Debloater"
   VERSION=0.5.1
   echo -e "${DMagenta}
