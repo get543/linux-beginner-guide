@@ -34,7 +34,7 @@ chooseUpgradeDebian() {
       COLUMN2="Package Name"
       COLUMN3="-"
 
-      appList=$(command nala list --upgradable | awk 'NR%2==1' | awk '{print $1}' | tr -d '└──' | awk NF | awk '{print "FALSE", $1, "-"}')
+      appList=$(command nala list --upgradable | awk '{print $1}' | tr -d '└──' | awk 'NR%2==1' | awk NF | awk '{print "FALSE", $1, "-"}')
 
       menu=$(checklistMenu)
 
@@ -60,7 +60,7 @@ chooseUpgradeDebian() {
     COLUMN2="Package Name"
     COLUMN3="-"
 
-    appList=$(command apt list --upgradable | awk '{print $1}' | cut -d / -f 1 | tail -n +2 | awk '{print "FALSE", $1, "-"}')
+    appList=$(command apt list --upgradable | tail -n +2 | cut -d / -f 1 | awk '{print "FALSE", $1, "-"}')
 
     menu=$(checklistMenu)
 

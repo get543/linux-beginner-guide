@@ -66,7 +66,7 @@ updateFlatpak() {
           COLUMN2="ID"
           COLUMN3="Size"
 
-          appList=$(no &> /dev/null | LC_ALL=en_US.UTF-8 flatpak update | grep 1. | awk '{print "FALSE", $2, $7}')
+          appList=$(no &> /dev/null | LC_ALL=en_US.UTF-8 flatpak update | tail -n +4 | head -n +2 | awk '{print "FALSE", $2, $7}')
 
           menu=$(checklistMenu)
 
