@@ -71,7 +71,7 @@ chooseUpgradeDebian() {
     if [[ ! $final ]]
     then
       break
-    
+
     else
       clear
       sudo apt update
