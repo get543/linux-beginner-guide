@@ -14,7 +14,7 @@ flatpakOnly() {
       --------------------------------------------------
       |               Installing $PACKAGENAME             |
       -------------------------------------------------- ${Color_Off}"
-      flatpak install flathub $ID
+      flatpak install --assumeyes flathub $ID
     ;;
 
     1) # no
@@ -54,7 +54,7 @@ flatpakAvailable() {
       --------------------------------------------------
       |              Installing $APPNAME               |
       -------------------------------------------------- ${Color_Off}"
-      flatpak install flathub $APPID
+      flatpak install --assumeyes flathub $APPID
     ;;
 
     No)
