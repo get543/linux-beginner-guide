@@ -1479,7 +1479,7 @@ Your theme that you downloaded should have a file called `theme.txt`. That file 
 
 - So the first step you need to do is edit the config file.
 ```bash
-nano /etc/default/grub
+sudo nano /etc/default/grub
 ```
 
 - Find `GRUB_THEME=` and your new theme refrencing to the `theme.txt`.
@@ -1494,7 +1494,7 @@ GRUB_THEME=/usr/share/grub/themes/legion/dedsec/theme.txt
 ## Change desired resolution for the grub menu (optional)
 - Edit the config file.
 ```bash
-nano /etc/default/grub
+sudo nano /etc/default/grub
 ```
 
 - Find `GRUB_GFXMODE=` and change it to your disired resolution `GRUB_GFXMODE=1920x1080`.
@@ -1513,8 +1513,43 @@ sudo grub2-mkconfig -o /boot/grub/grub.cfg
 
 > Please see the github repo of your theme to install it properly.
 
+
+# Change Boot Splash Screen on Linux
+## General Installation Instructions:
+- Copy **YOURTHEME** folder to `usr/share/plymouth/themes/YOURTHEME`.
+
+- Install **YOURTHEME** in `/usr/share/plymouth/themes`.
+```bash
+sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/YOURTHEME/YOURTHEME.plymouth 100
+```
+
+- Switch `default.plymouth` to the new one.
+```bash
+sudo update-alternatives --config default.plymouth
+```
+And then choose your new theme.
+
+- Re-generate `initramfs` image.
+```bash
+sudo update-initramfs -u
+```
+
+**More info :** https://www.xmodulo.com/change-boot-splash-screen-ubuntu-linux-mint.html
+
+## Some Cool Themes That I Found
+### Theme for Arch
+- https://www.gnome-look.org/p/1009531
+- https://github.com/abrahammurciano/plymouth-theme-sweet-arch
+- https://www.gnome-look.org/p/1000032
+
+### Another cool themes
+- https://www.gnome-look.org/p/1000045
+- https://store.kde.org/p/1000045
+- https://github.com/vikashraghavan/dotLock
+
+
 # Obsidian Fix Empty Space
-Fix the obsidian empty space left and right.
+Fix the obsidian empty space on the left and right.
 - Open Settings.
 - In Editor, Turn off `Readable line length`.
 
@@ -1530,3 +1565,84 @@ If you want to use custom css. This only works if you **Turn On** `Readable line
 	margin: auto;
 }
 ```
+
+
+# [Linux Most Commonly Known Commands](https://indianstudent.hashnode.dev/linux-commands)
+
+### Navigating Directories
+- `ls` - list files and directories
+- `cd` - change directory
+- `pwd` - print working directory
+- `cp` - copy files or directories
+- `mv` - move or rename files or directories
+- `rm` - remove or delete files and directories
+- `mkdir` - create a new directory
+- `rmdir` - remove or delete an empty directory
+- `touch` - create a new empty file or update the timestamp of an existing file
+- `cat` - display the contents of a file
+- `grep` - search for a pattern in a file
+- `find` - search for files and directories
+
+### Archive
+- `tar` - create or extract a tar archive
+- `gzip` - compress or decompress a file
+
+### Permissions
+- `chmod` - change the permissions of a file or directory
+- `chown` - change the ownership of a file or directory
+
+### Remote
+- `ssh` - connect to a remote server using SSH protocol
+- `scp` - copy files to or from a remote server using SSH protocol
+- `rsync` - synchronize files between local and remote servers
+
+### Download Files
+- `wget` - download files from the internet
+- `curl` - transfer data from or to a server using various protocols
+
+### Networking
+- `ping` - test the connectivity between two network devices
+- `traceroute` - display the route that packets take to reach a network device
+- `netstat` - display network connections and statistics
+- `ifconfig` - display network interface configuration
+- `ip` - display and modify network interface configuration
+- `route` - display and modify the kernel routing table
+- `iptables` - set up and manage firewall rules
+
+### System
+- `systemctl` - control system services
+- `journalctl` - view system logs
+- `top` - display the processes running on a system, along with their resource usage statistics
+- `ps` - display the processes running on a system
+- `kill` - terminate a process
+- `bg` - run a command in the background
+- `fg` - bring a background process to the foreground
+- `jobs` - display the status of background jobs
+- `cron` - schedule tasks to run at specific times or intervals
+- `at` - schedule a one-time task to run at a specific time
+- `uptime` - display system uptime and load average
+
+### Disk & File System
+- `df` - display disk usage information
+- `du` - display disk usage information for a directory or file
+- `mount` - mount a file system
+- `umount` - unmount a file system
+
+### Check Logs
+- `lsof` - list open files and processes
+- `who` - display who is logged in
+- `last` - display recent login history
+- `history` - display the command history
+
+### Read Files
+- `less` - view a file one page at a time
+- `more` - view a file one page at a time
+
+### Manipulating Text Files
+- `head` - display the first few lines of a file
+- `tail` - display the last few lines of a file
+- `diff` - compare two files line by line
+- `patch` - apply a patch to a file
+- `awk` - process and manipulate text files
+- `sed` - process and manipulate text files
+- `sort` - sort lines of text
