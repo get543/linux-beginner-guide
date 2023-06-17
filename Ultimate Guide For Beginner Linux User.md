@@ -1567,7 +1567,8 @@ If you want to use custom css. This only works if you **Turn On** `Readable line
 ```
 
 
-# [Linux Most Commonly Known Commands](https://indianstudent.hashnode.dev/linux-commands)
+# Linux Most Commonly Known Commands
+**Source :** https://indianstudent.hashnode.dev/linux-commands
 
 ### Navigating Directories
 - `ls` - list files and directories
