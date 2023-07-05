@@ -54,30 +54,33 @@ chooseUpgradeDebian() {
     done
 
   else
-    HEIGHT=800
-    WIDTH=700
-    COLUMN1="Checkbox"
-    COLUMN2="Package Name"
-    COLUMN3="-"
+    while :
+    do
+      HEIGHT=800
+      WIDTH=700
+      COLUMN1="Checkbox"
+      COLUMN2="Package Name"
+      COLUMN3="-"
 
-    appList=$(command apt list --upgradable | tail -n +2 | cut -d / -f 1 | awk '{print "FALSE", $1, "-"}')
+      appList=$(command apt list --upgradable | tail -n +2 | cut -d / -f 1 | awk '{print "FALSE", $1, "-"}')
 
-    menu=$(checklistMenu)
+      menu=$(checklistMenu)
 
-    choices="${menu[@]}"
+      choices="${menu[@]}"
 
-    final=$(echo "$choices" | tr "|" " ")
+      final=$(echo "$choices" | tr "|" " ")
 
-    if [[ ! $final ]]
-    then
-      break
+      if [[ ! $final ]]
+      then
+        break
 
-    else
-      clear
-      sudo apt update
-      sudo apt --only-upgrade --assume-yes install $final
+      else
+        clear
+        sudo apt update
+        sudo apt --only-upgrade --assume-yes install $final
 
-    fi
+      fi
+    done
   fi
 }
 
