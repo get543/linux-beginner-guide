@@ -192,6 +192,37 @@ updateNode() {
   fi
 }
 
+updateRust() {
+  if ( command -v rustup &> /dev/null )
+  then
+    QUESTION="Update rust to the latest stable release ?"
+    WIDTH=600
+    HEIGHT=200
+    OKLABEL="Yes"
+    CANCELLABEL="No"
+
+    # dialog
+    questionDialog
+
+    case "$?" in
+      0) # yes
+        echo -e "\n${DMagenta}============= Updating Rust Package =============${Color_Off}"
+        rustup check
+        rustup update
+      ;;
+
+      1) # no
+        echo "Abort."
+      ;;
+
+      *)
+        chooseOther
+        updateRust
+      ;;
+    esac
+  fi
+}
+
 
 # -------------------------------------------------------------------------------------
 #                                 SCRIPT STARTS
@@ -213,3 +244,6 @@ updateYtdlp
 
 # ----------------------------------------------------------------------------
 updateNode
+
+# ----------------------------------------------------------------------------
+updateRust
