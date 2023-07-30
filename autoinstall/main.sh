@@ -218,7 +218,6 @@ removeUnused() {
 }
 
 # export variables & functions
-export -f assumeYes
 export -f sudo
 export -f loadNvm
 export -f createMenu
