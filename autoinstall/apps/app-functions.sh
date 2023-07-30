@@ -182,16 +182,21 @@ gnome-tweaks() { # default install only
 
 gcloudcli() { # custom, works for all
   NAME="Google Cloud CLI"
-  VERSION=426.0.0
   echo -e "${DMagenta}
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
-  curl -o ~/gcloud-cli.tar.gz -fLC - "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-${VERSION}-linux-x86_64.tar.gz"
-  tar xfv ~/gcloud-cli.tar.gz -C $HOME
-  . ~/google-cloud-sdk/install.sh
-  rmdirIfExist ~/gcloud-cli.tar.gz
 
+  echo -e "${BRed}\nRead This First Before Installing !! ${Color_Off}"
+  echo -e "- When prompted, choose a location (usually your ${Green}Home${Color_Off} folder) to create the ${Green}google-cloud-sdk${Color_Off} folder."
+  echo -e "- If you want to send anonymous usage statistics to help improve gcloud CLI, answer ${Green}Y${Color_Off} when prompted."
+  echo -e "- To add gcloud CLI command-line tools to your PATH and enable command completion, answer ${Green}Y${Color_Off} when prompted."
+  echo -ne "Press Enter to continue..."
+  read
+
+  curl https://sdk.cloud.google.com | bash
+
+  echo "\nDetailed Instructions : https://cloud.google.com/sdk/docs/downloads-interactive"
   sleep 20
 }
 
@@ -218,7 +223,7 @@ inkscape() { # flatpak available
   flatpakAvailable
 }
 
-joplin() { # custom
+joplin() { # custom, works for all
   NAME="Joplin"
   echo -e "${DMagenta}
     --------------------------------------------------
@@ -308,25 +313,26 @@ openrgb() { # flatpak available
     # menu
     opt=$(createMenu)
 
-    VERSION=0.8
+    VERSION=$(curl -s "https://api.github.com/repos/CalcProgrammer1/OpenRGB/tags" | grep -Po '"name": "release_\K[^"]*' | head -n 1)
+    ID=$(curl -s "https://api.github.com/repos/CalcProgrammer1/OpenRGB/tags" | grep -Po '"sha": "\K[^"]{7}' | head -n 1)
 
     case "$opt" in
       20.10\ and\ older)
-        curl -o ~/Downloads/openrgb_${VERSION}_buster.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_buster_fb88964.deb"
+        curl -o ~/Downloads/openrgb_${VERSION}_buster.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_buster_${ID}.deb"
         sudo apt install -y ~/Downloads/openrgb_${VERSION}_buster.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_buster.deb
         sleep 20
       ;;
 
       21.04\ and\ newer)
-        curl -o ~/Downloads/openrgb_${VERSION}_bullseye.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bullseye_fb88964.deb"
+        curl -o ~/Downloads/openrgb_${VERSION}_bullseye.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bullseye_${ID}.deb"
         sudo apt install -y ~/Downloads/openrgb_${VERSION}_bullseye.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_bullseye.deb
         sleep 20
       ;;
 
       22.04\ LTS\ and\ newer)
-        curl -o ~/Downloads/openrgb_${VERSION}_bookwarm.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bookworm_fb88964.deb"
+        curl -o ~/Downloads/openrgb_${VERSION}_bookwarm.deb -fLC - "https://openrgb.org/releases/release_${VERSION}/openrgb_${VERSION}_amd64_bookworm_${ID}.deb"
         sudo apt install -y ~/Downloads/openrgb_${VERSION}_bookwarm.deb
         rmdirIfExist ~/Downloads/openrgb_${VERSION}_bookwarm.deb
         sleep 20
@@ -505,17 +511,33 @@ telegram() { # flatpak only
 
 universal-android-debloater() { # custom, works for all
   NAME="Universal Android Debloater"
-  VERSION=0.5.1
+  VERSION=$(curl -s "https://api.github.com/repos/0x192/universal-android-debloater/releases" | grep -Po '"tag_name": "\K[^"]*' | head -n 1)
   echo -e "${DMagenta}
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
-  curl -o ~/Downloads/uad_gui-linux.tar.gz -fLC - "https://github.com/0x192/universal-android-debloater/releases/download/$VERSION/uad_gui-linux.tar.gz"
+  curl -o ~/Downloads/uad_gui-linux.tar.gz -fLC - "https://github.com/0x192/universal-android-debloater/releases/download/${VERSION}/uad_gui-linux.tar.gz"
   tar xfv ~/Downloads/uad_gui-linux.tar.gz -C ~/Downloads
   rmdirIfExist ~/Downloads/uad_gui-linux.tar.gz
 
   echo -e "\nGithub: https://github.com/0x192/universal-android-debloater"
   echo -ne "Press Enter to continue... "
+  read
+}
+
+ventoy() { # custom, works for all
+  NAME="Ventoy"
+  VERSION=$(curl -s "https://api.github.com/repos/ventoy/Ventoy/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  echo -e "${DMagenta}
+    --------------------------------------------------
+    |           Installing $NAME                     |
+    -------------------------------------------------- ${Color_Off}"
+  curl -o ~/Downloads/ventoy.tar.gz -fLC - "https://github.com/ventoy/Ventoy/releases/download/v${VERSION}/ventoy-${VERSION}-linux.tar.gz"
+  tar xfv ~/Downloads/ventoy.tar.gz -C ~/Downloads
+  rmdirIfExist ~/Downloads/ventoy.tar.gz
+
+  echo -e "\nGithub: https://github.com/ventoy/Ventoy"
+  echo -ne "Press Enter to continue..."
   read
 }
 

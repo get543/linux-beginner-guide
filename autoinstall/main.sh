@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 BRed="\033[1;31m"
 Color_Off="\033[0m"
@@ -22,6 +22,7 @@ sudo() {
   /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo "$@"
 }
 
+# load node version manager
 loadNvm() {
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -217,6 +218,7 @@ removeUnused() {
 }
 
 # export variables & functions
+export -f assumeYes
 export -f sudo
 export -f loadNvm
 export -f createMenu
@@ -295,6 +297,7 @@ do
     starship "minimal, blazing-fast, and infinitely customizable prompt for any shell" "NO"
     Telegram\ Desktop "official desktop version of Telegram messaging app" "YES"
     Universal\ Android\ Debloater\ GUI "GUI to debloat non-rooted android devices using ADB" "NO"
+    Ventoy "ventoy is an open source tool to create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files" "NO"
     Visual\ Studio\ Code "code editor" "NO"
     Virtual\ Machine\ Manager "virtual machine (VM) based on QEMU" "NO"
     VLC "VLC media player, the open-source multimedia player" "YES"
@@ -396,6 +399,8 @@ do
     Telegram\ Desktop) telegram ;;
 
     Universal\ Android\ Debloater\ GUI) universal-android-debloater ;;
+
+    Ventoy) ventoy ;;
 
     Virtual\ Machine\ Manager) virt-manager ;;
 
