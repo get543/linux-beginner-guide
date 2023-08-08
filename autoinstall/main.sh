@@ -182,7 +182,7 @@ removeUnused() {
       if [ "$debian" ]
       then
         sudo apt autoremove
-        sudo apt clean
+	      sudo apt clean
 
       elif [ "$fedoraRedhat" ]
       then
@@ -191,7 +191,7 @@ removeUnused() {
 
       elif [ "$arch" ]
       then
-	      sudo pacman -Scc
+        sudo pacman -Scc
 
       elif [ "$opensuse" ]
       then
