@@ -182,7 +182,7 @@ removeUnused() {
       if [ "$debian" ]
       then
         sudo apt autoremove
-	      sudo apt clean
+        sudo apt clean
 
       elif [ "$fedoraRedhat" ]
       then
