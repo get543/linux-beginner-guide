@@ -156,10 +156,11 @@ updateNode() {
           HEIGHT=800
           WIDTH=700
           COLUMN1="Checkbox"
-          COLUMN2="Node Version Name"
-          COLUMN3="Node Version Number"
+          COLUMN2="Node Version"
+          COLUMN3="-"
 
-          appList=$(nvm list --no-colors | grep lts/ | awk '{print "FALSE", $1, $3}')
+          # appList=$(nvm list --no-colors | grep lts/ | awk '{print "FALSE", $1, $3}')
+          appList=$(command ls $NVM_DIR/versions/node | awk '{print "FALSE", $1}')
 
           menu=$(checklistMenu)
 
@@ -174,7 +175,11 @@ updateNode() {
           else
             for version in $final
             do
+              echo -e "\n${Green}Uninstalling node ${version} using nvm command.${Color_Off}"
               nvm uninstall --lts=$version
+
+              echo -e "\n${Green}Removing node ${version} directory.${Color_Off}"
+              rm -rfv $NVM_DIR/versions/node/$version
             done
           fi
         done
