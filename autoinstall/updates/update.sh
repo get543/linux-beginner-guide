@@ -62,6 +62,8 @@ updateFlatpak() {
         do
           HEIGHT=800
           WIDTH=700
+          TITLE="List Outdated Flatpak Applications"
+          PROMPT="Select apps you want to update."
           COLUMN1="Checkbox"
           COLUMN2="ID"
           COLUMN3="Size"
@@ -155,6 +157,8 @@ updateNode() {
         do
           HEIGHT=800
           WIDTH=700
+          TITLE="List All Installed Node Versions"
+          PROMPT="Select which node version you want to uninstall."
           COLUMN1="Checkbox"
           COLUMN2="Node Version"
           COLUMN3="-"

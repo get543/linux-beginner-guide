@@ -71,9 +71,9 @@ checkNala() {
 
 # menu dialog
 createMenu() {
-  zenity --title="$TITLE" \
+  zenity --list \
+        --title="$TITLE" \
         --text="$PROMPT" \
-        --list \
         --column="$COLUMN1" \
         --column="$COLUMN2" \
         --column="$COLUMN3" \
@@ -98,6 +98,8 @@ questionDialog() {
 checklistMenu() {
   zenity --list \
         --checklist \
+        --title="$TITLE" \
+        --text="$PROMPT" \
         --height="$HEIGHT" \
         --width="$WIDTH" \
         --column="$COLUMN1" \
@@ -250,8 +252,8 @@ while :
 do
   HEIGHT=800
   WIDTH=1200
-  TITLE="AutoInstall"
-  PROMPT="Choose What App You Want To Install"
+  TITLE="AutoInstall Applications"
+  PROMPT="Choose what app you want to install."
   COLUMN1="Apps"
   COLUMN2="Description"
   COLUMN3="Flatpak Support"

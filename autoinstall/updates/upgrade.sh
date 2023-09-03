@@ -23,13 +23,15 @@ upgradeALL() {
 }
 
 chooseUpgradeDebian() {
-  # nala is installed
+  # using nala
   if (command -v nala &> /dev/null )
   then
     while :
     do
       HEIGHT=800
       WIDTH=700
+      TITLE="List Outdated Packages"
+      PROMPT="Select which apps you want to update."
       COLUMN1="Checkbox"
       COLUMN2="Package Name"
       COLUMN3="-"
@@ -53,11 +55,14 @@ chooseUpgradeDebian() {
       fi
     done
 
+    # using apt
   else
     while :
     do
       HEIGHT=800
       WIDTH=700
+      TITLE="List Outdated Packages"
+      PROMPT="Select which apps you want to update."
       COLUMN1="Checkbox"
       COLUMN2="Package Name"
       COLUMN3="-"
@@ -156,8 +161,8 @@ checkSUSE
 
 HEIGHT=300
 WIDTH=900
-PROMPT="Install Upgrade"
 TITLE="Upgrade Packages Installation"
+PROMPT="Install Upgrade"
 COLUMN1="Choose One"
 COLUMN2="Description"
 COLUMN3="Distros"

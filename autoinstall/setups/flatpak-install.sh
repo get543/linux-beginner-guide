@@ -2,9 +2,9 @@
 
 # menu function
 createMenu() {
-  zenity --title="$TITLE" \
+  zenity --list \
+        --title="$TITLE" \
         --text="$PROMPT" \
-        --list \
         --column="$COLUMN1" \
         --column="$COLUMN2" \
         --column="$COLUMN3" \
@@ -128,8 +128,8 @@ alpine() {
 mageia() {
   HEIGHT=400
   WIDTH=800
-  PROMPT="Flatpak is available for Mageia 6 and newer. "
   TITLE="Method to install flatpak."
+  PROMPT="Flatpak is available for Mageia 6 and newer."
   COLUMN1="Choose One"
   COLUMN2="Description"
   COLUMN3=""
@@ -306,8 +306,8 @@ case "$flatpakOption" in
     do
       HEIGHT=800
       WIDTH=800
-      PROMPT="Package Install"
       TITLE="Flatpak Installation"
+      PROMPT="Select which distro what distro you are using."
       COLUMN1="Choose Your Distribution"
       COLUMN2="Description"
       COLUMN3="Installed by Default"
