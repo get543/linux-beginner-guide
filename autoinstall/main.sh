@@ -260,7 +260,6 @@ do
   OPTIONS=(
     Exit "exit this installing process if you are done :)" "-"
     "" "" ""
-    Ao "an unofficial, third-party, Microsoft To-Do desktop app" "NO"
     Audacity "record and edit audio files" "YES"
     Autokey "control os with python script and keyboard shortcut" "NO"
     balena-etcher "flash OS images to SD cards and USB drives, safely and easily" "NO"
@@ -282,6 +281,7 @@ do
     Kdenlive "video editing program by KDE" "YES"
     KolourPaint "an easy-to-use paint program" "YES"
     Krita "digital painting, creative freedom" "YES"
+    Kuro "an unofficial, featureful, open source, community-driven, free Microsoft To-Do app," "NO"
     lazygit "a simple terminal UI for git commands." "NO"
     Obsidian "application for taking notes based on markdown file" "YES"
     OBS\ Studio "live streaming and video recording software" "YES"
@@ -369,6 +369,8 @@ do
     KolourPaint) kolourpaint ;;
 
     Krita) krita ;;
+
+    Kuro) kuro ;;
 
     lazygit) lazygit ;;
 

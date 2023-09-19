@@ -1,16 +1,3 @@
-ao () { # default install only
-  NAME="Ao"
-  VERSION=$(curl -s "https://api.github.com/repos/klaudiosinani/ao/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-  DEBIANSETUP() {
-    curl -o ~/Downloads/ao_${VERSION}.deb -fLC - "https://github.com/klaudiosinani/ao/releases/latest/download/ao_${VERSION}_amd64.deb"
-    sudo apt install -y ~/Downloads/ao_${VERSION}.deb
-    rmdirIfExist ~/Downloads/ao_${VERSION}.deb
-    sleep 20
-  }
-
-  defaultInstallOnly
-}
-
 audacity() { # flatpak only
   PACKAGENAME="Audacity"
   ID="org.audacityteam.Audacity"
@@ -256,6 +243,19 @@ krita() { # flatpak only
   ID="org.kde.krita"
 
   flatpakOnly
+}
+
+kuro() { # default install only
+  NAME="Kuro"
+  VERSION=$(curl -s "https://api.github.com/repos/davidsmorais/kuro/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  DEBIANSETUP() {
+    curl -o ~/Downloads/kuro_${VERSION}.deb -fLC - "https://github.com/davidsmorais/kuro/releases/latest/download/kuro_${VERSION}_amd64.deb"
+    sudo apt install -y ~/Downloads/kuro_${VERSION}.deb
+    rmdirIfExist ~/Downloads/kuro_${VERSION}.deb
+    sleep 20
+  }
+
+  defaultInstallOnly
 }
 
 lazygit() { # default install only
