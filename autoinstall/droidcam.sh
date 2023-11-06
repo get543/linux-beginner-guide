@@ -22,8 +22,9 @@ install() {
   wget -O droidcam_${VERSION}.zip "https://github.com/dev47apps/droidcam/releases/latest/download/droidcam_${VERSION}.zip"
   unzip droidcam_${VERSION}.zip -d droidcam
 
-  sudo . "/tmp/droidcam/install-client"
-  sudo . "/tmp/droidcam/install-video"
+  cd droidcam
+  sudo ./install-client
+  sudo ./install-video
   echo -e "${DMagenta}======================== DONE ========================${Color_Off}"
 }
 
