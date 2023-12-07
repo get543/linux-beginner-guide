@@ -201,6 +201,36 @@ updateNode() {
   fi
 }
 
+updatePipPackages() {
+  if ( command -v pip &> /dev/null )
+  then
+    QUESTION="Update outdated pip packages ?"
+    WIDTH=600
+    HEIGHT=200
+    OKLABEL="Yes"
+    CANCELLABEL="No"
+
+    # dialog
+    questionDialog
+
+    case "$?" in
+      0) # yes
+        echo -e "\n${DMagenta}============= Updating pip Package =============${Color_Off}"
+        pip --disable-pip-version-check list --outdated --format=json | python -c "import json, sys; print('\n'.join([x['name'] for x in json.load(sys.stdin)]))" | xargs -n1 pip install -U
+      ;;
+
+      1) # no
+        echo "Abort."
+      ;;
+
+      *)
+        chooseOther
+        updatePipPackages
+      ;;
+    esac
+  fi
+}
+
 updateRust() {
   if ( command -v rustup &> /dev/null )
   then
@@ -253,6 +283,9 @@ updateYtdlp
 
 # ----------------------------------------------------------------------------
 updateNode
+
+# ----------------------------------------------------------------------------
+updatePipPackages
 
 # ----------------------------------------------------------------------------
 updateRust
