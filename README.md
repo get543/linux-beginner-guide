@@ -102,6 +102,10 @@ My starship config. [Starship] is what I use to customise my bash prompt. Don't 
 
 XFCE compositor config file. Works well if you are running XFCE on VM and cannot use 3D Acceleration.
 
+## [`kitty.conf`]
+
+My kitty (terminal emulator) config file. Not fully explored and not fully configured (still searching).
+
 ## [`change-perm.sh`]
 
 Script to change usb or drive permission. It will change it to be able to have read, write, and execute permission.
@@ -120,6 +124,7 @@ Script to change usb or drive permission. It will change it to be able to have r
 [`config/`]: https://github.com/get543/linux-beginner-guide/tree/main/config
 [`starship.toml`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/config/starship.toml
 [`picom.conf`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/config/picom.conf
+[`kitty.conf`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/config/kitty.conf
 
 [`audio/`]: https://github.com/get543/linux-beginner-guide/tree/main/audio
 [`loopback.sh`]: https://raw.githubusercontent.com/get543/linux-beginner-guide/main/audio/loopback.sh
