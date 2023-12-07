@@ -29,7 +29,7 @@ flatpakOnly() {
 
 flatpakAvailable() {
   HEIGHT=400
-  WIDTH=800
+  WIDTH=900
   PROMPT="Do you want to install it with flatpak ?"
   TITLE="Install With Flatpak ?"
   COLUMN1="Choose One"
