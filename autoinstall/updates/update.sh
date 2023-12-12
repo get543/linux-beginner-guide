@@ -147,7 +147,10 @@ updateNode() {
     case "$?" in
       0) # yes
         echo -e "\n${DMagenta}============= Updating Node JS Package =============${Color_Off}"
-        echo -e "${Green}Installing latest LTS release of node.${Color_Off}"
+        echo -e "${Green}Use the latest LTS version of Node JS.${Color_Off}"
+        nvm use --lts
+
+        echo -e "${Green}\nInstalling latest LTS release of node.${Color_Off}"
         nvm install 'lts/*' --reinstall-packages-from=current --latest-npm
 
         echo -e "${Green}\n\n------------- List installed node version -------------${Color_Off}"
@@ -163,7 +166,6 @@ updateNode() {
           COLUMN2="Node Version"
           COLUMN3="-"
 
-          # appList=$(nvm list --no-colors | grep lts/ | awk '{print "FALSE", $1, $3}')
           appList=$(command ls $NVM_DIR/versions/node | awk '{print "FALSE", $1}')
 
           menu=$(checklistMenu)
@@ -215,7 +217,7 @@ updatePipPackages() {
 
     case "$?" in
       0) # yes
-        echo -e "\n${DMagenta}============= Updating pip Package =============${Color_Off}"
+        echo -e "\n${DMagenta}============= Updating pip Packages =============${Color_Off}"
         pip --disable-pip-version-check list --outdated --format=json | python -c "import json, sys; print('\n'.join([x['name'] for x in json.load(sys.stdin)]))" | xargs -n1 pip install -U
       ;;
 
