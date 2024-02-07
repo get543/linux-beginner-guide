@@ -1,0 +1,338 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+	*i*) ;;
+		*) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+	debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+	xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		# We have color support; assume it's compliant with Ecma-48
+		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+		# a case would tend to support setf rather than setaf.)
+		color_prompt=yes
+	else
+		color_prompt=
+	fi
+fi
+
+# show git branch on terminal
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# find files or folders
+findfiles() {
+	if [[ ! $2 || ! $1 ]]; then
+		echo "findfiles \"<whatfile>\" \"<wheretofindthefile>\""
+		return
+	fi
+	sudo find "$2" -iname "$1" 2> /dev/null
+}
+
+# display countdown and display alert with sound after it's done
+timer() {
+	if [[ ! $2 || ! $1 ]]; then
+		echo "timer <howlong> \"<putthealertwhentimerisover>\""
+		return
+	fi
+	countdown $1 && notify-send --urgency=critical "Time's Up" "$2"
+	canberra-gtk-play --id="desktop-login" --description="Time's Up"
+}
+
+# terminal prompt & color
+if [ "$color_prompt" = yes ]; then
+	PS1='┌── ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]$(parse_git_branch)\[\033[00m\]\n└─ \$ '
+else
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	;;
+*)
+	;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	#alias ls='ls --color=auto'
+	alias dir='dir --color=auto'
+	alias vdir='vdir --color=auto'
+
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+#alias ll='ls -alF'
+#alias la='ls -A'
+#alias l='ls -CF'
+
+# custom logo ls aliases
+alias ls='logo-ls'
+alias ll='logo-ls -alh'
+alias la='logo-ls -A'
+alias l='logo-ls -G'
+
+# adding my own aliases
+## scripts aliases
+alias currency='cd /media/$USER/CODE\ USB/Code/code-desktop/C++/Conversion/Currency && ./currency'
+alias temperature='cd /media/$USER/CODE\ USB/Code/code-desktop/C++/Conversion/Temperature && ./temperature'
+alias ytspammerpurge='cd /media/$USER/CODE\ USB/Code/code-desktop/Python/YT-Spammer-Purge && ./YTSpammerPurge.py'
+alias autoinstall='cd /media/$USER/CODE\ USB/Code/LINUX/github/linux-beginner-guide/autoinstall && ./main.sh'
+
+alias ytdlp='bash /media/$USER/CODE\ USB/Code/LINUX/github/linux-beginner-guide/utils/ytdlp.sh'
+alias autoupdatesystem='bash -x ~/Documents/shell/autoinstall-script/autoupdatesystem-noask.sh'
+
+alias pipe='pipes.sh'
+alias pipex='pipesX.sh'
+alias weave='. ~/Documents/shell/screensaver/weave.sh/weave.sh'
+alias twitchchat='. ~/Documents/shell/twitch-chat/twitch.sh'
+alias changeusbpermission='. ~/Documents/shell/change-usb-permissions/change-perm.sh'
+alias udin='. ~/Documents/shell/change-usb-permissions/udin.sh'
+
+## app shortcut aliases
+alias diskusageanalyser='sudo baobab'
+alias line='wine /media/$USER/Windows/LINUX\ APPS/LINE/LINEAPP.exe'
+alias whatsapp='cd /opt/whatsapp-desktop-linux && npm start'
+alias telegram='flatpak run org.telegram.desktop'
+alias obs='flatpak run com.obsproject.Studio'
+alias obsidian='flatpak run md.obsidian.Obsidian'
+alias kolourpaint='flatpak run org.kde.kolourpaint'
+alias fragments='flatpak run de.haeckerfelix.Fragments'
+alias audacity='flatpak run org.audacityteam.Audacity'
+alias inkscape='flatpak run org.inkscape.Inkscape'
+alias krita='flatpak run org.kde.krita'
+
+## audio aliases
+alias output='. ~/Documents/shell/changing-output-device/change.sh'
+alias toggle='. ~/Documents/shell/changing-output-device/toggle.sh'
+alias loopback='. ~/Documents/shell/listen-mic/loopback.sh'
+alias audio='systemctl --user restart pulseaudio'
+
+## git aliases
+alias remotesshrepo='git remote set-url origin $1'
+alias gitonecommand='git add . && git commit && git push'
+
+## folder aliases
+alias appshortcutlocal='cd ~/.local/share/applications'
+alias appshortcutuser='cd /usr/share/applications'
+alias codefolder='cd /media/$USER/CODE\ USB/Code'
+alias linuxfolder='cd /media/$USER/CODE\ USB/Code/LINUX/github/linux-beginner-guide/'
+alias shellfolder='cd ~/Documents/shell'
+alias phonefolder='cd /run/user/1000/gvfs'
+alias video='cd /media/$USER/USB\ DRIVE/Video'
+alias kuliah='cd /media/$USER/CODE\ USB/Kuliah/Mata\ Kuliah'
+alias binaryfiles='cd /usr/local/bin'
+alias bottlesprefix='cd ~/.var/app/com.usebottles.bottles/data/bottles'
+alias foxprofiles='cd ~/.mozilla/firefox/v0uil243.default-release-1648706746181/chrome'
+alias ppa='cd /etc/apt/sources.list.d'
+alias oldpwd='cd "$OLDPWD"'
+alias dwn='cd ~/Downloads'
+alias doc='cd ~/Documents'
+alias dsk='cd ~/Desktop'
+alias pic='cd ~/Pictures'
+alias vid='cd ~/Videos'
+
+## tar aliases
+alias tarbz2='tar xfvj'
+alias targz='tar xfvz'
+
+## gnome-shell-extension aliases
+alias xlist='gnome-extensions list'
+alias xenabled='gnome-extensions list --enabled'
+alias xfolders='cd ~/.local/share/gnome-shell/extensions'
+
+## mirroring phone aliases
+alias phone='scrcpy --shortcut-mod=lctrl,rctrl --video-bit-rate=20M --turn-screen-off'
+alias mirror='loopback on && phone'
+
+## dns aliases
+alias flushdnscache='sudo systemd-resolve --flush-caches && sudo resolvectl flush-caches && sudo systemd-resolve --statistics'
+alias dnsoff='warp-cli disconnect'
+alias dnson='warp-cli connect'
+alias dnsstats='warp-cli status'
+
+## gcloud aliases
+alias gcloud='cd /media/$USER/Windows/LINUX\ APPS && ./google-cloud-sdk/bin/gcloud'
+alias gsutil='cd /media/$USER/Windows/LINUX\ APPS && ./google-cloud-sdk/bin/gsutil'
+alias gcloud-crc32c='cd /media/$USER/Windows/LINUX\ APPS && ./google-cloud-sdk/bin/gcloud-crc32c'
+alias gcloudssh='gcloud alpha cloud-shell ssh'
+alias gcloudtransfer='gcloud alpha cloud-shell scp cloudshell:$1 localhost:transfered_file'
+
+## other miscellaneous aliases
+alias reload='source ~/.bashrc'
+alias nodelts='nvm use --lts'
+alias rmfile='rm -v'
+alias rmdir='rm -rfv'
+alias cpfile='cp -v'
+alias cpdir='cp -rfv'
+alias open='xdg-open'
+alias editrc='nano ~/.bashrc'
+alias sus='systemctl suspend'
+alias restarttouefi='systemctl reboot --firmware-setup'
+alias checksystemd='ps --no-headers -o comm 1'
+alias findemptydir='find ~ -type f -empty'
+alias nanoshortcut='cat ~/Documents/useful-nano-shortcut.txt'
+alias scrcpyupdate='cd ~/Downloads/scrcpy && git pull && sudo ./install_release.sh'
+alias mongodbshortcut='cat /media/$USER/CODE\ USB/Code/code-desktop/MongoDB/mongosh-commands.txt'
+
+## doing weird aliases
+alias phoneinfoga='cd ~/Downloads/tools/PhoneInfoga && ./phoneinfoga serve -p 3000'
+alias reloadgpg='gpgconf --reload gpg-agent'
+alias mountfolders='encfs --idle=5 "/media/$USER/Windows/.encfs/folders" "/media/$USER/Encfs/folders"'
+alias mountfiles='encfs --idle=5 "/media/$USER/LINUX/.com" "/home/$USER/Encfs/files"'
+alias email='firefox --new-tab https://mail.google.com/'
+alias publicip='curl ipv4.icanhazip.com'
+alias ipaddress='ip -4 addr show usb0 | grep -oP "(?<=inet\s)\d+(\.\d+){3}"'
+
+# Add an "alert" alias for long running commands.  Use like so: `sleep 10; alert`
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion  # This loads nvm bash_completion
+
+# replacing 'apt' with 'nala'
+apt() {
+	command nala "$@"
+}
+
+sudo() {
+	if [ "$1" = "apt" ]; then
+		shift
+		command sudo nala "$@"
+	else
+		command sudo "$@"
+	fi
+}
+
+# for starship prompt theme
+eval "$(starship init bash)"
+
+# custom starship pre-prompt function
+blastoff() {
+	echo "🚀"
+}
+
+starship_precmd_user_func="blastoff"
+
+# custom starship window title function
+set_win_title() {
+	local cmd=" 💨 ($@)"
+
+	if [[ "$cmd" == " 💨 (starship_precmd)" || "$cmd" == " 💨 ()" ]]
+	then
+		cmd=""
+	fi
+
+	if [[ $PWD == $HOME ]]
+	then
+		if [[ $SSH_TTY ]]
+		then
+			echo -ne "\033]0; 🏛️ @ $HOSTNAME ~$cmd\a" < /dev/null
+		else
+			echo -ne "\033]0; 🏠 ~$cmd\a" < /dev/null
+		fi
+	else
+		BASEPWD=$(basename "$PWD")
+		if [[ $SSH_TTY ]]
+		then
+			echo -ne "\033]0; 🌩️ $BASEPWD @ $HOSTNAME $cmd\a" < /dev/null
+		else
+			echo -ne "\033]0; 📁 $BASEPWD $cmd\a" < /dev/null
+		fi
+	fi
+}
+
+starship_precmd_user_func="set_win_title"
+eval "$(starship init bash)"
+trap "$(trap -p DEBUG |  awk -F"'" '{print $2}');set_win_title \${BASH_COMMAND}" DEBUG
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/media/$USER/Windows/LINUX\ APPS/google-cloud-sdk/path.bash.inc' ]; then
+	. '/media/$USER/Windows/LINUX\ APPS/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/media/$USER/Windows/LINUX\ APPS/google-cloud-sdk/completion.bash.inc' ]; then
+	. '/media/$USER/Windows/LINUX\ APPS/google-cloud-sdk/completion.bash.inc'
+fi
+
+# pip bash completion start
+_pip_completion() {
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 2>/dev/null ) )
+}
+complete -o default -F _pip_completion pip
