@@ -1,9 +1,9 @@
-> **Note:**
+> [!NOTE]
 > You can use this as a guide if you are using **ubuntu or ubuntu based** distros.
 > I think some of this will work to on **debian** distros.
 
+> [!CAUTION]
 > If you see something like this `<name>` in the command, remove the brackets `<>` and replace it with what the bracket says.
-
 > Read before copy and pasting!
 
 # Update & Upgrade Package
@@ -1647,3 +1647,48 @@ If you want to use custom css. This only works if you **Turn On** `Readable line
 - `awk` - process and manipulate text files
 - `sed` - process and manipulate text files
 - `sort` - sort lines of text
+
+# Convert Virtual Machines Image File Format
+
+## `.vmdk` to `.qcow2`
+
+### For Windows systems using PowerShell
+```powershell
+.\qemu-img.exe convert -p -f vmdk -O qcow2 fedora-linux.vmdk fedora-linux.qcow2
+```
+
+### For Linux systems using Bash
+```bash
+qemu-img convert -p -f vmdk -O qcow2 ./fedora-linux.vmdk ./fedora-linux.qcow2
+```
+
+## `.qcow2` to `.vmdk`
+
+### For Windows systems using PowerShell
+
+The reason I'm doing it like is because it's not only support VMware but ESXi aswell. But I have not try this one before, I believe it'll work just fine.
+```powershell
+.\qemu-img.exe convert -f qcow2 -O vmdk -o adapter_type=lsilogic,subformat=streamOptimized,compat6 fedora-linux.qcow2 fedora-linux.vmdk
+```
+
+### For Linux systems using Bash
+```bash
+qemu-img convert -p -f qcow2 -O vmdk fedora-linux.qcow2 fedora-linux.vmdk
+```
+
+# Just a reminder for myself
+
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]  
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
