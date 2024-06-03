@@ -79,7 +79,7 @@ createMenu() {
         --column="$COLUMN3" \
         --width="$WIDTH" \
         --height="$HEIGHT" \
-        --window-icon="$SCRIPT_DIR/icons/list.png" \
+        --icon="$SCRIPT_DIR/icons/list.png" \
         "${OPTIONS[@]}"
 }
 
@@ -91,7 +91,7 @@ questionDialog() {
         --cancel-label="$CANCELLABEL" \
         --width="$WIDTH" \
         --height="$HEIGHT" \
-        --window-icon="$SCRIPT_DIR/icons/peepoThink.png"
+        --icon="$SCRIPT_DIR/icons/peepoThink.png"
 }
 
 # checklist menu
@@ -105,7 +105,8 @@ checklistMenu() {
         --column="$COLUMN1" \
         --column="$COLUMN2" \
         --column="$COLUMN3" \
-        --window-icon="$SCRIPT_DIR/icons/list.png" \
+        --column="$COLUMN4" \
+        --icon="$SCRIPT_DIR/icons/list.png" \
         ${appList}
 }
 
@@ -113,7 +114,7 @@ checklistMenu() {
 chooseOther() {
   zenity --notification \
         --text="Invalid option. You didn't choose any of the options." \
-        --window-icon="$SCRIPT_DIR/icons/error.png"
+        --icon="$SCRIPT_DIR/icons/error.png"
 }
 
 installMissingDependecies() {
@@ -136,7 +137,7 @@ installMissingDependecies() {
 
       elif [ "$fedoraRedhat" ]
       then
-        echo -e "${Green}Sorry I don't know how to do that on Fedora${Color_Off}"
+        sudo dnf distro-sync --setopt=dnf.default_vendor_install=True
 
       elif [ "$arch" ]
       then

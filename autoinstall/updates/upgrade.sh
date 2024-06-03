@@ -34,9 +34,10 @@ chooseUpgradeDebian() {
       PROMPT="Select which apps you want to update."
       COLUMN1="Checkbox"
       COLUMN2="Package Name"
-      COLUMN3="-"
+      COLUMN3="Size"
+      COLUMN4="Unit"
 
-      appList=$(command nala list --upgradable | awk '{print $1}' | tr -d '└──' | awk 'NR%2==1' | awk NF | awk '{print "FALSE", $1, "-"}')
+      appList=$(command nala list --upgradable | awk '{print $1}' | tr -d '└──' | awk 'NR%2==1' | awk NF | awk '{print "FALSE", $1, "-", "-"}')
 
       menu=$(checklistMenu)
 
@@ -65,9 +66,10 @@ chooseUpgradeDebian() {
       PROMPT="Select which apps you want to update."
       COLUMN1="Checkbox"
       COLUMN2="Package Name"
-      COLUMN3="-"
+      COLUMN3="Size"
+      COLUMN3="Unit"
 
-      appList=$(command apt list --upgradable | tail -n +2 | cut -d / -f 1 | awk '{print "FALSE", $1, "-"}')
+      appList=$(command apt list --upgradable | tail -n +2 | cut -d / -f 1 | awk '{print "FALSE", $1, "-", "-"}')
 
       menu=$(checklistMenu)
 
@@ -94,28 +96,32 @@ chooseUpgradeFedora() {
   do
     clear
 
-    echo -e "\n${DMagenta}============= List Upgradable Packages =============${Color_Off}"
-    sudo dnf update --assumeno
+    HEIGHT=800
+    WIDTH=700
+    TITLE="List Outdated Packages"
+    PROMPT="Select which apps you want to update."
+    COLUMN1="Checkbox"
+    COLUMN2="Package Name"
+    COLUMN3="Size"
+    COLUMN4="Unit"
 
-    echo -e "\n${DMagenta}=====================================================================================================${Color_Off}"
-    echo -e "Type the exact package name you want to upgrade according to the list."
-    echo -e "If you want to do multiple packages, just put a space after each one."
-    echo -e "\n${Green}Usually the package name is on the most left of the list${Color_Off}"
-    echo -e "\nExample : ${BRed}gimp kdenlive linux-firmware linux-headers-liquorix-amd64 linux-image-liquorix-amd64"
-    echo -e "${Green}Type ${BRed}exit ${Green}to exit this process."
-    echo -e "${DMagenta}=====================================================================================================${Color_Off}"
+    appList=$(sudo dnf update --assumeno | tail -n +6 | head -n -8 | grep -vE "^(Installing:|Upgrading:|Installing dependencies:|Removing:|Operation aborted.)" | awk '{print "FALSE", $1, $5, $NF}')
 
-    echo -ne "${DYellow}\nUpgrade Package : ${Color_Off}"
-    read packageName
+    menu=$(checklistMenu)
 
-    if [ "$packageName" = "exit" ]
+    choices="${menu[@]}"
+
+    final=$(echo "$choices" | tr "|" " ")
+
+    if [[ ! $final ]]
     then
-      echo "Done."
       break
-    fi
 
-    clear
-    sudo dnf upgrade $packageName
+    else
+      clear
+      sudo dnf upgrade --assumeyes $final
+
+    fi
   done
 }
 
@@ -159,7 +165,7 @@ checkArch
 checkDebian
 checkSUSE
 
-HEIGHT=300
+HEIGHT=400
 WIDTH=900
 TITLE="Upgrade Packages Installation"
 PROMPT="Install Upgrade"

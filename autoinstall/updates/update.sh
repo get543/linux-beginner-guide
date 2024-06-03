@@ -67,8 +67,9 @@ updateFlatpak() {
           COLUMN1="Checkbox"
           COLUMN2="ID"
           COLUMN3="Size"
+          COLUMN4="Unit"
 
-          appList=$(no &> /dev/null | LC_ALL=en_US.UTF-8 flatpak update | tail -n +4 | head -n -2 | awk '{print "FALSE", $2, $7}')
+          appList=$(no &> /dev/null | LC_ALL=en_US.UTF-8 flatpak update | tail -n +4 | head -n -2 | awk '{print "FALSE", $2, $7, "-"}')
 
           menu=$(checklistMenu)
 
@@ -165,6 +166,7 @@ updateNode() {
           COLUMN1="Checkbox"
           COLUMN2="Node Version"
           COLUMN3="-"
+          COLUMN4="-"
 
           appList=$(command ls $NVM_DIR/versions/node | awk '{print "FALSE", $1}')
 
