@@ -20,10 +20,10 @@
     - [nodejs repository :](#nodejs-repository-)
     - [installing nodejs :](#installing-nodejs-)
 - [yt-dlp](#yt-dlp)
-    - [Download the best :](#download-the-best-)
-    - [Config that I use :](#config-that-i-use-)
-    - [Config explains :](#config-explains-)
-    - [More config examples :](#more-config-examples-)
+    - [Download the best](#download-the-best)
+    - [Config that I use](#config-that-i-use)
+    - [Config explains](#config-explains)
+    - [More config examples](#more-config-examples)
 - [Switch Between Speakers and Headphones Without Unpluging](#switch-between-speakers-and-headphones-without-unpluging)
   - [Adding Config](#adding-config)
   - [Use Indicator-Sound-Switcher or Pavucontrol](#use-indicator-sound-switcher-or-pavucontrol)
@@ -90,8 +90,8 @@
 - [Fixing OBS Error when Installing](#fixing-obs-error-when-installing)
 - [Fixing Printer & Scanner Error](#fixing-printer-scanner-error)
 - [Replace 'apt' With 'nala'](#replace-apt-with-nala)
-      - [Installation](#installation)
-      - [Change 'apt' to 'nala'](#change-apt-to-nala)
+    - [Installation](#installation)
+    - [Change 'apt' to 'nala'](#change-apt-to-nala)
 - [Flush DNS Cache on Linux](#flush-dns-cache-on-linux)
 - [Basic Vim Commands](#basic-vim-commands)
 - [Keyboard shortcuts for the Linux terminal on Ubuntu](#keyboard-shortcuts-for-the-linux-terminal-on-ubuntu)
@@ -1114,7 +1114,7 @@ sudo dpkg -i sane-airscan_0.99.27-1+89.1_amd64.deb
 Their github page [here](https://gitlab.com/volian/nala) 
 Copy paste guide [here](https://christitus.com/stop-using-apt/)
 
-#### Installation
+### Installation
 - Install the volian scar repo.
 ```bash
 echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
@@ -1138,7 +1138,7 @@ sudo apt update
 sudo apt install nala-legacy
 ```
 
-#### Change 'apt' to 'nala'
+### Change 'apt' to 'nala'
 - Edit the `~/.bashrc` file.
 ```bash
 nano ~/.bashrc
