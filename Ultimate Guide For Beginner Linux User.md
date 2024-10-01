@@ -8,7 +8,7 @@
 
 ## Table of Contents
 
-- [Update & Upgrade Package](#update-upgrade-package)
+- [Update and Upgrade Packages](#update-and-upgrade-packages)
 - [Unpack `.deb` File](#unpack-deb-file)
 - [Upgrade Major Versions](#upgrade-major-versions)
   - [Fedora](#fedora)
@@ -151,7 +151,7 @@
 
 ---
 
-# Update & Upgrade Package
+# Update and Upgrade Packages
 ```bash
 # update the repository
 sudo apt update
