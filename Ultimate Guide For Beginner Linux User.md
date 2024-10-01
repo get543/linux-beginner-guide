@@ -6,6 +6,151 @@
 > If you see something like this `<name>` in the command, remove the brackets `<>` and replace it with what the bracket says.
 > Read before copy and pasting!
 
+## Table of Contents
+
+- [Update & Upgrade Package](#update-upgrade-package)
+- [Unpack `.deb` File](#unpack-deb-file)
+- [Upgrade Major Versions](#upgrade-major-versions)
+  - [Fedora](#fedora)
+- [Extract `.tar.xz` File](#extract-tarxz-file)
+    - [Installing from a `.tar` file](#installing-from-a-tar-file)
+- [How To Clone Git Repositories](#how-to-clone-git-repositories)
+- [Other Tips Tutorials](#other-tips-tutorials)
+- [Node JS](#node-js)
+    - [nodejs repository :](#nodejs-repository-)
+    - [installing nodejs :](#installing-nodejs-)
+- [yt-dlp](#yt-dlp)
+    - [Download the best :](#download-the-best-)
+    - [Config that I use :](#config-that-i-use-)
+    - [Config explains :](#config-explains-)
+    - [More config examples :](#more-config-examples-)
+- [Switch Between Speakers and Headphones Without Unpluging](#switch-between-speakers-and-headphones-without-unpluging)
+  - [Adding Config](#adding-config)
+  - [Use Indicator-Sound-Switcher or Pavucontrol](#use-indicator-sound-switcher-or-pavucontrol)
+  - [Enable Auto Mute on Alsamixer](#enable-auto-mute-on-alsamixer)
+  - [Script Toggle Auto Mute on Alsamixer](#script-toggle-auto-mute-on-alsamixer)
+  - [Using Shell Script](#using-shell-script)
+- [Open Anything On Default Apps](#open-anything-on-default-apps)
+- [Games To Try On Terminal](#games-to-try-on-terminal)
+- [Restarting gnome-shell](#restarting-gnome-shell)
+- [Check Installed Gnome Extensions](#check-installed-gnome-extensions)
+- [Installing Multiple Apps on 1 Command](#installing-multiple-apps-on-1-command)
+    - [By Creating A Script File](#by-creating-a-script-file)
+    - [By Terminal Command](#by-terminal-command)
+- [Show Thumbnails In File Manager](#show-thumbnails-in-file-manager)
+  - [Nautilus](#nautilus)
+      - [For Video Files](#for-video-files)
+      - [For Webp Files](#for-webp-files)
+  - [Thunar File Manger](#thunar-file-manger)
+- [Change App Icon on Ubuntu](#change-app-icon-on-ubuntu)
+- [Fonts](#fonts)
+- [Linux File Permission Explanation](#linux-file-permission-explanation)
+- [Droidcam Installation](#droidcam-installation)
+- [List Hardware Info](#list-hardware-info)
+    - [GUI version (install it first)](#gui-version-install-it-first)
+- [Beginner Arch](#beginner-arch)
+    - [ArchTitus](#archtitus)
+    - [Regular Arch Linux Installation](#regular-arch-linux-installation)
+- [Guide For Gaming on Linux](#guide-for-gaming-on-linux)
+    - [Run GameMode](#run-gamemode)
+- [QEMU](#qemu)
+  - [Using QEMU on Terminal](#using-qemu-on-terminal)
+    - [Basic performance options (Linux only)](#basic-performance-options-linux-only)
+    - [Basic Graphics Acceleration](#basic-graphics-acceleration)
+  - [Using QEMU with GUI](#using-qemu-with-gui)
+- [Clear Swap Memory](#clear-swap-memory)
+- [Expand or Create A New Swap Memory](#expand-or-create-a-new-swap-memory)
+  - [To make it permanent upon restart](#to-make-it-permanent-upon-restart)
+- [Restart Audio Driver](#restart-audio-driver)
+- [Remove a Directory on Terminal](#remove-a-directory-on-terminal)
+- [Editing Thunar Visuals](#editing-thunar-visuals)
+- [Using Wget](#using-wget)
+    - [Download a file or webpage using wget](#download-a-file-or-webpage-using-wget)
+    - [Download a folder using wget](#download-a-folder-using-wget)
+    - [Download an entire website using wget](#download-an-entire-website-using-wget)
+    - [Customise download location](#customise-download-location)
+    - [Download with a redirect link and custom download location (recommended)](#download-with-a-redirect-link-and-custom-download-location-recommended)
+    - [Resume incomplete downloads](#resume-incomplete-downloads)
+- [Using cURL](#using-curl)
+    - [Download a web page and put it in a file](#download-a-web-page-and-put-it-in-a-file)
+    - [Download a file from a URL and keep file name from what its given](#download-a-file-from-a-url-and-keep-file-name-from-what-its-given)
+    - [Download with a redirect link, auto resume if there's an error, shows the error, and custom file path (recommended)](#download-with-a-redirect-link-auto-resume-if-theres-an-error-shows-the-error-and-custom-file-path-recommended)
+- [Disable Alt Key Menubar On Firefox](#disable-alt-key-menubar-on-firefox)
+- [Wifi Drivers](#wifi-drivers)
+- [Aliases](#aliases)
+    - [Creating temporary aliases](#creating-temporary-aliases)
+    - [Creating permanent aliases](#creating-permanent-aliases)
+    - [Remove Aliases](#remove-aliases)
+- [Solve Discord Laggy Performance](#solve-discord-laggy-performance)
+- [Git Basic Command](#git-basic-command)
+    - [Github Cheat Sheet](#github-cheat-sheet)
+- [Installing Node JS (Node Version Manager)](#installing-node-js-node-version-manager)
+- [Customise Terminal Prompt](#customise-terminal-prompt)
+    - [Step To Do](#step-to-do)
+- [Fixing OBS Error when Installing](#fixing-obs-error-when-installing)
+- [Fixing Printer & Scanner Error](#fixing-printer-scanner-error)
+- [Replace 'apt' With 'nala'](#replace-apt-with-nala)
+      - [Installation](#installation)
+      - [Change 'apt' to 'nala'](#change-apt-to-nala)
+- [Flush DNS Cache on Linux](#flush-dns-cache-on-linux)
+- [Basic Vim Commands](#basic-vim-commands)
+- [Keyboard shortcuts for the Linux terminal on Ubuntu](#keyboard-shortcuts-for-the-linux-terminal-on-ubuntu)
+- [Listen to your own microphone](#listen-to-your-own-microphone)
+- [Add Git Branch on Bash Prompt](#add-git-branch-on-bash-prompt)
+- [Connecting Git using SSH Key](#connecting-git-using-ssh-key)
+    - ['Permission Denied (publickey)' error](#permission-denied-publickey-error)
+    - [How To Fix :](#how-to-fix-)
+- [Blackscreen on XFCE in Virt-Manager using 3D Acceleration](#blackscreen-on-xfce-in-virt-manager-using-3d-acceleration)
+- [Terminal Window Title Show Running Command](#terminal-window-title-show-running-command)
+- [Dealing With Disk Permissions](#dealing-with-disk-permissions)
+  - [Unmount & remount with different permission](#unmount-remount-with-different-permission)
+  - [Mount disk to startup applications](#mount-disk-to-startup-applications)
+  - [Change ownership of a folder](#change-ownership-of-a-folder)
+- [Bash Completion Case Insensitive](#bash-completion-case-insensitive)
+- [Thunar Change  Default Terminal](#thunar-change-default-terminal)
+- [Change from `Bash` to `Zsh`](#change-from-bash-to-zsh)
+  - [Zsh Installation](#zsh-installation)
+  - [Installing Oh-My-Zsh](#installing-oh-my-zsh)
+    - [Oh-My-Zsh Plugins](#oh-my-zsh-plugins)
+    - [Oh-My-Zsh Theme](#oh-my-zsh-theme)
+- [Change Linux Login Screen's Resolution](#change-linux-login-screens-resolution)
+  - [XFCE (lightdm)](#xfce-lightdm)
+  - [KDE Plasma (sddm)](#kde-plasma-sddm)
+  - [Gnome (gdm)](#gnome-gdm)
+- [Change Grub Theme](#change-grub-theme)
+  - [Look location of the current installed theme (if available).](#look-location-of-the-current-installed-theme-if-available)
+  - [Installing Theme](#installing-theme)
+  - [Change desired resolution for the grub menu (optional)](#change-desired-resolution-for-the-grub-menu-optional)
+  - [Run this command everytime you make changes to the config file](#run-this-command-everytime-you-make-changes-to-the-config-file)
+- [Change Boot Splash Screen on Linux](#change-boot-splash-screen-on-linux)
+  - [General Installation Instructions:](#general-installation-instructions)
+  - [Some Cool Themes That I Found](#some-cool-themes-that-i-found)
+    - [Theme for Arch](#theme-for-arch)
+    - [Another cool themes](#another-cool-themes)
+- [Obsidian Fix Empty Space](#obsidian-fix-empty-space)
+- [Linux Most Commonly Known Commands](#linux-most-commonly-known-commands)
+    - [Navigating Directories](#navigating-directories)
+    - [Archive](#archive)
+    - [Permissions](#permissions)
+    - [Remote](#remote)
+    - [Download Files](#download-files)
+    - [Networking](#networking)
+    - [System](#system)
+    - [Disk & File System](#disk-file-system)
+    - [Check Logs](#check-logs)
+    - [Read Files](#read-files)
+    - [Manipulating Text Files](#manipulating-text-files)
+- [Convert Virtual Machines Image File Format](#convert-virtual-machines-image-file-format)
+  - [`.vmdk` to `.qcow2`](#vmdk-to-qcow2)
+    - [For Windows systems using PowerShell](#for-windows-systems-using-powershell)
+    - [For Linux systems using Bash](#for-linux-systems-using-bash)
+  - [`.qcow2` to `.vmdk`](#qcow2-to-vmdk)
+    - [For Windows systems using PowerShell](#for-windows-systems-using-powershell-1)
+    - [For Linux systems using Bash](#for-linux-systems-using-bash-1)
+- [Just a reminder for myself](#just-a-reminder-for-myself)
+
+---
+
 # Update & Upgrade Package
 ```bash
 # update the repository
@@ -101,7 +246,7 @@ tar xfv <archive-name>.tar --directory=path/to/directory
 tar xfv <archive-name>.tar.gz --directory=path/to/directory
 tar xfv <archive-name>.tar.bz2 --directory=path/to/directory
 tar xfv <archive-name>.tar.xz --directory=path/to/directory
-````
+```
 **If tar gives a `Cannot exec` error, you may need to run `sudo apt install xz-utils` first.**
 
 ### Installing from a `.tar` file
@@ -148,16 +293,16 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubunt
 # yt-dlp
 Download a video from youtube, [how to install it.](https://github.com/yt-dlp/yt-dlp#installation)
 
-##### Download the best :
+### Download the best
 ```bash
 yt-dlp -f best <link-here>
 ```
-##### Config that I use :
+### Config that I use
 Download the highest 1080p .mp4 video-only and merge it with the best audio-only format. If no 1080p, use the highest before that.
 ```bash
 yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"
 ```
-##### Config explains :
+### Config explains
 ```text
 -f mp4 => for video format 
 -f best => for the best option
@@ -166,7 +311,7 @@ yt-dlp -S "res:1080,ext" -f "bv*+ba/b" <link_here> -o "%(title)s.%(ext)s"
 -o => C:\Users\dood\Downloads\%(title)s.%(ext)s => for the download path
 --no-mtime => the time when you download it not the uploader time
 ```
-##### More config examples :
+### More config examples
 See the full list  [here.](https://github.com/yt-dlp/yt-dlp#format-selection-examples)
 ```bash
 # Download and merge the best video-only format and the best audio-only format,
@@ -368,7 +513,7 @@ sudo apt install vlc obs-studio simplenote steam wine
 
 # Show Thumbnails In File Manager 
 ## Nautilus
-#### For Video Files
+### For Video Files
 https://askubuntu.com/questions/1034595/thumbnails-not-showing-in-video-in-ubuntu-18-04
 ```bash
 sudo apt install ffmpegthumbnailer
@@ -383,7 +528,7 @@ rm -rf ~/.cache/thumbnails/*
 nautilus -q 
 ```
 
-#### For Webp Files
+### For Webp Files
 https://fostips.com/enable-thumbnails-webp-ubuntu-fedora/
 ```bash
 # add repository
@@ -644,52 +789,52 @@ GTK_DEBUG=interactive thunar
 
 
 # Using Wget
-##### Download a file or webpage using wget
+### Download a file or webpage using wget
 ```bash
 wget <URL>
 wget -i <download_files.txt>
 wget -O <filename> <URL>
 ```
 
-##### Download a folder using wget
+### Download a folder using wget
 ```bash
 wget -r <link>
 ```
 
-##### Download an entire website using wget 
+### Download an entire website using wget 
 This is done by creating a mirror of the website.
 ```bash
 wget -m --convert-links --page-requisites website_address
 ```
 
-##### Customise download location
+### Customise download location
 ```bash
 wget <link> -O ~/Downloads/<custom-file-name>.deb
 ```
 
-##### Download with a redirect link and custom download location (recommended)
+### Download with a redirect link and custom download location (recommended)
 ```bash
 wget -O <custom-file-name>.deb "<link>"
 ```
 
-##### Resume incomplete downloads
+### Resume incomplete downloads
 ```bash
 wget -c
 ```
 
 
 # Using cURL
-##### Download a web page and put it in a file
+### Download a web page and put it in a file
 ```bash
 curl "<http://example.com>" --output "<filepath>"
 ```
 
-##### Download a file from a URL and keep file name from what its given
+### Download a file from a URL and keep file name from what its given
 ```bash
 curl --remote-name "<http://example.com/filename>"
 ```
 
-##### Download with a redirect link, auto resume if there's an error, shows the error, and custom file path (recommended)
+### Download with a redirect link, auto resume if there's an error, shows the error, and custom file path (recommended)
 ```bash
 curl --output "<filepath-or-filename>" --fail --show-error --location --continue-at - "<http://example.com/filename>"
 ```
@@ -740,7 +885,7 @@ echo "options rtl8188fu rtw_power_mgnt=0 rtw_enusbss=0" | sudo tee /etc/modprobe
 ```bash
 # show Aliases
 alias
-````
+```
 
 ### Creating temporary aliases
 ```bash
@@ -890,7 +1035,7 @@ user@host ~
 $ 
 ```
 
-##### Step To Do
+## Step To Do
 Edit the `.bashrc` file.
 ```bash
 nano ~/.bashrc
