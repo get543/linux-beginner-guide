@@ -517,6 +517,21 @@ universal-android-debloater() { # custom, works for all
     --------------------------------------------------
     |           Installing $NAME                     |
     -------------------------------------------------- ${Color_Off}"
+
+  if [ "$debian" ]
+  then
+    sudo apt install android-sdk-platform-tools
+  elif [ "$fedoraRedhat" ]
+  then
+    sudo yum install android-tools
+  elif [ "$arch" ]
+  then
+    sudo pacman -Sy android-tools
+  else
+    echo -e "${Green}Cannot install prerequisite package for distro other than debian, fedora, and arch.${Color_Off}"
+    sleep 5
+  fi
+
   curl -o ~/Downloads/uad_gui-linux.tar.gz -fLC - "https://github.com/0x192/universal-android-debloater/releases/download/${VERSION}/uad_gui-linux.tar.gz"
   tar xfv ~/Downloads/uad_gui-linux.tar.gz -C ~/Downloads
   rmdirIfExist ~/Downloads/uad_gui-linux.tar.gz
