@@ -105,7 +105,7 @@ chooseUpgradeFedora() {
     COLUMN3="Size"
     COLUMN4="Unit"
 
-    appList=$(sudo dnf update --assumeno | tail -n +6 | head -n -8 | grep -vE "^(Installing:|Upgrading:|Installing dependencies:|Removing:|Operation aborted.)" | awk '{print "FALSE", $1, $5, $NF}')
+    appList=$(sudo dnf update --assumeno | tail -n +6 | head -n -8 | grep -vE "^(Installing:|Upgrading:|Installing dependencies:|Removing:|Installing weak dependencies:|Installing dependencies:|Operation aborted.)" | awk '{print "FALSE", $1, $5, $NF}')
 
     menu=$(checklistMenu)
 
