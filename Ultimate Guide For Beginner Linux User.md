@@ -148,6 +148,7 @@
     - [For Windows systems using PowerShell](#for-windows-systems-using-powershell-1)
     - [For Linux systems using Bash](#for-linux-systems-using-bash-1)
 - [Just a reminder for myself](#just-a-reminder-for-myself)
+- [Change Firefox Cache Size](#change-firefox-cache-size)
 
 ---
 
@@ -1837,3 +1838,14 @@ qemu-img convert -p -f qcow2 -O vmdk fedora-linux.qcow2 fedora-linux.vmdk
 
 > [!CAUTION]
 > Negative potential consequences of an action.
+
+
+# Change Firefox Cache Size
+
+`about:config` on URL bar
+
+`browser.cache.disk.smart_size.enabled` to False
+
+`browser.cache.disk.capacity` to 1048576
+
+For me before is **256000** = 256 MB, you can change it to **1048576** = 1.048576 GB which should be the default. *Size is in KB*
