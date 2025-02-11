@@ -1800,12 +1800,12 @@ If you want to use custom css. This only works if you **Turn On** `Readable line
 
 ### For Windows systems using PowerShell
 ```powershell
-.\qemu-img.exe convert -p -f vmdk -O qcow2 fedora-linux.vmdk fedora-linux.qcow2
+.\qemu-img.exe convert -p -f vmdk -O qcow2 fedora-linux.vmdk fedora-linux.qcow2
 ```
 
 ### For Linux systems using Bash
 ```bash
-qemu-img convert -p -f vmdk -O qcow2 ./fedora-linux.vmdk ./fedora-linux.qcow2
+qemu-img convert -p -f vmdk -O qcow2 ./fedora-linux.vmdk ./fedora-linux.qcow2
 ```
 
 ## `.qcow2` to `.vmdk`
@@ -1814,12 +1814,12 @@ qemu-img convert -p -f vmdk -O qcow2 ./fedora-linux.vmdk ./fedora-linux.qcow2
 
 The reason I'm doing it like is because it's not only support VMware but ESXi aswell. But I have not try this one before, I believe it'll work just fine.
 ```powershell
-.\qemu-img.exe convert -f qcow2 -O vmdk -o adapter_type=lsilogic,subformat=streamOptimized,compat6 fedora-linux.qcow2 fedora-linux.vmdk
+qemu-img.exe convert -f qcow2 -O vmdk fedora-linux.qcow2 fedora-linux.vmdk
 ```
 
 ### For Linux systems using Bash
 ```bash
-qemu-img convert -p -f qcow2 -O vmdk fedora-linux.qcow2 fedora-linux.vmdk
+qemu-img convert -p -f qcow2 -O vmdk fedora-linux.qcow2 fedora-linux.vmdk
 ```
 
 # Just a reminder for myself
