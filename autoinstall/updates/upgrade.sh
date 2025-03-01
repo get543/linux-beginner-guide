@@ -24,7 +24,7 @@ upgradeALL() {
 
 chooseUpgradeDebian() {
   # using nala
-  if (command -v nala &> /dev/null )
+  if (command -v nala &> /dev/null)
   then
     while :
     do
