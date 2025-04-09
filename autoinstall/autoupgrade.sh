@@ -50,6 +50,8 @@ main() {
     checkArch
     checkDebian
     checkSUSE
+    
+    checkNala
 
     echo "Running autoupgrade script..."
     if [ "$debian" ]; then

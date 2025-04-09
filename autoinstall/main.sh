@@ -19,7 +19,13 @@ source "$SCRIPT_DIR/apps/template.sh"
 
 # sudo gui prompt
 sudo() {
-  /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo "$@"
+  if (grep -qi microsoft /proc/version); then
+    # In WSL
+    /usr/bin/sudo "$@"
+  else
+    # Real Linux
+    /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo "$@"
+  fi
 }
 
 # load node version manager
@@ -59,10 +65,25 @@ checkNala() {
         then
           # using nala but with sudo gui prompt
           shift
-          command /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo nala "$@"
+
+          if (grep -qi microsoft /proc/version); then
+            # In WSL
+            command /usr/bin/sudo nala "$@"
+          else
+            # Real Linux
+            command /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo "$@"
+          fi
+
+
         else
           # keep apt but with sudo gui prompt
-          command /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo "$@"
+          if (grep -qi microsoft /proc/version); then
+            # In WSL
+            command /usr/bin/sudo "$@"
+          else
+            # Real Linux
+            command /usr/bin/pkexec --disable-internal-agent /usr/bin/sudo "$@"
+          fi
         fi
       }
     fi
@@ -79,7 +100,7 @@ createMenu() {
         --column="$COLUMN3" \
         --width="$WIDTH" \
         --height="$HEIGHT" \
-        --icon="$SCRIPT_DIR/icons/list.png" \
+        --window-icon="$SCRIPT_DIR/icons/list.png" \
         "${OPTIONS[@]}"
 }
 
@@ -91,7 +112,7 @@ questionDialog() {
         --cancel-label="$CANCELLABEL" \
         --width="$WIDTH" \
         --height="$HEIGHT" \
-        --icon="$SCRIPT_DIR/icons/peepoThink.png"
+        --window-icon="$SCRIPT_DIR/icons/peepoThink.png"
 }
 
 # checklist menu
@@ -106,7 +127,7 @@ checklistMenu() {
         --column="$COLUMN2" \
         --column="$COLUMN3" \
         --column="$COLUMN4" \
-        --icon="$SCRIPT_DIR/icons/list.png" \
+        --window-icon="$SCRIPT_DIR/icons/list.png" \
         ${appList}
 }
 
@@ -114,7 +135,7 @@ checklistMenu() {
 chooseOther() {
   zenity --notification \
         --text="Invalid option. You didn't choose any of the options." \
-        --icon="$SCRIPT_DIR/icons/error.png"
+        --window-icon="$SCRIPT_DIR/icons/error.png"
 }
 
 installMissingDependecies() {
