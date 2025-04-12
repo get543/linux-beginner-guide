@@ -50,7 +50,7 @@ main() {
     checkArch
     checkDebian
     checkSUSE
-    
+
     checkNala
 
     echo "Running autoupgrade script..."
@@ -58,7 +58,7 @@ main() {
         sudo apt update
         sudo apt upgrade -y
         sudo apt autoremove -y
-        sudo apt clean -y
+        sudo apt clean
 
     elif [ "$fedoraRedhat" ]; then
         sudo dnf update --assumeyes
